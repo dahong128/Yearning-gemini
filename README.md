@@ -6,7 +6,7 @@
 
 ![LICENSE](https://img.shields.io/badge/license-AGPL%20-blue.svg)
 ![build](https://img.shields.io/badge/build-release-brightgreen.svg)
-![version](https://img.shields.io/badge/version-v2.x-brightgreen.svg)
+![version](https://img.shields.io/badge/version-v2.4.0-brightgreen.svg)
 ![webpack](https://img.shields.io/badge/webpack-v4-brightgreen.svg)
 
 Yearning SQL 审核平台的前端代码。
