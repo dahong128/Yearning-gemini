@@ -104,7 +104,7 @@
         <Card style="margin-left: 0.5%">
             <p slot="title" class="card-title">
                 <Icon type="md-map"></Icon>
-                DML/DDL最近6个月统计
+                {{ $t('dash.recent6') }}
             </p>
             <OrderChart></OrderChart>
         </Card>

@@ -16,21 +16,22 @@
                     <breadcrumb-nav></breadcrumb-nav>
                 </div>
                 <div class="header-avator-con">
-                    <Dropdown trigger="click" @on-click="handleClickUserDropdown">
-                        <a href="javascript:void(0)">
-                            获得赞助版本/帮助
-                            <Icon type="ios-arrow-down"></Icon>
-                        </a>
-                        <DropdownMenu slot="list">
-                            <DropdownItem name="sponsor">获取赞助版</DropdownItem>
-                            <DropdownItem><a href="https://guide.yearning.io/"
-                                             target="_Blank">{{ $t('banner.guide') }}</a></DropdownItem>
-                        </DropdownMenu>
-                    </Dropdown>
-                    <div @click="lockScreen" class="lock-screen-btn-con" style="margin-left: 5%">
-                        <Tooltip :content="$t('dash.lock')" placement="bottom">
-                            <Icon type="md-lock" :size="20"></Icon>
-                        </Tooltip>
+                    <div class="header-actions">
+                        <Dropdown trigger="click">
+                            <a href="javascript:void(0)">
+                                {{ $t('header.help_menu') }}
+                                <Icon type="ios-arrow-down"></Icon>
+                            </a>
+                            <DropdownMenu slot="list">
+                                <DropdownItem><a href="https://guide.yearning.io/" target="_Blank">{{ $t('banner.guide') }}</a></DropdownItem>
+                            </DropdownMenu>
+                        </Dropdown>
+                        <LanguageSwitcher />
+                        <div @click="lockScreen" class="lock-screen-btn-con">
+                            <Tooltip :content="$t('dash.lock')" placement="bottom">
+                                <Icon type="md-lock" :size="20"></Icon>
+                            </Tooltip>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -78,36 +79,20 @@
             <br>
             <p>{{$t('banner.statement.text_9')}}</p>
         </Modal>
-        <Modal v-model="is_open" title="获得赞助版本">
-            <p>感谢您支持Yearning！Yearning在保证社区版持续开发的基础上为了回馈曾经在Yearning开发道路上提供积极帮助的朋友们，现推出了基于社区版的赞助版本。 </p>
-            <p>赞助版基于最新的Yearning社区版本，目前已添加以下功能:</p>
-            <br>
-            <strong>1.支持审核人移动端(手机)审核工单</strong>
-            <p>2.支持外键审核</p>
-            <strong>3.支持自定义hook消息推送</strong>
-            <p>4.支持指定表名前缀审核规则</p>
-            <p>5.可基于主键生成回滚语句</p>
-            <p>6.工单复制(适用于多环境工单流转) </p>
-            <p>7.搜索功能支持多条件合并搜索</p>
-            <strong>8.支持SQL文件上传提取语句</strong>
-            <p>9.专属微信群,及时解决问题</p>
-            <p>10.基于数据源的流程模板控制</p>
-            <br>
-            <h6>赞助版本将会持续更新差异化功能/支持更新</h6>
-            <h5>2021年度赞助大于300可联系作者(Mail: henry@yearning.io/QQ: 834958386)获取</h5>
-        </Modal>
+        
     </div>
 </template>
 <script lang="ts">
     import sidebarMenu from './components/sidebarMenu.vue'
     import breadcrumbNav from '@/components/breadcrumbNav.vue'
+    import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
     import {Component,Mixins} from "vue-property-decorator";
     import module_general from "@/store/modules/general";
     import module_init_args from "@/store/modules/init_args";
     import {DashPutApi} from "@/apis/dashApis";
     import Basic from "@/mixins/basic";
 
-@Component({components: {sidebarMenu, breadcrumbNav}})
+@Component({components: {sidebarMenu, breadcrumbNav, LanguageSwitcher}})
 export default class main_farm extends Mixins(Basic) {
     userName = sessionStorage.getItem('user');
     isFullScreen = false;
@@ -131,11 +116,7 @@ export default class main_farm extends Mixins(Basic) {
             module_general.changed_menuList(vl)
         }
 
-    handleClickUserDropdown(vl: string) {
-        if (vl === 'sponsor') {
-            this.is_open = true
-        }
-    }
+    
 
         handleChange() {
             let i = this.$config.random(0, 3);
@@ -190,53 +171,21 @@ export default class main_farm extends Mixins(Basic) {
             lockScreenBack.style.width = lockScreenBack.style.height = size + 'px';
             // 问候信息相关
             if (!sessionStorage.getItem('hasGreet')) {
-                let now = new Date();
-                let hour = now.getHours();
-                let greetingWord = {
-                    title: '',
-                    words: ''
-                };
-                let userName = this.userName;
-                if (hour < 6) {
-                    greetingWord = {
-                        title: '凌晨好~' + userName,
-                        words: '早起的鸟儿有虫吃~'
-                    }
-                } else if (hour >= 6 && hour < 9) {
-                    greetingWord = {
-                        title: '早上好~' + userName,
-                        words: '来一杯咖啡开启美好的一天~'
-                    }
-                } else if (hour >= 9 && hour < 12) {
-                    greetingWord = {
-                        title: '上午好~' + userName,
-                        words: '工作要加油哦~'
-                    }
-                } else if (hour >= 12 && hour < 14) {
-                    greetingWord = {
-                        title: '中午好~' + userName,
-                        words: '午饭要吃饱~'
-                    }
-                } else if (hour >= 14 && hour < 17) {
-                    greetingWord = {
-                        title: '下午好~' + userName,
-                        words: '下午也要活力满满哦~'
-                    }
-                } else if (hour >= 17 && hour < 19) {
-                    greetingWord = {
-                        title: '傍晚好~' + userName,
-                        words: '下班没事问候下爸妈吧~'
-                    }
-                } else if (hour >= 19 && hour < 21) {
-                    greetingWord = {
-                        title: '晚上好~' + userName,
-                        words: '工作之余品一品书香吧~'
-                    }
-                } else {
-                    greetingWord = {
-                        title: '深夜好~' + userName,
-                        words: '夜深了，注意休息哦~'
-                    }
+                const now = new Date();
+                const hour = now.getHours();
+                const userName = this.userName;
+                let key = 'late_night'
+                if (hour < 6) key = 'early_morning'
+                else if (hour < 9) key = 'morning'
+                else if (hour < 12) key = 'forenoon'
+                else if (hour < 14) key = 'noon'
+                else if (hour < 17) key = 'afternoon'
+                else if (hour < 19) key = 'dusk'
+                else if (hour < 21) key = 'evening'
+                else key = 'late_night'
+                const greetingWord = {
+                    title: this.$t(`greet.title.${key}`, { name: userName }) as string,
+                    words: this.$t(`greet.words.${key}`) as string
                 }
                 this.$Notice.config({
                     top: 130

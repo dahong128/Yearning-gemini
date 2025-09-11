@@ -44,67 +44,68 @@ export default class Basic extends Vue {
         return modules_order.sql_order
     }
 
-    // 通用
-
-    ruleValidate = {
-        idc: [
-            {
-                required: true,
-                message: '环境地址不得为空',
-                trigger: 'change'
-            }
-        ],
-        source: [
-            {
-                required: true,
-                message: '连接名不得为空',
-                trigger: 'change'
-            }
-        ],
-        data_base: [
-            {
-                required: true,
-                message: '数据库名不得为空',
-                trigger: 'change'
-            }
-        ],
-        table: [
-            {
-                required: true,
-                message: '数据表名不得为空',
-                trigger: 'change'
-            }
-        ],
-        tp: [
-            {
-                required: true,
-                message: '类型不得为空',
-                trigger: 'change'
-            }
-        ],
-        name: [
-            {
-                required: true,
-                message: '名称不得为空',
-                trigger: 'blur'
-            }
-        ],
-        text: [
-            {
-                required: true,
-                message: '提交说明不得为空',
-                trigger: 'blur'
-            }
-        ],
-        assigned: [
-            {
-                required: true,
-                message: '审核人不得为空',
-                trigger: 'change'
-            }
-        ],
-        backup: {required: true, type: 'number', message: '备份不得为空', trigger: 'change'}
-    };
+    // 通用校验：使用 i18n
+    get ruleValidate() {
+        return {
+            idc: [
+                {
+                    required: true,
+                    message: this.$t('validate.env_required') as string,
+                    trigger: 'change'
+                }
+            ],
+            source: [
+                {
+                    required: true,
+                    message: this.$t('validate.source_required') as string,
+                    trigger: 'change'
+                }
+            ],
+            data_base: [
+                {
+                    required: true,
+                    message: this.$t('validate.database_required') as string,
+                    trigger: 'change'
+                }
+            ],
+            table: [
+                {
+                    required: true,
+                    message: this.$t('validate.table_required') as string,
+                    trigger: 'change'
+                }
+            ],
+            tp: [
+                {
+                    required: true,
+                    message: this.$t('validate.type_required') as string,
+                    trigger: 'change'
+                }
+            ],
+            name: [
+                {
+                    required: true,
+                    message: this.$t('validate.name_required') as string,
+                    trigger: 'blur'
+                }
+            ],
+            text: [
+                {
+                    required: true,
+                    message: this.$t('validate.desc_required') as string,
+                    trigger: 'blur'
+                }
+            ],
+            assigned: [
+                {
+                    required: true,
+                    message: this.$t('validate.reviewer_required') as string,
+                    trigger: 'change'
+                }
+            ],
+            backup: {required: true, type: 'number', message: this.$t('validate.backup_required') as string, trigger: 'change'}
+        }
+    }
 
     find = {
         picker: [],

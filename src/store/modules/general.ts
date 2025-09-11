@@ -3,6 +3,7 @@ import store from "@/store";
 import {appRouter} from "@/router";
 // @ts-ignore
 import Message from "view-design/src/components/message";
+import i18n from "@/language";
 
 interface Path {
     title?: string | undefined
@@ -20,7 +21,7 @@ class general extends VuexModule {
     currentPageName?: string | undefined = 'home_index'
     currentPath: Path[] = [
         {
-            title: '首页',
+            title: 'nav.home',
             path: '/',
             name: 'home_index'
         }
@@ -34,16 +35,16 @@ class general extends VuexModule {
         }
         for (let i of this.snippet) {
             if (i.title === vm.title) {
-                Message.error('snippet标签名不得重复!');
+                Message.error(i18n.t('snippet.duplicate') as string);
                 return
             }
         }
         if (this.snippet.length > 14) {
-            Message.error('snippet最多保存15个!');
+            Message.error(i18n.t('snippet.max') as string);
             return
         }
         this.snippet.push({'title': vm.title, 'text': vm.text})
-        Message.success('snippet已保存!');
+        Message.success(i18n.t('snippet.saved') as string);
     }
 
     @Mutation

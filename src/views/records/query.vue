@@ -9,20 +9,20 @@
                 <Col span="7">
                     <p>
                         <Icon type="md-pulse"></Icon>
-                        查询审计
+                        {{ $t('records_query.title') }}
                     </p>
                 </Col>
                 <Col span="2">
-                    <Button type="warning" @click="query_empty" class="margin-left-10" size="small">删除空查询记录</Button>
+                    <Button type="warning" @click="query_empty" class="margin-left-10" size="small">{{ $t('records_query.delete_empty') }}</Button>
                 </Col>
                 <Col span="15">
-                    <nav-search is_record @search="common_search" text="输入工单编号,回车搜索"></nav-search>
+                    <nav-search is_record @search="common_search" :text="$t('records_query.search_placeholder')"></nav-search>
                 </Col>
             </Row>
         </template>
-        <Table border :columns="columns" :data="table_data" stripe size="small">
+        <Table border :columns="recordColumns" :data="table_data" stripe size="small" :no-data-text="$t('common.no_data')">
             <template slot-scope="{ row }" slot="action">
-                <Button type="text" size="small" @click="open_detail(row)">详细信息</Button>
+                <Button type="text" size="small" @click="open_detail(row)">{{ $t('records_query.detail') }}</Button>
             </template>
         </Table>
         <br>
@@ -38,41 +38,43 @@ import {DeleteEmptyAuditQuery} from "@/apis/queryApis";
 
 @Component({components: {NavSearch}})
 export default class query_record extends Mixins(Basic) {
-    columns = [
-        {
-            title: '工单编号:',
-            key: 'work_id',
-            sortable: true
-        },
-        {
-            title: '查询人',
-            key: 'username'
-        },
-        {
-            title: '查询人姓名',
-            key: 'real_name'
-        },
-        {
-            title: '工单说明',
-            key: 'text'
-        },
-        {
-            title: '是否导出',
-            key: 'export',
-            render: render.queryExport
-        },
-        {
-            title: '提交时间:',
-            key: 'date',
-            sortable: true
-        },
-        {
-            title: '操作',
-            key: 'action',
-            align: 'center',
-            slot: 'action'
-        }
-    ];
+    get recordColumns() {
+        return [
+            {
+                title: this.$t('records_query.columns.work_id') as string,
+                key: 'work_id',
+                sortable: true
+            },
+            {
+                title: this.$t('records_query.columns.username') as string,
+                key: 'username'
+            },
+            {
+                title: this.$t('records_query.columns.real_name') as string,
+                key: 'real_name'
+            },
+            {
+                title: this.$t('records_query.columns.text') as string,
+                key: 'text'
+            },
+            {
+                title: this.$t('records_query.columns.export') as string,
+                key: 'export',
+                render: render.queryExport
+            },
+            {
+                title: this.$t('records_query.columns.date') as string,
+                key: 'date',
+                sortable: true
+            },
+            {
+                title: this.$t('records_query.columns.action') as string,
+                key: 'action',
+                align: 'center',
+                slot: 'action'
+            }
+        ]
+    }
     url = `${this.$config.url}/audit/query/record`
 
     query_empty() {

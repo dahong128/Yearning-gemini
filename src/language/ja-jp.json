@@ -1,0 +1,442 @@
+{
+  "sign": "登録",
+  "version": "バージョン",
+  "about": "Yearning について",
+  "community": "コミュニティ",
+  "community_addr": "https://github.com/cookieY/Yearning/issues",
+  "license": "ライセンス: AGPL3.0",
+  "tips": "© 2021 HenryYee 最良の体験のため Chrome をご利用ください",
+  
+  "account": "アカウント",
+  "password": "パスワード",
+  "pin": "PIN",
+  "login": "ログイン",
+  "ldap": "LDAP ログイン",
+  
+  "sign_up_validate": {
+    "username": "ユーザー名を入力してください",
+    "password": "パスワードを入力してください",
+    "min": "6文字以上で入力してください",
+    "max": "最大32文字までです",
+    "regexp": "大文字1、小文字1、数字1を含めてください",
+    "confirm": "新しいパスワードを確認してください",
+    "twice": "入力したパスワードが一致しません",
+    "real": "本名を入力してください",
+    "department": "部門を入力してください",
+    "mail": "E-mail を入力してください",
+    "mail_format": "E-mail の形式が正しくありません",
+    "sign_fail": "正しく登録情報を入力してください",
+    "pin": "検証コードが正しくありません。再入力してください"
+  },
+  "sign_userInfo": {
+    "username": "ユーザー名",
+    "password": "パスワード",
+    "confirm": "確認",
+    "real": "本名",
+    "department": "部門",
+    "mail": "メール"
+  },
+  "general": {
+    "name": "ユーザー名",
+    "real": "氏名",
+    "role": "ロール",
+    "mail": "メール",
+    "department": "部門",
+    "change_password": "パスワード変更",
+    "show_permissions": "権限を表示",
+    "db": "データベース",
+    "agreed": "同意する"
+  },
+  "dash": {
+    "lock": "ロック",
+    "unlock": "解除",
+    "user": "ユーザー数",
+    "source": "データソース",
+    "order": "チケット数",
+    "query": "クエリ総数",
+    "edit_permissions": "メール/氏名を修正",
+    "profile": "プロフィール",
+    "order_count": "チケット提出数",
+    "db_top": "高頻度DB/トップ10",
+    "axis": {
+      "ddl": "DDL",
+      "dml": "DML",
+      "query": "クエリ",
+      "trend": "チケット推移"
+    },
+    "quick": "クイックナビ",
+    "board": "お知らせ",
+    "recent6": "直近6ヶ月の DML/DDL 統計"
+  },
+  "banner": {
+    "guide": "使い方",
+    "login_out": "ログアウト",
+    "statement": {
+      "banner": "Yearning SQL 審査プラットフォームへようこそ",
+      "title": "Yearning について:",
+      "title_text": "Yearning は MySQL の SQL 審査/クエリなどを提供するプラットフォームです。お気軽にお試しください!",
+      "notes": "二次開発に関する声明:",
+      "text": "Yearning はオープンソースとして、多くの開発者の参加を歓迎します。また、各社の業務に合わせた二次開発・カスタマイズも推奨します。",
+      "text_1": "Yearning は AGPL 3.0 ライセンスです。以下は関連する義務と責任です。",
+      "text_2": "1. 作者の許可なく Yearning を商用目的で使用することはできません。インターネットを通じた商用サービスの提供も含みます。",
+      "text_3": "2. もしコードを変更した場合、変更したファイルにその旨を明記してください。",
+      "text_4": "3. 二次開発の上で公開する場合（社内利用を除く）、当該ソフトウェアはオープンソースでなければなりません。商用化する場合は作者の許可が必要です。",
+      "text_5": "4. 本プラットフォームのすべての条項は該当するオープンソースライセンスに準拠します。関連ライセンスに従ってご利用・開発ください。",
+      "text_6": "免責事項:",
+      "text_7": "Yearning プラットフォームによって生じたいかなる結果についても、作者は一切責任を負いません。十分な評価・テストの上でご利用ください。",
+      "text_8": "もしお気に召しましたらご支援ください ^_^ ログイン画面のスポンサー ボタン",
+      "text_9": "本声明はスーパー管理者以外には表示されません。上記条項に同意後、この通知は再表示されません。"
+    }
+  },
+  "query_workflow": {
+    "header": {
+      "title": "Yearning SQL クエリシステム",
+      "welcome": "ようこそ！ {name}"
+    },
+    "notice": {
+      "title": "注意事項:",
+      "desc1": "クエリ説明は必須です",
+      "desc2": "条件に応じて必要時間を見積もってください",
+      "desc3": "提出されたすべての SQL は監査されます",
+      "desc4": "SELECT 文のみ使用可能です",
+      "desc5": "最大 limit はプラットフォーム設定により制限されます"
+    },
+    "env": "環境",
+    "reviewer": "承認者",
+    "export": "データをエクスポート",
+    "yes": "はい",
+    "no": "いいえ",
+    "desc": "クエリ説明",
+    "desc_placeholder": "クエリの説明を入力してください",
+    "submit": "送信",
+    "steps": {
+      "submit": "送信",
+      "submit_desc": "クエリ申請を提出",
+      "review": "審査",
+      "review_desc": "承認待ち",
+      "query": "クエリ",
+      "query_desc": "承認完了、クエリページへ"
+    },
+    "validate": {
+      "desc": "クエリの説明を入力してください",
+      "env": "環境は必須です",
+      "source": "接続名は必須です",
+      "reviewer": "承認者は必須です"
+    }
+  },
+  "header": {
+    "help_menu": "ヘルプ"
+  },
+  "nav": {
+    "home": "ホーム",
+    "my_order": "マイ工単",
+    "order_submit": "工単提出",
+    "board": "お知らせ",
+    "logout": "ログアウト",
+    "login": "ログイン",
+    "locking": "ロック",
+    "query": "クエリ",
+    "sql_query": "SQL クエリ",
+    "query_progress": "申請進捗",
+    "query_record_detail": "クエリ記録詳細",
+    "order_detail": "工単詳細",
+    "audit": "審査",
+    "audit_order": "工単",
+    "records": "記録",
+    "order_records": "工単記録",
+    "query_records": "クエリ記録",
+    "management": "管理",
+    "users": "ユーザー",
+    "databases": "データベース",
+    "role_groups": "権限グループ",
+    "flow_templates": "フローテンプレート",
+    "audit_rules": "審査ルール",
+    "auto_tasks": "自動タスク",
+    "settings": "設定"
+  },
+  "greet": {
+    "title": {
+      "early_morning": "深夜おはよう〜{name}",
+      "morning": "おはようございます〜{name}",
+      "forenoon": "午前おはよう〜{name}",
+      "noon": "こんにちは〜{name}",
+      "afternoon": "午後も頑張りましょう〜{name}",
+      "dusk": "夕方こんにちは〜{name}",
+      "evening": "こんばんは〜{name}",
+      "late_night": "夜遅くまでお疲れさま〜{name}"
+    },
+    "words": {
+      "early_morning": "早起きは三文の徳〜",
+      "morning": "コーヒーで良い一日を〜",
+      "forenoon": "お仕事頑張って〜",
+      "noon": "お昼はしっかり食べましょう〜",
+      "afternoon": "午後も元気に〜",
+      "dusk": "たまにはご両親に連絡を〜",
+      "evening": "仕事の合間に読書もどうぞ〜",
+      "late_night": "夜更かし注意、休息を〜"
+    }
+  },
+  
+  "common": {
+    "reloginTitle": "再ログイン",
+    "login": "ログイン",
+    "tokenExpired": "トークンの有効期限が切れました。再度ログインしてください。",
+    "statusCode": "ステータスコード",
+    "notice": "通知",
+    "home": "ホーム",
+    "back": "戻る",
+    "yes": "はい",
+    "no": "いいえ",
+    "no_match": "一致するデータがありません",
+    "no_data": "データがありません",
+    "select": "選択してください"
+  },
+  "validate": {
+    "env_required": "環境は必須です",
+    "source_required": "接続名は必須です",
+    "database_required": "データベースは必須です",
+    "table_required": "テーブルは必須です",
+    "type_required": "タイプは必須です",
+    "name_required": "名称は必須です",
+    "desc_required": "説明は必須です",
+    "reviewer_required": "承認者は必須です",
+    "backup_required": "バックアップは必須です"
+  },
+  "snippet": {
+    "duplicate": "スニペット名は一意である必要があります！",
+    "max": "スニペットは最大15個までです！",
+    "saved": "スニペットを保存しました！"
+  },
+  "orders": {
+    "view_info": "工単情報",
+    "columns": {
+      "work_id": "工単番号:",
+      "text": "説明",
+      "type": "種類",
+      "backup": "バックアップ",
+      "date": "提出時間:",
+      "username": "提出アカウント",
+      "real_name": "氏名",
+      "delay": "スケジュール",
+      "assigned": "担当者",
+      "status": "状態",
+      "action": "操作"
+    },
+    "status": {
+      "pending": "実行待ち",
+      "running": "実行中"
+    }
+  },
+  "audit_order": {
+    "title": "工単審査",
+    "tip_title": "ヒント",
+    "refresh_tip": "このスイッチで表の自動更新を有効化",
+    "open": "オン",
+    "close": "オフ",
+    "detail": "詳細",
+    "confirm_kill": "この工単を中止しますか？",
+    "delay_kill": "遅延工単を中止",
+    "osc_progress": "OSC 進捗",
+    "none": "なし"
+  },
+  "permissions": {
+    "title": "ユーザー権限",
+    "username": "ユーザー名",
+    "group": "権限グループ",
+    "ddl_sources": "DDL データソース",
+    "dml_sources": "DML データソース",
+    "query_sources": "クエリ データソース",
+    "auditors": "クエリ承認者"
+  },
+  "nav_search": {
+    "range_placeholder": "時間範囲を選択",
+    "placeholder": {
+      "order": "工単の説明を入力して Enter",
+      "query": "クエリ説明を入力して Enter"
+    },
+    "status": {
+      "all": "すべて",
+      "reviewing": "審査中",
+      "performed": "実行済み",
+      "failed": "失敗",
+      "rejected": "却下"
+    },
+    "query": {
+      "pending": "承認待ち",
+      "accepted": "承認/クエリ",
+      "finished": "終了"
+    }
+  },
+  "query_sql": {
+    "select_db": "データベースを選択",
+    "tree_loading": "読み込み中...",
+    "quick_submit": "クイック送信",
+    "end_session": "セッション終了",
+    "hide_columns": "列を非表示",
+    "query": "クエリ",
+    "add_tab": "タブを追加",
+    "remove_tab": "タブを削除",
+    "drawer_title": "DML クイック送信",
+    "connection": "接続名",
+    "database": "データベース",
+    "choose": "選択してください",
+    "order_desc": "工単説明",
+    "input": "入力してください",
+    "backup": "バックアップ",
+    "yes": "はい",
+    "no": "いいえ",
+    "schedule": "スケジュール実行",
+    "pick_time": "時間を選択",
+    "clear": "クリア",
+    "test": "検証",
+    "beautify": "整形",
+    "submit": "送信",
+    "tabs_minimum": "タブは最低1つ必要です！",
+    "test_fill": "テストの前にアドレスとSQLを入力してください！",
+    "time_limit": "クエリ時間上限に達しました。再申請してください。",
+    "keyword": "キーワード"
+  },
+  "query_multi": {
+    "open_source": "データソースを開く",
+    "new_snippet": "新規 Snippet",
+    "source_list": "データソース一覧（クリックしてクエリ）",
+    "end_query": "クエリ終了",
+    "snippet_tag": "Snippet タグ名",
+    "snippet": "Snippet",
+    "duplicate_source": "同じデータソースを重複して開けません！"
+  },
+  "query_refer": {
+    "submitted": "申請は提出済みです。承認をお待ちください。",
+    "revoke": "取り消し"
+  },
+  "order_submit": {
+    "steps": {
+      "step1": {"title": "工単基本情報の入力", "content": "工単情報を入力し、種類と承認者を選択"},
+      "step2": {"title": "SQL の入力", "content": "提出する SQL を入力し、検証に合格"},
+      "step3": {"title": "確認して提出", "content": "内容を確認し、承認者に提出"}
+    },
+    "form": {
+      "type": "工単タイプ",
+      "env": "環境",
+      "source": "接続名",
+      "database": "データベース",
+      "table": "テーブル",
+      "desc": "工単説明",
+      "reviewer": "承認者",
+      "schedule": "スケジュール",
+      "backup": "バックアップ",
+      "choose": "選択してください",
+      "input": "入力してください",
+      "reset": "リセット",
+      "next": "次へ",
+      "pick_time": "時間を選択",
+      "required": "必須項目を入力してください！"
+    },
+    "sqls": {
+      "tabs": {
+        "sql": "SQL の入力",
+        "table_struct": "テーブル構造の詳細",
+        "index": "インデックスの詳細"
+      },
+      "prev": "前へ",
+      "check": "SQL 検証",
+      "merge": "ALTER のマージ",
+      "fetch_struct": "テーブル構造を取得",
+      "beautify": "整形",
+      "submit": "工単を提出",
+      "columns": {
+        "field": "フィールド名",
+        "type": "型",
+        "nullable": "NULL 可否",
+        "default": "デフォルト",
+        "comment": "備考",
+        "index_name": "インデックス名",
+        "unique": "一意"
+      },
+      "msg": {
+        "fetched": "テーブル構造を取得しました！"
+      },
+      "testColumns": {
+        "status": "段階",
+        "level": "エラーレベル",
+        "error": "エラーメッセージ",
+        "sql_current": "現在の SQL",
+        "rows_affected": "影響行数"
+      }
+    },
+    "confirm": {
+      "alert1": "1. エラーレベル 0 は正常、それ以外は問題あり",
+      "alert2": "2. エラーレベルが 0 のときのみ提出可能"
+    }
+  },
+  "order_profile": {
+    "order_id": "工単番号:",
+    "view_rollback": "ロールバック SQL を表示",
+    "resubmit": "再提出",
+    "undo_confirm": "工単を取り消しますか？",
+    "undo": "工単取り消し",
+    "flow_steps": "フローステップ",
+    "related": "関係者:{auditor}",
+    "flow_records": "フロー記録",
+    "sql_audit": "SQL 審査",
+    "back_top": "トップへ戻る",
+    "select_next": "次の承認者を選択",
+    "testing": {
+      "no_data": "検証をクリックして結果を取得"
+    }
+  }
+  ,
+  "audit_query": {
+    "title": "クエリ審査",
+    "kill_all_tip": "すべての申請を終了状態に変更",
+    "kill_all": "すべて中止",
+    "search_placeholder": "申請者を入力して Enter",
+    "stop_query": "クエリ中止",
+    "reject": "却下",
+    "approve": "承認",
+    "columns": {
+      "work_id": "申請番号",
+      "date": "時間",
+      "text": "説明",
+      "export": "エクスポート",
+      "username": "申請者",
+      "real_name": "氏名",
+      "status": "状態",
+      "action": "操作"
+    }
+  }
+  ,
+  "records_order": {
+    "title": "工単実行履歴",
+    "search_placeholder": "工単番号を入力して Enter",
+    "detail": "詳細情報",
+    "columns": {
+      "work_id": "工単",
+      "text": "説明",
+      "execute_time": "実行時間",
+      "username": "申請者",
+      "real_name": "氏名",
+      "assigned": "担当者",
+      "idc": "環境",
+      "source": "接続名",
+      "data_base": "データベース",
+      "action": "操作"
+    }
+  }
+  ,
+  "records_query": {
+    "title": "クエリ監査",
+    "delete_empty": "空の記録を削除",
+    "search_placeholder": "工単番号を入力して Enter",
+    "detail": "詳細情報",
+    "columns": {
+      "work_id": "工単番号:",
+      "username": "ユーザー",
+      "real_name": "氏名",
+      "text": "説明",
+      "export": "エクスポート",
+      "date": "提出時間:",
+      "action": "操作"
+    }
+  }
+}

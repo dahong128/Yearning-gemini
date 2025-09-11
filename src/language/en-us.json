@@ -6,20 +6,13 @@
   "community_addr": "https://github.com/cookieY/Yearning/issues",
   "license": "License: AGPL3.0",
   "tips": "© 2021 HenryYee Please use Chrome for the best experience",
-  "sponsor": "sponsor",
+  
   "account": "username",
   "password": "password",
   "pin": "PIN",
   "login": "Sign in",
   "ldap": "LDAP mode",
-  "sponsor_title": "Let Yearning continue to provide better features and services",
-  "sponsor_1": "You can get it after sponsorship",
-  "sponsor_2": "Contact the author to add their name to the sponsor list. For top sponsors, the company or individual logo can be added to the project's home page README and prioritized for the development of the business or individual needs.",
-  "sponsor_3": "Customized",
-  "sponsor_4": "Enterprises can seek customized functional services from Yearning authors",
-  "sponsor_5": "Contact",
-  "sponsor_6": "E-mail: henry@yearning.io",
-  "sponsor_7": "PayPal: henry@yearning.io",
+  
   "sign_up_validate": {
     "username":"please enter your username",
     "password": "please enter your password",
@@ -72,7 +65,8 @@
       "trend": "Order trend"
     },
     "quick": "Quick nav",
-    "board": "Board"
+    "board": "Board",
+    "recent6": "DML/DDL in the last 6 months"
   },
   "banner": {
     "guide": "Guide",
@@ -92,6 +86,359 @@
       "text_7":"All the consequences arising from the Yearning platform, the Yearning authors are not responsible for it! Please use it after conducting a security assessment and testing experience.",
       "text_8":"Of course, if you like it, just reward me ^_^ Login interface sponsorship button",
       "text_9":"This statement will not be pushed to non-super administrator users. After accepting the above terms and clicking agree, this notification will not appear again on the super administrator page."
+    }
+  }
+  ,
+  "header": {
+    "help_menu": "Help"
+  },
+  "nav": {
+    "home": "Home",
+    "my_order": "My Orders",
+    "order_submit": "Submit Order",
+    "board": "Board",
+    "logout": "Logout",
+    "login": "Login",
+    "locking": "Locking",
+    "query": "Query",
+    "sql_query": "SQL Query",
+    "query_progress": "Query Progress",
+    "query_record_detail": "Query Record Detail",
+    "order_detail": "Order Detail",
+    "audit": "Audit",
+    "audit_order": "Orders",
+    "records": "Records",
+    "order_records": "Order Records",
+    "query_records": "Query Records",
+    "management": "Management",
+    "users": "Users",
+    "databases": "Databases",
+    "role_groups": "Role Groups",
+    "flow_templates": "Flow Templates",
+    "audit_rules": "Audit Rules",
+    "auto_tasks": "Auto Tasks",
+    "settings": "Settings"
+  },
+  "query_workflow": {
+    "header": {
+      "title": "Yearning SQL Query System",
+      "welcome": "Welcome! {name}"
+    },
+    "notice": {
+      "title": "Notes:",
+      "desc1": "Query description is required",
+      "desc2": "Estimate required time based on conditions",
+      "desc3": "All submitted SQL will be audited",
+      "desc4": "Only SELECT statements are allowed",
+      "desc5": "Result limit is capped by platform settings"
+    },
+    "env": "Environment",
+    "reviewer": "Reviewer",
+    "export": "Export data",
+    "yes": "Yes",
+    "no": "No",
+    "desc": "Query description",
+    "desc_placeholder": "Please enter query description",
+    "submit": "Submit",
+    "steps": {
+      "submit": "Submit",
+      "submit_desc": "Submit query request",
+      "review": "Review",
+      "review_desc": "Waiting for approval",
+      "query": "Query",
+      "query_desc": "Approved, go to query page"
+    },
+    "validate": {
+      "desc": "Please enter query description",
+      "env": "Environment is required",
+      "source": "Connection is required",
+      "reviewer": "Reviewer is required"
+    }
+  },
+  "greet": {
+    "title": {
+      "early_morning": "Good early morning~{name}",
+      "morning": "Good morning~{name}",
+      "forenoon": "Good morning~{name}",
+      "noon": "Good noon~{name}",
+      "afternoon": "Good afternoon~{name}",
+      "dusk": "Good evening~{name}",
+      "evening": "Good evening~{name}",
+      "late_night": "Late night~{name}"
+    },
+    "words": {
+      "early_morning": "The early bird catches the worm~",
+      "morning": "Have a coffee to start a great day~",
+      "forenoon": "Keep it up at work~",
+      "noon": "Don’t skip your lunch~",
+      "afternoon": "Stay energetic this afternoon~",
+      "dusk": "Give your parents a call~",
+      "evening": "Enjoy some reading after work~",
+      "late_night": "It’s late, take some rest~"
+    }
+  },
+  
+  "common": {
+    "reloginTitle": "Re-login",
+    "login": "Login",
+    "tokenExpired": "Token expired! Please sign in again!",
+    "statusCode": "Status",
+    "notice": "Notice",
+    "home": "Home",
+    "back": "Back",
+    "yes": "Yes",
+    "no": "No",
+    "no_match": "No matching data",
+    "no_data": "No data",
+    "select": "Select"
+  },
+  "validate": {
+    "env_required": "Environment is required",
+    "source_required": "Connection is required",
+    "database_required": "Database is required",
+    "table_required": "Table is required",
+    "type_required": "Type is required",
+    "name_required": "Name is required",
+    "desc_required": "Description is required",
+    "reviewer_required": "Reviewer is required",
+    "backup_required": "Backup is required"
+  },
+  "snippet": {
+    "duplicate": "Snippet name must be unique!",
+    "max": "Up to 15 snippets!",
+    "saved": "Snippet saved!"
+  },
+  "orders": {
+    "view_info": "Order Info",
+    "columns": {
+      "work_id": "Order ID:",
+      "text": "Description",
+      "type": "Type",
+      "backup": "Backup",
+      "date": "Submit Time:",
+      "username": "Submitter",
+      "real_name": "Real Name",
+      "delay": "Scheduled",
+      "assigned": "Assignee",
+      "status": "Status",
+      "action": "Action"
+    },
+    "status": {
+      "pending": "Pending",
+      "running": "Running"
+    }
+  },
+  "audit_order": {
+    "title": "Order Audit",
+    "tip_title": "Tip",
+    "refresh_tip": "Toggle to enable live table refresh",
+    "open": "On",
+    "close": "Off",
+    "detail": "Details",
+    "confirm_kill": "Abort this order?",
+    "delay_kill": "Cancel Scheduled Order",
+    "osc_progress": "OSC Progress",
+    "none": "None"
+  },
+  "permissions": {
+    "title": "User Permissions",
+    "username": "Username",
+    "group": "Permission Group",
+    "ddl_sources": "DDL Sources",
+    "dml_sources": "DML Sources",
+    "query_sources": "Query Sources",
+    "auditors": "Query Auditors"
+  },
+  "nav_search": {
+    "range_placeholder": "Select time range",
+    "placeholder": {
+      "order": "Enter order description and press Enter",
+      "query": "Enter query description and press Enter"
+    },
+    "status": {
+      "all": "All",
+      "reviewing": "Reviewing",
+      "performed": "Performed",
+      "failed": "Failed",
+      "rejected": "Rejected"
+    },
+    "query": {
+      "pending": "Pending",
+      "accepted": "Accepted/Query",
+      "finished": "Finished"
+    }
+  },
+  "query_sql": {
+    "select_db": "Select Database",
+    "tree_loading": "Loading...",
+    "quick_submit": "Quick Submit",
+    "end_session": "End Session",
+    "hide_columns": "Hide Columns",
+    "query": "Query",
+    "add_tab": "Add Tab",
+    "remove_tab": "Remove Tab",
+    "drawer_title": "Quick Submit DML",
+    "connection": "Connection",
+    "database": "Database",
+    "choose": "Please select",
+    "order_desc": "Order Description",
+    "input": "Please enter",
+    "backup": "Backup",
+    "yes": "Yes",
+    "no": "No",
+    "schedule": "Schedule",
+    "pick_time": "Pick a time",
+    "clear": "Clear",
+    "test": "Test",
+    "beautify": "Format",
+    "submit": "Submit",
+    "tabs_minimum": "At least one tab is required!",
+    "test_fill": "Please fill DB address and SQL before testing!",
+    "time_limit": "Query time quota reached, please re-apply.",
+    "keyword": "Keyword"
+  },
+  "query_multi": {
+    "open_source": "Open Data Source",
+    "new_snippet": "New Snippet",
+    "source_list": "Data Sources (click one to query)",
+    "end_query": "End Query",
+    "snippet_tag": "Snippet Tag",
+    "snippet": "Snippet",
+    "duplicate_source": "This data source is already opened!"
+  }
+  ,
+  "query_refer": {
+    "submitted": "Your request has been submitted. Please wait for approval.",
+    "revoke": "Revoke"
+  },
+  "order_submit": {
+    "steps": {
+      "step1": {"title": "Fill Basic Info", "content": "Fill order info, select type and reviewer"},
+      "step2": {"title": "Fill SQL", "content": "Enter SQL statements and pass validation"},
+      "step3": {"title": "Confirm & Submit", "content": "Review and submit to the reviewer"}
+    },
+    "form": {
+      "type": "Order Type",
+      "env": "Environment",
+      "source": "Connection",
+      "database": "Database",
+      "table": "Table",
+      "desc": "Description",
+      "reviewer": "Reviewer",
+      "schedule": "Schedule",
+      "backup": "Backup",
+      "choose": "Please select",
+      "input": "Please enter",
+      "reset": "Reset",
+      "next": "Next",
+      "pick_time": "Pick a time",
+      "required": "Please fill the required fields!"
+    },
+    "sqls": {
+      "tabs": {
+        "sql": "Fill SQL",
+        "table_struct": "Table Structure",
+        "index": "Index Details"
+      },
+      "prev": "Previous",
+      "check": "Validate SQL",
+      "merge": "Merge ALTERs",
+      "fetch_struct": "Fetch Table Structure",
+      "beautify": "Format",
+      "submit": "Submit Order",
+      "columns": {
+        "field": "Field",
+        "type": "Type",
+        "nullable": "Nullable",
+        "default": "Default",
+        "comment": "Comment",
+        "index_name": "Index Name",
+        "unique": "Unique"
+      },
+      "msg": {
+        "fetched": "Fetched table structure!"
+      },
+      "testColumns": {
+        "status": "Stage",
+        "level": "Error Level",
+        "error": "Error Message",
+        "sql_current": "Current SQL",
+        "rows_affected": "Rows Affected"
+      }
+    },
+    "confirm": {
+      "alert1": "1. Error level 0 is normal, others indicate issues.",
+      "alert2": "2. Submit button is enabled only when error level = 0"
+    }
+  },
+  "order_profile": {
+    "order_id": "Order ID:",
+    "view_rollback": "View Rollback SQL",
+    "resubmit": "Resubmit",
+    "undo_confirm": "Are you sure to revoke this order?",
+    "undo": "Revoke Order",
+    "flow_steps": "Flow Steps",
+    "related": "Related: {auditor}",
+    "flow_records": "Flow Records",
+    "sql_audit": "SQL Audit",
+    "back_top": "Back to Top",
+    "select_next": "Select next reviewer",
+    "testing": {
+      "no_data": "Click Validate to get results"
+    }
+  }
+  ,
+  "audit_query": {
+    "title": "Query Audit",
+    "kill_all_tip": "Set all requests to Finished",
+    "kill_all": "Cancel All",
+    "search_placeholder": "Enter applicant and press Enter",
+    "stop_query": "Stop Query",
+    "reject": "Reject",
+    "approve": "Approve",
+    "columns": {
+      "work_id": "Request ID",
+      "date": "Time",
+      "text": "Description",
+      "export": "Export",
+      "username": "Applicant",
+      "real_name": "Real Name",
+      "status": "Status",
+      "action": "Action"
+    }
+  }
+  ,
+  "records_order": {
+    "title": "Order Execution Records",
+    "search_placeholder": "Enter order ID and press Enter",
+    "detail": "Details",
+    "columns": {
+      "work_id": "Order",
+      "text": "Description",
+      "execute_time": "Executed At",
+      "username": "Applicant",
+      "real_name": "Real Name",
+      "assigned": "Assignee",
+      "idc": "Environment",
+      "source": "Connection",
+      "data_base": "Database",
+      "action": "Action"
+    }
+  }
+  ,
+  "records_query": {
+    "title": "Query Audit Records",
+    "delete_empty": "Delete empty records",
+    "search_placeholder": "Enter order ID and press Enter",
+    "detail": "Details",
+    "columns": {
+      "work_id": "Order ID:",
+      "username": "User",
+      "real_name": "Real Name",
+      "text": "Description",
+      "export": "Export",
+      "date": "Submit Time:",
+      "action": "Action"
     }
   }
 }

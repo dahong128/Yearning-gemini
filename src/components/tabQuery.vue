@@ -31,7 +31,7 @@
         </Form>
         <p>查询结果:</p>
         <br>
-        <Table :columns="results.title" :data="queryRes" highlight-row ref="table" border></Table>
+        <Table :columns="results.title" :data="queryRes" highlight-row ref="table" border :no-data-text="$t('common.no_data')"></Table>
         <br>
         <Page :total="results.total" show-total @on-change="splice_arr" ref="total" show-sizer
               @on-page-size-change="ex_arr" :current.sync="current"></Page>

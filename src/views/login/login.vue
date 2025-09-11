@@ -14,7 +14,7 @@
     position: absolute;
     top: 0;
     width: 100%;
-    height: 40px; /*脚部的高度*/
+    height: 50px;
     clear: both;
     z-index: 999;
     margin-left: 6rem;
@@ -23,6 +23,25 @@
 
 .header a {
     color: #FFFFFF;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 20px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
 .homepage-hero-module,
@@ -53,26 +72,20 @@
 <template>
     <div>
         <div class="header">
-            <Row type="flex" justify="start" align="middle">
-                <Col span="1">
+            <div class="header-inner">
+                <div class="header-left">
                     <a href="https://github.com/cookieY/Yearning" target="_blank">
                         <Icon type="logo-github" size="30"/>
                     </a>
-                </Col>
-                <Col span="2"><a class="navbar-brand"> {{ $t('version') }}: {{ $config.version }} </a></Col>
-                <Col span="1">
-                    <Button v-if="switchCode" type="default" ghost @click="register = true" size="small"
-                            style="z-index: 9999">
+                    <a class="navbar-brand"> {{ $t('version') }}: {{ $config.version }} </a>
+                </div>
+                <div class="header-right">
+                    <LanguageSwitcher />
+                    <Button v-if="switchCode" type="default" ghost @click="register = true" size="small">
                         {{ $t('sign') }}
-                    </Button
-                    >
-                </Col>
-                <Col span="1">
-                    <Button type="default" @click="sponsorship = true" ghost size="small">
-                        {{ $t('sponsor') }}
                     </Button>
-                </Col>
-            </Row>
+                </div>
+            </div>
         </div>
         <div style="z-index: 100" class="div-a">
             <Row type="flex">
@@ -95,7 +108,7 @@
                                 </Checkbox>
                             </FormItem>
                             <FormItem>
-                                <Button long type="primary" ghost @click="signIn"> 登录</Button>
+                                <Button long type="primary" ghost @click="signIn"> {{ $t('login') }}</Button>
                             </FormItem>
                         </Form>
                     </div>
@@ -193,24 +206,7 @@
             </Form>
         </Modal>
 
-        <Modal v-model="sponsorship" :title="$t('sponsor_title')" width="640">
-            <h3>{{ $t('sponsor_1') }}</h3>
-            {{ $t('sponsor_2') }}
-            <br/>
-            <br/>
-            <h3>{{ $t('sponsor_3') }}</h3>
-            {{ $t('sponsor_4') }}
-            <br/>
-            <br/>
-            <h3>{{ $t('sponsor_5') }}</h3>
-            {{ $t('sponsor_6') }}
-            <br/>
-            {{ $t('sponsor_7') }}
-            <br/>
-            <br/>
-            <img style="height:300px;width:300px" src="../../assets/alipay.jpg" alt=""/>
-            <img style="height:300px;width:300px" src="../../assets/wechat.jpg" alt=""/>
-        </Modal>
+        
 
     </div>
 
@@ -218,6 +214,7 @@
 <script lang="ts">
 import SIdentify from '@/components/identify.vue'
 import {Mixins, Component} from "vue-property-decorator";
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue'
 import i18n from '@/language';
 import Basic from "@/mixins/basic";
 import {AxiosResponse} from "axios";
@@ -225,7 +222,7 @@ import {Res} from "@/interface";
 import {request} from "@/libs/requests";
 import {LoginApi} from "@/apis/loginApis";
 
-@Component({components: {SIdentify}})
+@Component({components: {SIdentify, LanguageSwitcher}})
 export default class login extends Mixins(Basic) {
 
     valid_password = (rule: any, value: string, callback: any) => {
@@ -245,7 +242,6 @@ export default class login extends Mixins(Basic) {
     };
     is_verify = false
     switchCode = false;
-    sponsorship = false;
     register = false;
     userinfo = {
         username: '',

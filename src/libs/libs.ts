@@ -3,6 +3,7 @@ import Notice from 'view-design/src/components/notice'
 import module_general from "@/store/modules/general";
 // @ts-ignore
 import Message from 'view-design/src/components/message'
+import i18n from "@/language";
 
 let libs: any = {};
 libs.title = function (title: string) {
@@ -15,7 +16,7 @@ libs.random = function (lower: number, upper: number) {
 
 libs.notice = function (vl: string) {
     Notice.info({
-        title: '通知',
+        title: i18n.t('common.notice') as string,
         desc: vl
     })
 };

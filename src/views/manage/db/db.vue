@@ -11,7 +11,7 @@
                 </p>
                 <CustomForm :item="general" :rule="ruleInline" :label-value="dbLabelValue" ref="db" :label-width="100">
                     <template slot="idc">
-                        <Select v-model="general.idc">
+                        <Select v-model="general.idc" :not-found-text="$t('common.no_match')">
                             <Option v-for="list in idcList" :value="list" :key="list">{{ list }}</Option>
                         </Select>
                     </template>
@@ -38,13 +38,13 @@
                     数据库详情表
                 </p>
                 <Input v-model="find.source" placeholder="请填写连接名" style="width: 15%" clearable></Input>
-                <Select v-model="find.idc" placeholder="请填写环境" style="width: 15%" class="margin-left-10">
+                <Select v-model="find.idc" placeholder="请填写环境" style="width: 15%" class="margin-left-10" :not-found-text="$t('common.no_match')">
                     <Option v-for="list in idcList" :value="list" :key="list">{{ list }}</Option>
                 </Select>
                 <Button @click="queryData" type="primary" class="margin-left-10">查询</Button>
                 <Button @click="queryCancel" type="warning" class="margin-left-10">重置</Button>
                 <div class="edit-table-con-1">
-                    <Table :columns="columns" :data="table_data">
+                    <Table :columns="columns" :data="table_data" :no-data-text="$t('common.no_data')">
                         <template slot-scope="{ row }" slot="is_query">
                             <Tag checkable color="primary" v-if="row.is_query === 0">写</Tag>
                             <Tag checkable color="success" v-else-if="row.is_query === 1">读</Tag>
@@ -80,7 +80,7 @@
                     <p>{{dbInfoEdit.source}}</p>
                 </template>
                 <template slot="idc">
-                    <Select v-model="dbInfoEdit.idc">
+                    <Select v-model="dbInfoEdit.idc" :not-found-text="$t('common.no_match')">
                         <Option v-for="list in idcList" :value="list" :key="list">{{ list }}</Option>
                     </Select>
                 </template>

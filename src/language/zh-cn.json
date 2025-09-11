@@ -6,20 +6,13 @@
   "community_addr": "Q群:747364310",
   "license": "AGPL3.0",
   "tips": "© 2021 HenryYee 请使用最新版Chrome浏览器获得最佳体验",
-  "sponsor": "赞助/技术协助",
+  
   "account": "账号",
   "password": "密码",
   "pin": "验证码",
   "login": "登录",
   "ldap": "ldap登录",
-  "sponsor_title": "让Yearning持续提供更好的功能与服务",
-  "sponsor_1": "赞助后你可以得到的",
-  "sponsor_2": "联系作者将自己的名字添加到赞助者名单中\n\n      对于顶级赞助商，可将公司或个人logo添加到项目首页README当中，并优先考虑对该企业或个人的需求进行开发。",
-  "sponsor_3": "定制化需求",
-  "sponsor_4": "企业可根据实际需要向Yearning作者寻求定制功能服务。",
-  "sponsor_5": "联系方式",
-  "sponsor_6": "电邮：henry@yearning.io",
-  "sponsor_7": "QQ: 834958386",
+  
   "sign_up_validate": {
     "username": "请输入用户名",
     "password": "请输入密码",
@@ -34,6 +27,15 @@
     "mail_format": "E-mail格式错误",
     "sign_fail": "请正确填写相关注册信息",
     "pin": "验证码错误，请重新输入！"
+  },
+  "query_multi": {
+    "open_source": "打开数据源",
+    "new_snippet": "新建Snippet",
+    "source_list": "数据源列表(请点击以下数据源进行查询)",
+    "end_query": "结束查询",
+    "snippet_tag": "Snippet标签名",
+    "snippet": "Snippet",
+    "duplicate_source": "不可重复打开相同数据源！"
   },
   "sign_userInfo": {
     "username": "用户名",
@@ -72,7 +74,8 @@
       "trend": "工单趋势"
     },
     "quick": "快捷导航",
-    "board": "公告"
+    "board": "公告",
+    "recent6": "DML/DDL最近6个月统计"
   },
   "banner": {
     "guide": "使用说明",
@@ -92,6 +95,349 @@
       "text_7":"由Yearning平台所产生的一切后果,Yearning作者本人不负一切责任! 请在进行安全评估及测试体验后使用。",
       "text_8":"当然用的喜欢,就打赏下我吧 ^_^ 登录界面赞助按钮",
       "text_9":"此声明不会对非超级管理员用户推送。当接受上述条款并点击同意后,此通知将不会再次出现在超级管理员页面中。"
+    }
+  }
+  ,
+  "header": {
+    "help_menu": "帮助"
+  },
+  "nav": {
+    "home": "首页",
+    "my_order": "我的工单",
+    "order_submit": "工单提交",
+    "board": "公告",
+    "logout": "退出",
+    "login": "登录",
+    "locking": "锁屏",
+    "query": "查询",
+    "sql_query": "SQL查询",
+    "query_progress": "查询申请进度",
+    "query_record_detail": "查询记录详情",
+    "order_detail": "工单详情",
+    "audit": "审核",
+    "audit_order": "工单",
+    "records": "记录",
+    "order_records": "工单记录",
+    "query_records": "查询记录",
+    "management": "管理",
+    "users": "用户",
+    "databases": "数据库",
+    "role_groups": "权限组",
+    "flow_templates": "流程模板",
+    "audit_rules": "审核规则",
+    "auto_tasks": "自动任务",
+    "settings": "设置"
+  },
+  "query_workflow": {
+    "header": {
+      "title": "Yearning SQL查询系统",
+      "welcome": "欢迎你！ {name}"
+    },
+    "notice": {
+      "title": "注意事项:",
+      "desc1": "必须填写查询说明",
+      "desc2": "根据查询条件预估所需的查询时间",
+      "desc3": "所有提交的查询语句均会进行审计记录",
+      "desc4": "仅支持查询语句,不可使用非查询语句",
+      "desc5": "已限制最大limit数，如自己输入的limit数大于平台配置的最大limit数则以平台配置的Limit数为准"
+    },
+    "env": "环境",
+    "reviewer": "审核人",
+    "export": "是否需要导出数据",
+    "yes": "是",
+    "no": "否",
+    "desc": "查询说明",
+    "desc_placeholder": "请填写查询说明",
+    "submit": "提交",
+    "steps": {
+      "submit": "提交",
+      "submit_desc": "提交查询申请",
+      "review": "审核",
+      "review_desc": "等待审核结果",
+      "query": "查询",
+      "query_desc": "审核完毕，进入查询页面"
+    },
+    "validate": {
+      "desc": "请填写查询说明",
+      "env": "环境地址不得为空",
+      "source": "连接名不得为空",
+      "reviewer": "审核人不得为空"
+    }
+  },
+  "greet": {
+    "title": {
+      "early_morning": "凌晨好~{name}",
+      "morning": "早上好~{name}",
+      "forenoon": "上午好~{name}",
+      "noon": "中午好~{name}",
+      "afternoon": "下午好~{name}",
+      "dusk": "傍晚好~{name}",
+      "evening": "晚上好~{name}",
+      "late_night": "深夜好~{name}"
+    },
+    "words": {
+      "early_morning": "早起的鸟儿有虫吃~",
+      "morning": "来一杯咖啡开启美好的一天~",
+      "forenoon": "工作要加油哦~",
+      "noon": "午饭要吃饱~",
+      "afternoon": "下午也要活力满满哦~",
+      "dusk": "下班没事问候下爸妈吧~",
+      "evening": "工作之余品一品书香吧~",
+      "late_night": "夜深了，注意休息哦~"
+    }
+  },
+  
+  "common": {
+    "reloginTitle": "重新登录",
+    "login": "登录",
+    "tokenExpired": "Token过期！请重新登录!",
+    "statusCode": "状态码",
+    "notice": "通知",
+    "home": "首页",
+    "back": "返回",
+    "yes": "是",
+    "no": "否",
+    "no_match": "无匹配数据",
+    "no_data": "暂无数据",
+    "select": "请选择"
+  },
+  "validate": {
+    "env_required": "环境地址不得为空",
+    "source_required": "连接名不得为空",
+    "database_required": "数据库名不得为空",
+    "table_required": "数据表名不得为空",
+    "type_required": "类型不得为空",
+    "name_required": "名称不得为空",
+    "desc_required": "提交说明不得为空",
+    "reviewer_required": "审核人不得为空",
+    "backup_required": "备份不得为空"
+  },
+  "snippet": {
+    "duplicate": "snippet标签名不得重复!",
+    "max": "snippet最多保存15个!",
+    "saved": "snippet已保存!"
+  },
+  "orders": {
+    "view_info": "工单信息",
+    "columns": {
+      "work_id": "工单编号:",
+      "text": "工单说明",
+      "type": "工单类型",
+      "backup": "是否备份",
+      "date": "提交时间:",
+      "username": "提交账号",
+      "real_name": "真实姓名",
+      "delay": "定时执行",
+      "assigned": "当前操作人",
+      "status": "状态",
+      "action": "操作"
+    },
+    "status": {
+      "pending": "待执行",
+      "running": "执行中"
+    }
+  },
+  "audit_order": {
+    "title": "工单审核",
+    "tip_title": "提示",
+    "refresh_tip": "此开关用于打开实时表格数据更新功能",
+    "open": "打开",
+    "close": "关闭",
+    "detail": "详情",
+    "confirm_kill": "确定要中止该工单吗？",
+    "delay_kill": "延时工单中止",
+    "osc_progress": "osc进度",
+    "none": "无"
+  },
+  "permissions": {
+    "title": "用户权限",
+    "username": "用户名",
+    "group": "权限组",
+    "ddl_sources": "DDL数据源",
+    "dml_sources": "DML数据源",
+    "query_sources": "查询数据源",
+    "auditors": "选择查询审核人"
+  },
+  "nav_search": {
+    "range_placeholder": "请选择查询的时间范围",
+    "placeholder": {
+      "order": "输入工单说明，回车搜索",
+      "query": "输入查询说明，回车搜索"
+    },
+    "status": {
+      "all": "全部",
+      "reviewing": "审核中",
+      "performed": "已执行",
+      "failed": "执行失败",
+      "rejected": "驳回"
+    },
+    "query": {
+      "pending": "待审核",
+      "accepted": "同意/查询",
+      "finished": "查询结束"
+    }
+  },
+  "query_sql": {
+    "select_db": "选择数据库",
+    "tree_loading": "数据加载中",
+    "quick_submit": "快速提交",
+    "end_session": "结束会话",
+    "hide_columns": "隐藏数据列",
+    "query": "查询",
+    "add_tab": "增加窗口",
+    "remove_tab": "减少窗口",
+    "drawer_title": "DML语句快速提交",
+    "connection": "连接名",
+    "database": "库名",
+    "choose": "请选择",
+    "order_desc": "工单说明",
+    "input": "请输入",
+    "backup": "是否备份",
+    "yes": "是",
+    "no": "否",
+    "schedule": "定时执行",
+    "pick_time": "选择时间点",
+    "clear": "清除",
+    "test": "检测",
+    "beautify": "美化",
+    "submit": "提交",
+    "tabs_minimum": "窗口最少拥有一个！",
+    "test_fill": "请填写具体地址或sql语句后再测试!",
+    "time_limit": "已到查询时限上限,请重新申请查询！",
+    "keyword": "关键字"
+  },
+  "query_refer": {
+    "submitted": "你的工单已提交审核，请等待审核人批准！",
+    "revoke": "撤销"
+  },
+  "order_submit": {
+    "steps": {
+      "step1": {"title": "填写工单基本信息", "content": "填写工单信息并选择工单类型及上级审核人"},
+      "step2": {"title": "填写SQL语句", "content": "填写需要提交的SQL语句并检测通过"},
+      "step3": {"title": "确认工单并提交", "content": "检查工单信息确认并提交至对应审核人"}
+    },
+    "form": {
+      "type": "工单类型",
+      "env": "环境",
+      "source": "连接名",
+      "database": "库名",
+      "table": "表名",
+      "desc": "工单说明",
+      "reviewer": "审核人",
+      "schedule": "定时执行",
+      "backup": "是否备份",
+      "choose": "请选择",
+      "input": "请输入",
+      "reset": "重置",
+      "next": "下一步",
+      "pick_time": "选择时间点",
+      "required": "请填写必选项信息!"
+    },
+    "sqls": {
+      "tabs": {
+        "sql": "填写SQL语句",
+        "table_struct": "表结构详情",
+        "index": "索引详情"
+      },
+      "prev": "上一步",
+      "check": "检测语句",
+      "merge": "ALTER语句合并",
+      "fetch_struct": "获取表结构信息",
+      "beautify": "美化",
+      "submit": "提交工单",
+      "columns": {
+        "field": "字段名",
+        "type": "字段类型",
+        "nullable": "字段是否为空",
+        "default": "默认值",
+        "comment": "备注",
+        "index_name": "索引名称",
+        "unique": "是否唯一"
+      },
+      "msg": {
+        "fetched": "已获取表结构!"
+      },
+      "testColumns": {
+        "status": "阶段",
+        "level": "错误等级",
+        "error": "错误信息",
+        "sql_current": "当前检查的sql",
+        "rows_affected": "影响行数"
+      }
+    },
+    "confirm": {
+      "alert1": "1.错误等级 0 正常，其它为有问题。",
+      "alert2": "2.只有错误等级等于 0 时提交按钮才会激活"
+    }
+  },
+  "order_profile": {
+    "order_id": "工单编号:",
+    "view_rollback": "查看回滚语句",
+    "resubmit": "重新提交",
+    "undo_confirm": "确定要撤销工单吗？",
+    "undo": "工单撤销",
+    "flow_steps": "流程步骤",
+    "related": "相关人员:{auditor}",
+    "flow_records": "流程记录",
+    "sql_audit": "SQL审核",
+    "back_top": "返回顶端",
+    "select_next": "请选择下一级审核人",
+    "testing": {
+      "no_data": "点击 检测 按钮获取检测结果"
+    }
+  }
+  ,
+  "audit_query": {
+    "title": "查询审核",
+    "kill_all_tip": "更改所有工单的状态为查询结束",
+    "kill_all": "终止所有工单",
+    "search_placeholder": "输入申请人,回车搜索",
+    "stop_query": "中止查询",
+    "reject": "驳回",
+    "approve": "同意",
+    "columns": {
+      "work_id": "申请编号",
+      "date": "时间",
+      "text": "查询说明",
+      "export": "是否导出",
+      "username": "申请人",
+      "real_name": "真实姓名",
+      "status": "状态",
+      "action": "操作"
+    }
+  }
+  ,
+  "records_order": {
+    "title": "历史工单执行记录",
+    "search_placeholder": "输入工单编号,回车搜索",
+    "detail": "详细信息",
+    "columns": {
+      "work_id": "工单",
+      "text": "工单说明",
+      "execute_time": "执行时间",
+      "username": "申请人",
+      "real_name": "真实姓名",
+      "assigned": "当前操作人",
+      "idc": "环境",
+      "source": "连接名称",
+      "data_base": "库名",
+      "action": "操作"
+    }
+  }
+  ,
+  "records_query": {
+    "title": "查询审计",
+    "delete_empty": "删除空查询记录",
+    "search_placeholder": "输入工单编号,回车搜索",
+    "detail": "详细信息",
+    "columns": {
+      "work_id": "工单编号:",
+      "username": "查询人",
+      "real_name": "查询人姓名",
+      "text": "工单说明",
+      "export": "是否导出",
+      "date": "提交时间:",
+      "action": "操作"
     }
   }
 }

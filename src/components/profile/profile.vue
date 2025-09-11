@@ -2,23 +2,23 @@
     <div>
         <Card dis-hover>
             <Row>
-                <Col span="5"><h2>工单编号:{{ this.order.work_id }}</h2></Col>
+                <Col span="5"><h2>{{ $t('order_profile.order_id') }}{{ this.order.work_id }}</h2></Col>
                 <Col span="5" offset="14">
                     <ButtonGroup>
-                        <Button type="default" @click.native="$router.go(-1)">返回</Button>
+                        <Button type="default" @click.native="$router.go(-1)">{{ $t('common.back') }}</Button>
                         <Button type="default" v-if="order.status === 1 || order.status === 4" @click.native="open_form()">
-                            查看回滚语句
+                            {{ $t('order_profile.view_rollback') }}
                         </Button>
                         <Button type="default"
                                 v-if="order.status === 0"
-                                @click.native="open_form()">重新提交
+                                @click.native="open_form()">{{ $t('order_profile.resubmit') }}
                         </Button>
                         <Poptip
                             confirm
-                            title="确定要撤销工单吗？"
+                            :title="$t('order_profile.undo_confirm')"
                             @on-ok="delOrder(order.work_id)"
                             transfer>
-                            <Button type="default" v-if="order.status === 2 && !JSON.parse($route.query.isAdmin) ">工单撤销
+                            <Button type="default" v-if="order.status === 2 && !JSON.parse($route.query.isAdmin) ">{{ $t('order_profile.undo') }}
                             </Button>
                         </Poptip>
                     </ButtonGroup>
@@ -30,20 +30,20 @@
         </Card>
         <br>
         <Card dis-hover>
-            <p slot="title">流程步骤</p>
+            <p slot="title">{{ $t('order_profile.flow_steps') }}</p>
             <Steps :current="order.current_step">
                 <Step v-for="i in order_step" :key="i.title" :title="i.desc"
-                      :content="`相关人员:${i.auditor}`"></Step>
+                      :content="$t('order_profile.related',{ auditor: i.auditor })"></Step>
             </Steps>
         </Card>
         <br>
         <Card>
-            <p slot="title">流程记录</p>
+            <p slot="title">{{ $t('order_profile.flow_records') }}</p>
             <StepDetail></StepDetail>
         </Card>
         <br>
         <Card>
-            <p slot="title">SQL审核</p>
+            <p slot="title">{{ $t('order_profile.sql_audit') }}</p>
             <collapse></collapse>
             <br>
             <template v-if="order.assigned === user && JSON.parse($route.query.isAdmin)">
@@ -51,7 +51,7 @@
             </template>
         </Card>
         <BackTop :height="100" :bottom="200">
-            <div class="top">返回顶端</div>
+            <div class="top">{{ $t('order_profile.back_top') }}</div>
         </BackTop>
         <post-form v-model="is_open"></post-form>
     </div>

@@ -8,47 +8,47 @@
         <Row>
             <i-col span="8">
                 <Alert type="warning" show-icon>
-                    注意事项:
+                    {{ $t('query_workflow.notice.title') }}
                     <span slot="desc">
-              1.必须填写查询说明
+              1.{{ $t('query_workflow.notice.desc1') }}
               <br>
-              2.根据查询条件预估所需的查询时间
+              2.{{ $t('query_workflow.notice.desc2') }}
               <br>
-              3.所有提交的查询语句均会进行审计记录
+              3.{{ $t('query_workflow.notice.desc3') }}
               <br>
-              4.仅支持查询语句,不可使用非查询语句
+              4.{{ $t('query_workflow.notice.desc4') }}
               <br>
-              5.已限制最大limit数，如自己输入的limit数大于平台配置的最大limit数则以平台配置的Limit数为准
+              5.{{ $t('query_workflow.notice.desc5') }}
             </span>
                 </Alert>
             </i-col>
             <i-col span="12">
                 <Form ref="formItem" :model="sql_order" :rules="stepRules" :label-width="150">
-                    <FormItem label="环境:" prop="idc">
-                        <Select v-model="sql_order.idc" @on-change="fetchDiffSource">
+                    <FormItem :label="$t('query_workflow.env') + ':'" prop="idc">
+                        <Select v-model="sql_order.idc" @on-change="fetchDiffSource" :not-found-text="$t('common.no_match')" :placeholder="$t('common.select')">
                             <Option v-for="i in fetchData.idc" :key="i" :value="i">{{ i }}</Option>
                         </Select>
                     </FormItem>
 
-                    <FormItem label="审核人:" prop="assigned">
-                        <Select v-model="sql_order.assigned" filterable>
+                    <FormItem :label="$t('query_workflow.reviewer') + ':'" prop="assigned">
+                        <Select v-model="sql_order.assigned" filterable :not-found-text="$t('common.no_match')" :placeholder="$t('common.select')">
                             <Option v-for="i in fetchData.assigned" :value="i" :key="i">{{ i }}</Option>
                         </Select>
                     </FormItem>
 
-                    <FormItem label="是否需要导出数据:" prop="export" v-if="export_list">
+                    <FormItem :label="$t('query_workflow.export') + ':'" prop="export" v-if="export_list">
                         <RadioGroup v-model="sql_order.export">
-                            <Radio :label=1>是</Radio>
-                            <Radio :label=0>否</Radio>
+                            <Radio :label=1>{{ $t('query_workflow.yes') }}</Radio>
+                            <Radio :label=0>{{ $t('query_workflow.no') }}</Radio>
                         </RadioGroup>
                     </FormItem>
 
-                    <FormItem label="查询说明：" prop="text">
+                    <FormItem :label="$t('query_workflow.desc') + '：'" prop="text">
                         <Input v-model="sql_order.text" type="textarea" :autosize="{minRows: 4,maxRows: 8}"
-                               placeholder="请填写查询说明"/>
+                               :placeholder="$t('query_workflow.desc_placeholder')"/>
                     </FormItem>
                     <FormItem label="">
-                        <Button @click="handleSubmit" style="width:100px;" type="primary">提交</Button>
+                        <Button @click="handleSubmit" style="width:100px;" type="primary">{{ $t('query_workflow.submit') }}</Button>
                     </FormItem>
                 </Form>
             </i-col>
@@ -68,44 +68,52 @@ import {CommonPostApis, CommonPutApis} from "@/apis/queryApis";
 
 @Component({components: {}})
 export default class work_flow extends Mixins(QueryMixin) {
-    stepData = {
-        title: 'Yearning SQL查询系统',
-        describe: `欢迎你！ ${sessionStorage.getItem('user')}`
-    };
-    stepList1 = [
-        {
-            title: '提交',
-            describe: '提交查询申请'
-        },
-        {
-            title: '审核',
-            describe: '等待审核结果'
-        },
-        {
-            title: '查询',
-            describe: '审核完毕，进入查询页面'
+    get stepData() {
+        return {
+            title: this.$t('query_workflow.header.title') as string,
+            describe: this.$t('query_workflow.header.welcome', { name: sessionStorage.getItem('user') }) as string
         }
-    ];
-    stepRules = {
-        text: [
-            {required: true, message: '请填写查询说明', trigger: 'blur'}
-        ],
-        idc: [{
-            required: true,
-            message: '环境地址不得为空',
-            trigger: 'change'
-        }],
-        source: [{
-            required: true,
-            message: '连接名不得为空',
-            trigger: 'change'
-        }],
-        assigned: [{
-            required: true,
-            message: '审核人不得为空',
-            trigger: 'change'
-        }]
-    };
+    }
+
+    get stepList1() {
+        return [
+            {
+                title: this.$t('query_workflow.steps.submit') as string,
+                describe: this.$t('query_workflow.steps.submit_desc') as string
+            },
+            {
+                title: this.$t('query_workflow.steps.review') as string,
+                describe: this.$t('query_workflow.steps.review_desc') as string
+            },
+            {
+                title: this.$t('query_workflow.steps.query') as string,
+                describe: this.$t('query_workflow.steps.query_desc') as string
+            }
+        ]
+    }
+
+    get stepRules() {
+        return {
+            text: [
+                {required: true, message: this.$t('query_workflow.validate.desc') as string, trigger: 'blur'}
+            ],
+            idc: [{
+                required: true,
+                message: this.$t('query_workflow.validate.env') as string,
+                trigger: 'change'
+            }],
+            source: [{
+                required: true,
+                message: this.$t('query_workflow.validate.source') as string,
+                trigger: 'change'
+            }],
+            assigned: [{
+                required: true,
+                message: this.$t('query_workflow.validate.reviewer') as string,
+                trigger: 'change'
+            }]
+        }
+    }
 
     fetchDiffSource(idc: string) {
         this.fetchSource(idc, 'query')

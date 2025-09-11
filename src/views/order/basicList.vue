@@ -4,20 +4,20 @@
             <template slot="title">
                 <Row type="flex" justify="end">
                     <Col span="10">
-                        <p><Icon type="md-person"></Icon>我的工单</p>
+                        <p><Icon type="md-person"></Icon>{{ $t('nav.my_order') }}</p>
                     </Col>
                     <Col span="14">
-                    <nav-search @search="search"></nav-search>
+                        <nav-search @search="search"></nav-search>
                     </Col>
                 </Row>
             </template>
 
-            <Table border :columns="columns" :data="table_data" stripe size="small">
+            <Table border :columns="orderColumns" :data="table_data" stripe size="small" :no-data-text="$t('common.no_data')">
                 <template slot-scope="{ row }" slot="action">
                     <Button type="success" @click="openOrder(row)" size="small"
                             ghost
                             class="margin-left-10">
-                        工单信息
+                        {{ $t('orders.view_info') }}
                     </Button>
                 </template>
             </Table>
@@ -38,51 +38,54 @@ import NavSearch from "@/components/search/navSearch.vue";
 
 @Component({components: {NavSearch}})
 export default class BasicList extends Mixins(Basic) {
-    columns = [
-        {
-            title: '工单编号:',
-            key: 'work_id',
-            sortable: true
-        },
-        {
-            title: '工单说明',
-            key: 'text',
-            tooltip: true
-        },
-        {
-            title: '工单类型',
-            key: 'type',
-            render: render.type
-        },
-        {
-            title: '是否备份',
-            key: 'backup',
-            render: render.backup
-        },
-        {
-            title: '提交时间:',
-            key: 'date',
-            sortable: true
-        },
-        {
-            title: '当前操作人',
-            key: 'assigned',
-            sortable: true
-        },
-        {
-            title: '状态',
-            key: 'status',
-            render: render.tag,
-            sortable: true
-        },
-        {
-            title: '操作',
-            key: 'action',
-            align: 'center',
-            slot: 'action',
-            width: 300
-        }
-    ];
+    get orderColumns() {
+        // reference $i18n.locale implicitly via $t to update on language change
+        return [
+            {
+                title: this.$t('orders.columns.work_id') as string,
+                key: 'work_id',
+                sortable: true
+            },
+            {
+                title: this.$t('orders.columns.text') as string,
+                key: 'text',
+                tooltip: true
+            },
+            {
+                title: this.$t('orders.columns.type') as string,
+                key: 'type',
+                render: render.type
+            },
+            {
+                title: this.$t('orders.columns.backup') as string,
+                key: 'backup',
+                render: render.backup
+            },
+            {
+                title: this.$t('orders.columns.date') as string,
+                key: 'date',
+                sortable: true
+            },
+            {
+                title: this.$t('orders.columns.assigned') as string,
+                key: 'assigned',
+                sortable: true
+            },
+            {
+                title: this.$t('orders.columns.status') as string,
+                key: 'status',
+                render: render.tag,
+                sortable: true
+            },
+            {
+                title: this.$t('orders.columns.action') as string,
+                key: 'action',
+                align: 'center',
+                slot: 'action',
+                width: 300
+            }
+        ]
+    }
 
     url = `${this.$config.url}/common/list`
 

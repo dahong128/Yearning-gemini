@@ -102,7 +102,16 @@
       right: 0;
       top: 0;
       height: 100%;
-      width:300px;
+      width: 440px;
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: 100%;
+        gap: 12px;
+        padding-right: 10px;
+      }
 
       .switch-theme-con {
         display: inline-block;
@@ -161,9 +170,12 @@
       }
 
       .lock-screen-btn-con {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         width: 30px;
-        padding: 18px 0;
+        height: 100%;
+        padding: 0;
         text-align: center;
         cursor: pointer;
 

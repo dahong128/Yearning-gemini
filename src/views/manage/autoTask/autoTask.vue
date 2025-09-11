@@ -19,7 +19,7 @@
                     <Button type="primary" @click="queryCancel" class="margin-left-10">重置</Button>
                 </FormItem>
             </Form>
-            <Table :columns="task_columns" :data="task_data">
+            <Table :columns="task_columns" :data="task_data" :no-data-text="$t('common.no_data')">
                 <template slot-scope="{ row }" slot="tp">
                     <Tag checkable color="primary" v-if="row.tp === 0">Insert</Tag>
                     <Tag checkable color="warning" v-if="row.tp === 1">Update</Tag>
@@ -63,22 +63,22 @@
                     </Select>
                 </FormItem>
                 <FormItem label="环境:" prop="idc">
-                    <Select v-model="general.idc" @on-change="fetchDiffSource">
+                    <Select v-model="general.idc" @on-change="fetchDiffSource" :not-found-text="$t('common.no_match')">
                         <Option v-for="i in fetchData.idc" :key="i" :value="i">{{ i }}</Option>
                     </Select>
                 </FormItem>
                 <FormItem label="连接名" prop="source">
-                    <Select v-model="general.source" @on-change="fetchBase" filterable>
+                    <Select v-model="general.source" @on-change="fetchBase" filterable :not-found-text="$t('common.no_match')">
                         <Option v-for="i in fetchData.source" :key="i" :value="i">{{ i }}</Option>
                     </Select>
                 </FormItem>
                 <FormItem label="库" prop="data_base">
-                    <Select v-model="general.data_base" @on-change="fetchTable" filterable>
+                    <Select v-model="general.data_base" @on-change="fetchTable" filterable :not-found-text="$t('common.no_match')">
                         <Option v-for="i in fetchData.base" :key="i" :value="i">{{ i }}</Option>
                     </Select>
                 </FormItem>
                 <FormItem label="表" prop="table">
-                    <Select v-model="general.table" filterable >
+                    <Select v-model="general.table" filterable :not-found-text="$t('common.no_match')">
                         <Option v-for="i in fetchData.table" :key="i" :value="i">{{ i }}</Option>
                     </Select>
                 </FormItem>

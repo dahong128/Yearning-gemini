@@ -10,7 +10,7 @@
             </FormItem>
             <FormItem label="角色">
                 <template v-if="edit.username !== 'admin'">
-                    <Select v-model="edit.rule">
+                <Select v-model="edit.rule" :not-found-text="$t('common.no_match')">
                         <Option value="guest" label="提交人"></Option>
                         <Option value="admin" label="操作人"></Option>
                     </Select>
