@@ -74,7 +74,7 @@
         <div class="header">
             <div class="header-inner">
                 <div class="header-left">
-                    <a href="https://github.com/cookieY/Yearning" target="_blank">
+                    <a href="https://github.com/dahong128/Yearning-gemini.git" target="_blank">
                         <Icon type="logo-github" size="30"/>
                     </a>
                     <a class="navbar-brand"> {{ $t('version') }}: {{ $config.version }} </a>
