@@ -14,7 +14,7 @@
         <search text="工单说明" @refresh="current_page" is_order></search>
         <Row>
             <Col span="24">
-                <Table border :columns="columns" :data="table_data" stripe size="small">
+                <Table border :columns="columns" :data="table_data" stripe size="small" :no-data-text="$t('common.no_data')">
                     <template slot-scope="{ row }" slot="action">
                         <Button type="success" @click="openOrder(row)" size="small"
                                 ghost

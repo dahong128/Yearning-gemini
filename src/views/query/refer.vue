@@ -6,8 +6,8 @@
             <h4 style="margin-top: 5%">{{ stepData.content }}</h4>
             <br>
             <br>
-            <Button @click="back">返回</Button>
-            <Button @click="deferReply" class="margin-left-10">撤销</Button>
+            <Button @click="back">{{ $t('common.back') }}</Button>
+            <Button @click="deferReply" class="margin-left-10">{{ $t('query_refer.revoke') }}</Button>
         </div>
         <div class="step-content" style="height: 150px">
         </div>
@@ -27,25 +27,29 @@ import QueryMixin from "@/mixins/query";
 
 @Component({components: {}})
 export default class put_ready extends Mixins(QueryMixin) {
-    stepData = {
-        title: 'Yearning SQL查询系统',
-        describe: `欢迎你！ ${sessionStorage.getItem('user')}`,
-        content: '你的工单已提交审核，请等待审核人批准！'
-    };
-    stepList1 = [
-        {
-            title: '提交',
-            describe: '提交查询申请'
-        },
-        {
-            title: '审核',
-            describe: '等待审核结果'
-        },
-        {
-            title: '查询',
-            describe: '审核完毕，进入查询页面'
+    get stepData() {
+        return {
+            title: this.$t('query_workflow.header.title') as string,
+            describe: this.$t('query_workflow.header.welcome', { name: sessionStorage.getItem('user') }) as string,
+            content: this.$t('query_refer.submitted') as string
         }
-    ];
+    }
+    get stepList1() {
+        return [
+            {
+                title: this.$t('query_workflow.steps.submit') as string,
+                describe: this.$t('query_workflow.steps.submit_desc') as string
+            },
+            {
+                title: this.$t('query_workflow.steps.review') as string,
+                describe: this.$t('query_workflow.steps.review_desc') as string
+            },
+            {
+                title: this.$t('query_workflow.steps.query') as string,
+                describe: this.$t('query_workflow.steps.query_desc') as string
+            }
+        ]
+    }
 
     back() {
         this.$router.push({

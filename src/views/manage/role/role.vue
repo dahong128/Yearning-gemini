@@ -23,7 +23,7 @@
             </Col>
         </Row>
         <br>
-        <Table :columns="col" :data="tb_data" border>
+        <Table :columns="col" :data="tb_data" border :no-data-text="$t('common.no_data')">
             <template slot-scope="{row}" slot="switch">
                 <i-switch size="large" v-model="juno[row.name]" v-if="row.tp === 0">
                     <span slot="open">开</span>

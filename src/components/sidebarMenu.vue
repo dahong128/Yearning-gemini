@@ -12,37 +12,37 @@
             </MenuItem>
             <MenuItem name="home_index">
                 <Icon type="md-home" :size="iconSize"></Icon>
-                <span class="layout-text">首页</span>
+                <span class="layout-text">{{ $t('nav.home') }}</span>
             </MenuItem>
             <MenuItem name="my_order">
                 <Icon type="md-person" :size="iconSize"></Icon>
-                <span class="layout-text">我的工单</span>
+                <span class="layout-text">{{ $t('nav.my_order') }}</span>
             </MenuItem>
             <MenuItem name="order">
                 <Icon type="md-code" :size="iconSize"></Icon>
-                <span class="layout-text">工单提交</span>
+                <span class="layout-text">{{ $t('nav.order_submit') }}</span>
             </MenuItem>
             <template v-for="item in menuList">
                 <Submenu v-if="item.children.length>=1 && item.name !== 'main'" :name="item.name" :key="item.path">
                     <template slot="title">
                         <Icon :type="item.icon" :size="iconSize"></Icon>
-                        <span class="layout-text">{{ item.meta.title }}</span>
+                        <span class="layout-text">{{ $t(item.meta.title) }}</span>
                     </template>
                     <template v-for="child in item.children">
                         <MenuItem :name="child.name" :key="child.name" style="margin-left: -5%">
                             <Icon :type="child.icon" :size="iconSize" :key="child.name"></Icon>
-                            <span class="layout-text" :key="child.name + 1">{{ child.meta.title }}</span>
+                            <span class="layout-text" :key="child.name + 1">{{ $t(child.meta.title) }}</span>
                         </MenuItem>
                     </template>
                 </Submenu>
             </template>
             <Menu-item name="board">
                 <Icon type="md-clipboard" :size="iconSize"></Icon>
-                <span class="layout-text">公告</span>
+                <span class="layout-text">{{ $t('nav.board') }}</span>
             </Menu-item>
             <Menu-item name="login">
                 <Icon type="md-log-out" :size="iconSize"></Icon>
-                <span class="layout-text">退出</span>
+                <span class="layout-text">{{ $t('nav.logout') }}</span>
             </Menu-item>
         </Menu>
     </div>

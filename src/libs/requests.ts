@@ -10,6 +10,7 @@ import module_general from "@/store/modules/general";
 import {LoginApi} from "@/apis/loginApis";
 import {router} from "@/main";
 import {loginRender} from "@/views/login/render";
+import i18n from "@/language";
 import {Res} from "@/interface";
 
 const ACCESS_TOKEN = sessionStorage.getItem("jwt")
@@ -18,8 +19,8 @@ const request: AxiosInstance = axios.create({})
 
 function ReLoginHandler() {
     Modal.warning({
-        title: '重新登录',
-        okText: '登录',
+        title: i18n.t('common.reloginTitle') as string,
+        okText: i18n.t('common.login') as string,
         closable: false,
         loading: true,
         render: loginRender,
@@ -45,7 +46,7 @@ const errorHandler = (error: { response: { data: { message: string }; status: nu
     if (error.response) {
         if (error.response.status === 401) {
             if (document.getElementsByClassName('ivu-message-notice').length === 0) {
-                let text = 'Token过期！请重新登录!';
+                const text = i18n.t('common.tokenExpired') as string;
                 Message.warning({content: text, duration: 5});
             }
             ReLoginHandler()
@@ -53,7 +54,7 @@ const errorHandler = (error: { response: { data: { message: string }; status: nu
         }
         const data = error.response.data
         Notice.error({
-            title: `状态码:${error.response.status}`,
+            title: `${i18n.t('common.statusCode')}:${error.response.status}`,
             desc: data.message
         })
     }
@@ -63,14 +64,14 @@ const errorHandler = (error: { response: { data: { message: string }; status: nu
 const responseInject = (res: Res) => {
     if (res.text !== '' && res.code === 1200) {
         Notice.info({
-            title: '状态码:1200',
+            title: `${i18n.t('common.statusCode')}:1200`,
             desc: res.text
         })
     }
 
     if (res.code > 1200) {
         Notice.error({
-            title: `状态码:${res.code}`,
+            title: `${i18n.t('common.statusCode')}:${res.code}`,
             desc: res.text
         })
     }
@@ -92,4 +93,3 @@ request.interceptors.response.use((response) => {
 export {
     request
 }
-

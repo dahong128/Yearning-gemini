@@ -3,8 +3,8 @@
         <Card>
             <Row>
                 <Col span="23">
-                    <Button type="text" icon="md-add-circle" @click="openModel">打开数据源</Button>
-                    <Button type="text" icon="md-copy" @click="open_snip" class="margin-left-10">新建snippet</Button>
+                    <Button type="text" icon="md-add-circle" @click="openModel">{{ $t('query_multi.open_source') }}</Button>
+                    <Button type="text" icon="md-copy" @click="open_snip" class="margin-left-10">{{ $t('query_multi.new_snippet') }}</Button>
                     <Tabs type="card" name="source" @on-tab-remove="handleTabRemove" :value="focus">
                         <template v-for="(i,idx) in sourceList">
                             <TabPane :name="i" :label="i" tab="source" :key="i" v-if="idx===0">
@@ -18,19 +18,19 @@
                 </Col>
             </Row>
         </Card>
-        <Modal v-model="openSource" title="数据源列表(请点击以下数据源进行查询)" :z-index="9999">
+        <Modal v-model="openSource" :title="$t('query_multi.source_list')" :z-index="9999">
             <CellGroup @on-click="choiceSource">
                 <Cell v-for="i in fetchData.source" :title="i" :name="i" :key="i"/>
             </CellGroup>
             <div slot="footer">
-                <Button type="error" @click="deferReply">结束查询</Button>
+                <Button type="error" @click="deferReply">{{ $t('query_multi.end_query') }}</Button>
             </div>
         </Modal>
 
-        <Modal v-model="openSnippet" title="新建Snippet" @on-ok="add_snip">
+        <Modal v-model="openSnippet" :title="$t('query_multi.new_snippet')" @on-ok="add_snip">
             <Form>
-                <FormItem label="Snippet标签名"><Input v-model="addSnippet.title"></Input></FormItem>
-                <FormItem label="Snippet"><Input v-model="addSnippet.text" type="textarea" :rows="4"></Input></FormItem>
+                <FormItem :label="$t('query_multi.snippet_tag')"><Input v-model="addSnippet.title"></Input></FormItem>
+                <FormItem :label="$t('query_multi.snippet')"><Input v-model="addSnippet.text" type="textarea" :rows="4"></Input></FormItem>
             </Form>
         </Modal>
     </div>
@@ -80,7 +80,7 @@ export default class multiSource extends Mixins(QueryMixin) {
     choiceSource(vl: string) {
         for (let i of this.sourceList) {
             if (i === vl) {
-                this.$Message.warning('不可重复打开相同数据源！');
+                this.$Message.warning(this.$t('query_multi.duplicate_source') as string);
                 return
             }
         }

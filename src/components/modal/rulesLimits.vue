@@ -1,25 +1,25 @@
 <template>
     <Modal v-model="is_open" :width="800" @on-cancel="cancel" @on-ok="is_post">
-        <h3 slot="header" >用户权限</h3>
+        <h3 slot="header" >{{ $t('permissions.title') }}</h3>
         <Form :label-width="120" label-position="top">
-            <FormItem label="用户名">
+            <FormItem :label="$t('permissions.username')">
                 <Input v-model="rule.username" readonly></Input>
             </FormItem>
-            <FormItem label="权限组" v-show="is_admin">
-                <Select v-model="rule.group" @on-change="marge_group" clearable multiple filterable>
+            <FormItem :label="$t('permissions.group')" v-show="is_admin">
+                <Select v-model="rule.group" @on-change="marge_group" clearable multiple filterable :not-found-text="$t('common.no_match')">
                     <Option v-for=" i in rule.list" :key="i.name" :value="i.name" :label="i.name"></Option>
                 </Select>
             </FormItem>
-            <FormItem label="DDL数据源:">
+            <FormItem :label="$t('permissions.ddl_sources') + ':'">
                 <Tag color="purple" v-for="i in permission.ddl_source" :key="i"> {{ i }}</Tag>
             </FormItem>
-            <FormItem label="DML数据源:">
+            <FormItem :label="$t('permissions.dml_sources') + ':'">
                 <Tag color="geekblue" v-for="i in permission.dml_source" :key="i"> {{ i }}</Tag>
             </FormItem>
-            <FormItem label="查询数据源:">
+            <FormItem :label="$t('permissions.query_sources') + ':'">
                 <Tag color="blue" v-for="i in permission.query_source" :key="i"> {{ i }}</Tag>
             </FormItem>
-            <FormItem label="选择查询审核人:">
+            <FormItem :label="$t('permissions.auditors') + ':'">
                 <Tag color="cyan" v-for="i in permission.auditor" :key="i"> {{ i }}</Tag>
             </FormItem>
         </Form>

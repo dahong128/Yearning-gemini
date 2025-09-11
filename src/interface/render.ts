@@ -1,4 +1,5 @@
 import expandRow from "@/components/expandTable.vue";
+import i18n from "@/language";
 
 let render = {
     tag: (h: any, params: { row: { status: number }; }) => {
@@ -23,16 +24,16 @@ render.query_tag = (h: any, params: { row: { query_per: number } }) => {
     let text = ''
     if (row.query_per === 2) {
         color = 'primary'
-        text = '待审核'
+        text = i18n.t('nav_search.query.pending') as string
     } else if (row.query_per === 0) {
         color = 'error'
-        text = '驳回'
+        text = i18n.t('nav_search.status.rejected') as string
     } else if (row.query_per === 1) {
         color = 'success'
-        text = '同意/查询'
+        text = i18n.t('nav_search.query.accepted') as string
     } else {
         color = 'warning'
-        text = '查询结束'
+        text = i18n.t('nav_search.query.finished') as string
     }
     return h('Tag', {
         props: {
@@ -48,22 +49,22 @@ render.tag = (h: any, params: { row: { status: number }; }) => {
     let text = '';
     if (row.status === 2) {
         color = 'primary';
-        text = '审核中';
+        text = i18n.t('nav_search.status.reviewing') as string;
     } else if (row.status === 0) {
         color = 'error';
-        text = '驳回';
+        text = i18n.t('nav_search.status.rejected') as string;
     } else if (row.status === 1) {
         color = 'success';
-        text = '已执行';
+        text = i18n.t('nav_search.status.performed') as string;
     } else if (row.status === 4) {
         color = 'error';
-        text = '执行失败';
+        text = i18n.t('nav_search.status.failed') as string;
     } else if (row.status === 5) {
         color = 'primary';
-        text = '待执行';
+        text = i18n.t('orders.status.pending') as string;
     } else {
         color = 'warning';
-        text = '执行中';
+        text = i18n.t('orders.status.running') as string;
     }
     return h('Tag', {
         props: {
@@ -75,18 +76,18 @@ render.tag = (h: any, params: { row: { status: number }; }) => {
 
 render.backup = (h: any, params: { row: { backup: number }; }) => {
     const row = params.row;
-    let text = "否"
+    let text = i18n.t('common.no') as string
     if (row.backup == 1) {
-        text = "是"
+        text = i18n.t('common.yes') as string
     }
     return h('span', {}, text)
 }
 
 render.queryExport = (h: any, params: { row: { export: number }; }) => {
     const row = params.row;
-    let text = "否"
+    let text = i18n.t('common.no') as string
     if (row.export == 1) {
-        text = "是"
+        text = i18n.t('common.yes') as string
     }
     return h('span', {}, text)
 }

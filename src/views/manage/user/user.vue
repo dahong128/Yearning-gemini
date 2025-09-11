@@ -8,7 +8,7 @@
                 </p>
                 <CustomForm :item="userinfo" :rule="userInfoValidate" :label-value="userLabelValue" ref="reg">
                     <template slot="rule">
-                        <Select v-model="userinfo.rule" placeholder="请选择">
+                        <Select v-model="userinfo.rule" :placeholder="$t('common.select')" :not-found-text="$t('common.no_match')">
                             <Option value="admin">操作人</Option>
                             <Option value="guest">提交人</Option>
                         </Select>
@@ -33,7 +33,7 @@
                     <Button @click="queryCancel" type="warning" class="margin-left-10">重置</Button>
                 </Form>
                 <div class="edit-table-con-1">
-                    <Table border :columns="columns" :data="table_data" stripe>
+                    <Table border :columns="columns" :data="table_data" stripe :no-data-text="$t('common.no_data')">
                         <template slot-scope="{ row }" slot="rule">
                             <span v-if="row.rule === 'admin'">操作人</span>
                             <span v-else-if="row.rule === 'guest'">提交人</span>

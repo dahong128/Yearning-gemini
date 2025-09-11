@@ -2,7 +2,7 @@
     <div>
         <Form v-if="order.status ===2">
             <FormItem v-if="c_flag === 0">
-                <Select v-model="personal" placeholder="请选择下一级审核人" style="width: 20%">
+                <Select v-model="personal" :placeholder="$t('order_profile.select_next')" style="width: 20%" :not-found-text="$t('common.no_match')">
                     <Option v-for="i in p_flag" :key="i" :value="i" :label="i"></Option>
                 </Select>
             </FormItem>
@@ -18,7 +18,7 @@
                 <Button type="success" @click="perform()" :disabled="summit" class="margin-left-10" v-else>执行</Button>
             </FormItem>
             <FormItem>
-                <Table :columns="sql_columns" :data="testing_sql" :max-height="300"  no-data-text="点击 检测 按钮获取检测结果"></Table>
+                <Table :columns="sql_columns" :data="testing_sql" :max-height="300"  :no-data-text="$t('order_profile.testing.no_data')"></Table>
             </FormItem>
         </Form>
         <reject v-model="is_open"></reject>

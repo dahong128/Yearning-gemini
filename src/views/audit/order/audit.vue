@@ -3,51 +3,51 @@
         <Card>
             <template slot="title">
                 <Row type="flex" justify="end">
-                    <Col span="2">
+                    <Col span="4">
                         <p>
                             <Icon type="md-create"></Icon>
-                            工单审核
+                            {{ $t('audit_order.title') }}
                         </p>
                     </Col>
                     <Col span="8">
-                        <Poptip trigger="hover" title="提示" content="此开关用于打开实时表格数据更新功能">
+                        <Poptip trigger="hover" :title="$t('audit_order.tip_title')" :content="$t('audit_order.refresh_tip')">
                             <i-switch v-model="valve" @on-change="refreshForm" size="large">
-                                <span slot="open">打开</span>
-                                <span slot="close">关闭</span>
+                                <span slot="open">{{ $t('audit_order.open') }}</span>
+                                <span slot="close">{{ $t('audit_order.close') }}</span>
                             </i-switch>
                         </Poptip>
                     </Col>
-                    <Col span="14">
+                    <Col span="12">
                         <nav-search @search="search"></nav-search>
                     </Col>
                 </Row>
             </template>
-            <Table border :columns="columns" :data="table_data" stripe size="small">
+            <Table border :columns="auditColumns" :data="table_data" stripe size="small" :no-data-text="$t('common.no_data')">
                 <template slot-scope="{ row }" slot="action">
                     <template v-if="row.status !== 5">
                         <Button type="success" @click="orderDetail(row)"
                                 size="small" ghost>
-                            详情
+                            {{ $t('audit_order.detail') }}
                         </Button>
                         <Poptip
                             confirm
-                            title="确定要中止该工单吗？"
+                            :title="$t('audit_order.confirm_kill')"
                             @on-ok="delayKill(row)"
                             transfer>
                             <Button type="error" v-if="row.status === 3 && row.delay !== 'none'"
                                     size="small" ghost class="margin-left-10">
-                                延时工单中止
+                                {{ $t('audit_order.delay_kill') }}
                             </Button>
                         </Poptip>
 
                         <Button ghost size="small" class="margin-left-10" @click="timerOsc(row)"
-                                type="warning" v-if="row.status === 3 && row.type === 0">osc进度
+                                type="warning" v-if="row.status === 3 && row.type === 0">{{ $t('audit_order.osc_progress') }}
                         </Button>
                     </template>
                 </template>
                 <template slot-scope="{ row }" slot="delay">
                     <span v-if="row.delay !== 'none'">{{ row.delay }}</span>
-                    <span v-else>无</span>
+                    <span v-else>{{ $t('audit_order.none') }}</span>
                 </template>
             </Table>
             <br>
@@ -72,64 +72,66 @@ import NavSearch from "@/components/search/navSearch.vue";
 
 @Component({components: {search, profile, osc, reject, NavSearch}})
 export default class platform_audit extends Mixins(Basic) {
-    columns = [
-        {
-            title: '工单编号:',
-            key: 'work_id',
-            sortable: true,
-            sortType: 'desc',
-            width: 155
-        },
-        {
-            title: '工单说明:',
-            key: 'text',
-            tooltip: true
-        },
-        {
-            title: '工单类型',
-            key: 'type',
-            render: render.type
-        },
-        {
-            title: '提交时间:',
-            key: 'date',
-            sortable: true
-        },
-        {
-            title: '提交账号',
-            key: 'username',
-            sortable: true
-        },
-        {
-            title: '真实姓名',
-            key: 'real_name',
-            sortable: true
-        },
-        {
-            title: '定时执行',
-            key: 'delay',
-            slot: 'delay'
-        },
-        {
-            title: '当前操作人',
-            key: 'assigned',
-            sortable: true
-        },
-        {
-            title: '状态',
-            key: 'status',
-            width: 150,
-            render: render.tag,
-            sortable: true
-        },
-        {
-            title: '操作',
-            key: 'action',
-            width: 200,
-            align: 'center',
-            slot: 'action'
-        }
-    ];
+    get auditColumns() {
+        return [
+            {
+                title: this.$t('orders.columns.work_id') as string,
+                key: 'work_id',
+                sortable: true,
+                sortType: 'desc',
+                width: 155
+            },
+            {
+                title: this.$t('orders.columns.text') as string,
+                key: 'text',
+                tooltip: true
+            },
+            {
+                title: this.$t('orders.columns.type') as string,
+                key: 'type',
+                render: render.type
+            },
+            {
+                title: this.$t('orders.columns.date') as string,
+                key: 'date',
+                sortable: true
+            },
+            {
+                title: this.$t('orders.columns.username') as string,
+                key: 'username',
+                sortable: true
+            },
+            {
+                title: this.$t('orders.columns.real_name') as string,
+                key: 'real_name',
+                sortable: true
+            },
+            {
+                title: this.$t('orders.columns.delay') as string,
+                key: 'delay',
+                slot: 'delay'
+            },
+            {
+                title: this.$t('orders.columns.assigned') as string,
+                key: 'assigned',
+                sortable: true
+            },
+            {
+                title: this.$t('orders.columns.status') as string,
+                key: 'status',
+                width: 150,
+                render: render.tag,
+                sortable: true
+            },
+            {
+                title: this.$t('orders.columns.action') as string,
+                key: 'action',
+                width: 200,
+                align: 'center',
+                slot: 'action'
+            }
+        ]
+    }
     reboot = 0;
     valve = true;
     is_osc = false;

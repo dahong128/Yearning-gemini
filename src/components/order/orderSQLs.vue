@@ -9,20 +9,20 @@
                     <FormItem>
                         <Card>
                             <Tabs value="order1">
-                                <TabPane label="填写SQL语句" name="order1" icon="md-code">
+                                <TabPane :label="$t('order_submit.sqls.tabs.sql')" name="order1" icon="md-code">
                                     <editor v-model="order_text" @init="editorInit"
                                             @setCompletions="setCompletions"></editor>
                                 </TabPane>
                                 <template>
-                                    <TabPane label="表结构详情" name="order2" icon="md-folder">
-                                        <Table :columns="field_columns" :data="field_data" border
+                                    <TabPane :label="$t('order_submit.sqls.tabs.table_struct')" name="order2" icon="md-folder">
+                                        <Table :columns="field_columns" :data="field_data" border :no-data-text="$t('common.no_data')"
                                                max-height="250"></Table>
                                     </TabPane>
-                                    <TabPane label="索引详情" name="order3" icon="md-folder">
-                                        <Table :columns="idx_columns" :data="idx_data" border max-height="250">
+                                    <TabPane :label="$t('order_submit.sqls.tabs.index')" name="order3" icon="md-folder">
+                                        <Table :columns="idx_columns" :data="idx_data" border max-height="250" :no-data-text="$t('common.no_data')">
                                             <template slot-scope="{row}" slot="NonUnique">
-                                                <span v-if="row.NonUnique === 0">是</span>
-                                                <span v-else>否</span>
+                                                <span v-if="row.NonUnique === 0">{{ $t('common.yes') }}</span>
+                                                <span v-else>{{ $t('common.no') }}</span>
                                             </template>
                                         </Table>
                                     </TabPane>
@@ -32,18 +32,18 @@
                     </FormItem>
                     <FormItem>
                         <Button type="info" icon="md-arrow-round-back" @click.native="previous"
-                                class="margin-left-10">上一步
+                                class="margin-left-10">{{ $t('order_submit.sqls.prev') }}
                         </Button>
                         <Button type="primary" icon="md-search" @click.native="check_sql(true)"
-                                class="margin-left-10">检测语句
+                                class="margin-left-10">{{ $t('order_submit.sqls.check') }}
                         </Button>
                         <Button type="info" @click="merge" :loading="loading" class="margin-left-10" v-if="!is_dml">
-                            ALTER语句合并
+                            {{ $t('order_submit.sqls.merge') }}
                         </Button>
-                        <Button type="success" @click="fetchStruct()" class="margin-left-10">获取表结构信息
+                        <Button type="success" @click="fetchStruct()" class="margin-left-10">{{ $t('order_submit.sqls.fetch_struct') }}
                         </Button>
                         <Button type="warning" icon="ios-brush" @click.native="beauty()"
-                                :loading="loading" class="margin-left-10">美化
+                                :loading="loading" class="margin-left-10">{{ $t('order_submit.sqls.beautify') }}
                         </Button>
                         <Button
                             type="success"
@@ -51,11 +51,11 @@
                             @click.native="commitOrder()"
                             :disabled="this.validate_gen"
                             class="margin-left-10"
-                        >提交工单
+                        >{{ $t('order_submit.sqls.submit') }}
                         </Button>
                     </FormItem>
                     <FormItem>
-                        <Table :columns="testColumns" :data="testResults" highlight-row border></Table>
+                        <Table :columns="testColumns" :data="testResults" highlight-row border :no-data-text="$t('common.no_data')"></Table>
                     </FormItem>
                 </Form>
             </Col>
@@ -76,48 +76,52 @@ import {Res} from "@/interface";
 
 @Component({components: {editor, orderConfirm}})
 export default class orderSQLs extends Mixins(FetchMixins) {
-    field_columns = [
-        {
-            title: '字段名',
-            key: 'field'
-        },
-        {
-            title: '字段类型',
-            key: 'type',
-            editable: true
-        },
-        {
-            title: '字段是否为空',
-            key: 'null',
-            editable: true,
-            option: true
-        },
-        {
-            title: '默认值',
-            key: 'default',
-            editable: true
-        },
-        {
-            title: '备注',
-            key: 'comment'
-        }
-    ];
+    get field_columns() {
+        return [
+            {
+                title: this.$t('order_submit.sqls.columns.field') as string,
+                key: 'field'
+            },
+            {
+                title: this.$t('order_submit.sqls.columns.type') as string,
+                key: 'type',
+                editable: true
+            },
+            {
+                title: this.$t('order_submit.sqls.columns.nullable') as string,
+                key: 'null',
+                editable: true,
+                option: true
+            },
+            {
+                title: this.$t('order_submit.sqls.columns.default') as string,
+                key: 'default',
+                editable: true
+            },
+            {
+                title: this.$t('order_submit.sqls.columns.comment') as string,
+                key: 'comment'
+            }
+        ]
+    }
     field_data = [];
-    idx_columns = [
-        {
-            title: '索引名称',
-            key: 'IndexName'
-        },
-        {
-            title: '是否唯一',
-            key: 'NonUnique',
-            slot: 'NonUnique'
-        },
-        {
-            title: '字段名',
-            key: 'ColumnName'
-        }
-    ];
+    get idx_columns() {
+        return [
+            {
+                title: this.$t('order_submit.sqls.columns.index_name') as string,
+                key: 'IndexName'
+            },
+            {
+                title: this.$t('order_submit.sqls.columns.unique') as string,
+                key: 'NonUnique',
+                slot: 'NonUnique'
+            },
+            {
+                title: this.$t('order_submit.sqls.columns.field') as string,
+                key: 'ColumnName'
+            }
+        ]
+    }
     idx_data = [];
 
     fetchStruct() {
@@ -126,7 +130,7 @@ export default class orderSQLs extends Mixins(FetchMixins) {
             .then((res: AxiosResponse<Res>) => {
                 this.field_data = res.data.payload.rows;
                 this.idx_data = res.data.payload.idx;
-                this.$Message.success({content: "已获取表结构!"})
+                this.$Message.success({content: this.$t('order_submit.sqls.msg.fetched') as string})
             })
             .finally(() => this.$Spin.hide())
     }
@@ -183,7 +187,7 @@ export default class orderSQLs extends Mixins(FetchMixins) {
 
     mounted() {
         for (let i of this.$config.highlight.split('|')) {
-            this.wordList.push({'vl': i, 'meta': '关键字'})
+            this.wordList.push({'vl': i, 'meta': this.$t('query_sql.keyword') as string})
         }
     }
 }

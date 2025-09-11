@@ -4,7 +4,7 @@
                 <Input :placeholder="text" v-model="find.text" @on-keyup.enter="queryData"></Input>
             </FormItem>
         <FormItem prop="picker" v-if="!is_group">
-            <DatePicker format="yyyy-MM-dd HH:mm" type="datetimerange" placeholder="请选择查询的时间范围"
+            <DatePicker format="yyyy-MM-dd HH:mm" type="datetimerange" :placeholder="$t('nav_search.range_placeholder')"
                         v-model="find.picker" @on-change="find.picker=$event" style="width: 250px"
                         :editable="false"></DatePicker>
         </FormItem>

@@ -2,7 +2,6 @@
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import Subnet from './framework.vue'
-import iView from 'view-design'
 import VueRouter from 'vue-router'
 import {MainRoute} from './router'
 import store from '@/store'
@@ -16,7 +15,6 @@ import i18n from "@/language";
 import SlideVerify from 'vue-monoplasty-slide-verify';
 Vue.config.productionTip = false;
 Vue.prototype.$config = config;
-Vue.use(iView)
 Vue.use(SlideVerify)
 Vue.use(particles);
 Vue.use(VueRouter);
@@ -38,7 +36,8 @@ VueRouter.prototype.push = function push(location: import("vue-router").RawLocat
 
 router.beforeEach((to: any, from, next) => {
     LoadingBar.start();
-    config.title(to.meta.title);
+    const title = typeof to.meta.title === 'string' ? (i18n.t(to.meta.title) as string) : to.meta.title;
+    config.title(title);
     if (sessionStorage.getItem('locking') === '1' && to.name !== 'locking') { // 判断当前是否是锁定状态
         next(false);
         router.replace({name: 'login'}).then(() => {

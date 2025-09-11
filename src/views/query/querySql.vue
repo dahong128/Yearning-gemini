@@ -5,7 +5,7 @@
                 <Card dis-hover>
                     <p slot="title">
                         <Icon type="ios-redo"></Icon>
-                        选择数据库
+                        {{ $t('query_sql.select_db') }}
                     </p>
                     <div class="edittable-test-con">
                         <div id="showImage" class="margin-bottom-10">
@@ -14,12 +14,12 @@
                                     :data="tree_data"
                                     @on-toggle-expand="choseName"
                                     @on-select-change="getTable"
-                                    empty-text="数据加载中"
+                                    :empty-text="$t('query_sql.tree_loading')"
                                     class="tree"
                                 ></Tree>
-                                <Button type="info" icon="md-brush" @click="openDrawer" ghost>快速提交</Button>
+                                <Button type="info" icon="md-brush" @click="openDrawer" ghost>{{ $t('query_sql.quick_submit') }}</Button>
                                 <Button type="error" icon="md-backspace" @click="deferReply" ghost
-                                        class="margin-left-percent-5">结束会话
+                                        class="margin-left-percent-5">{{ $t('query_sql.end_session') }}
                                 </Button>
                             </div>
                         </div>
@@ -28,60 +28,60 @@
             </Col>
             <Col :span="slider2" class="padding-left-10">
                 <Card dis-hover>
-                    <Button type="primary" icon="ios-skip-forward" @click="countAdd">隐藏数据列</Button>
+                    <Button type="primary" icon="ios-skip-forward" @click="countAdd">{{ $t('query_sql.hide_columns') }}</Button>
                     <br>
                     <br>
                     <Tabs type="card" :value="currentTab" @on-click="cur" name="base">
-                        <TabPane v-for="tab in tabs" :key="tab" :label="'查询' + tab" :name="'查询' + tab"
+                        <TabPane v-for="tab in tabs" :key="tab" :label="$t('query_sql.query') + tab" :name="'tab-' + tab"
                                  icon="logo-buffer" tab="base">
                             <tabQuery :word-list="wordList" :export_data="latch.explore" :dataBase="addr.base"
                                       :source="source"
                                       :table="addr.table"></tabQuery>
                         </TabPane>
-                        <Button @click="handleTabsAdd" size="small" slot="extra">增加窗口</Button>
-                        <Button @click="handleTabRemove" size="small" slot="extra" class="margin-left-10">减少窗口</Button>
+                        <Button @click="handleTabsAdd" size="small" slot="extra">{{ $t('query_sql.add_tab') }}</Button>
+                        <Button @click="handleTabRemove" size="small" slot="extra" class="margin-left-10">{{ $t('query_sql.remove_tab') }}</Button>
                     </Tabs>
                 </Card>
             </Col>
         </Row>
 
 
-        <Drawer title="DML语句快速提交" v-model="latch.drawer" width="700">
+        <Drawer :title="$t('query_sql.drawer_title')" v-model="latch.drawer" width="700">
             <Form :rules="ruleValidate" ref="formItem" :model="formItem">
-                <FormItem label="环境:">
+                <FormItem :label="$t('query_workflow.env') + ':'">
                     <span>{{ formItem.idc }}</span>
                 </FormItem>
-                <FormItem label="连接名:">
+                <FormItem :label="$t('query_sql.connection') + ':'">
                     <span>{{ formItem.source }}</span>
                 </FormItem>
 
-                <FormItem label="库名:" prop="data_base">
-                    <Select v-model="formItem.data_base" placeholder="请选择" @on-change="fetchTable()" filterable>
+                <FormItem :label="$t('query_sql.database') + ':'" prop="data_base">
+                    <Select v-model="formItem.data_base" :placeholder="$t('query_sql.choose')" @on-change="fetchTable()" filterable :not-found-text="$t('common.no_match')">
                         <Option v-for="item in fetchData.base" :value="item" :key="item" :label="item"></Option>
                     </Select>
                 </FormItem>
 
-                <FormItem label="工单说明:" prop="text">
-                    <Input v-model="formItem.text" placeholder="请输入" type="textarea" :rows=4></Input>
+                <FormItem :label="$t('query_sql.order_desc') + ':'" prop="text">
+                    <Input v-model="formItem.text" :placeholder="$t('query_sql.input')" type="textarea" :rows=4></Input>
                 </FormItem>
 
-                <FormItem label="审核人:" prop="assigned">
-                    <Select v-model="formItem.assigned" filterable>
+                <FormItem :label="$t('query_workflow.reviewer') + ':'" prop="assigned">
+                    <Select v-model="formItem.assigned" filterable :not-found-text="$t('common.no_match')" :placeholder="$t('common.select')">
                         <Option v-for="i in fetchData.assigned" :value="i" :key="i">{{ i }}</Option>
                     </Select>
                 </FormItem>
 
-                <FormItem label="是否备份" required prop="backup">
+                <FormItem :label="$t('query_sql.backup')" required prop="backup">
                     <RadioGroup v-model="formItem.backup">
-                        <Radio :label=1>是</Radio>
-                        <Radio :label=0>否</Radio>
+                        <Radio :label=1>{{ $t('query_sql.yes') }}</Radio>
+                        <Radio :label=0>{{ $t('query_sql.no') }}</Radio>
                     </RadioGroup>
                 </FormItem>
 
-                <FormItem label="定时执行" prop="delay">
-                    <DatePicker format="yyyy-MM-dd HH:mm" type="datetime" placeholder="选择时间点" :options="invalidDate"
-                                v-model="formItem.delay" @on-change="formItem.delay=$event"
-                                :editable="false"></DatePicker>
+                <FormItem :label="$t('query_sql.schedule')" prop="delay">
+                    <DatePicker format="yyyy-MM-dd HH:mm" type="datetime" :placeholder="$t('query_sql.pick_time')" :options="invalidDate"
+                                 v-model="formItem.delay" @on-change="formItem.delay=$event"
+                                 :editable="false"></DatePicker>
                 </FormItem>
                 <FormItem>
                     <editor v-model="test_sql" @init="editorInit" @setCompletions="setCompletions"></editor>
@@ -94,19 +94,19 @@
                         type="error"
                         icon="md-trash"
                         @click.native="clearForm()"
-                    >清除
+                    >{{ $t('query_sql.clear') }}
                     </Button>
                     <Button type="primary" icon="md-search" @click.native="testSql()"
-                            class="margin-left-10">检测
+                            class="margin-left-10">{{ $t('query_sql.test') }}
                     </Button>
-                    <Button type="warning" @click="beauty" class="margin-left-10">美化</Button>
+                    <Button type="warning" @click="beauty" class="margin-left-10">{{ $t('query_sql.beautify') }}</Button>
                     <Button
                         type="success"
                         icon="ios-redo"
                         @click.native="commitOrder()"
                         :disabled="this.validate_gen"
                         class="margin-left-10"
-                    >提交
+                    >{{ $t('query_sql.submit') }}
                     </Button>
                 </FormItem>
 
@@ -133,7 +133,7 @@ import sqlFormatter from "sql-formatter";
 @Component({components: {editor, tabQuery}})
 export default class query_sql extends Mixins(fetch_mixin, FetchMixins) {
     private slider2 = 19;
-    private currentTab = '查询1';
+    private currentTab = 'tab-1';
     private testRes = [] as any;
     private latch = {
         drawer: false,
@@ -187,10 +187,10 @@ export default class query_sql extends Mixins(fetch_mixin, FetchMixins) {
 
     handleTabRemove() {
         if (this.tabs === 1) {
-            this.$Message.error("窗口最少拥有一个！")
+            this.$Message.error(this.$t('query_sql.tabs_minimum') as string)
         } else {
-            if (this.currentTab === `查询${this.tabs}`) {
-                this.currentTab = `查询${this.tabs - 1}`
+            if (this.currentTab === `tab-${this.tabs}`) {
+                this.currentTab = `tab-${this.tabs - 1}`
             }
             this.tabs--
         }
@@ -225,7 +225,7 @@ export default class query_sql extends Mixins(fetch_mixin, FetchMixins) {
                         this.$Spin.hide()
                     })
             } else {
-                this.$Message.error('请填写具体地址或sql语句后再测试!')
+                this.$Message.error(this.$t('query_sql.test_fill') as string)
                 this.$Spin.hide()
             }
         })
@@ -259,7 +259,7 @@ export default class query_sql extends Mixins(fetch_mixin, FetchMixins) {
             CommonGetApis('fetch_table', {title: vl.title, source: this.source})
                 .then((res: AxiosResponse<Res>) => {
                     if (res.data.payload === 0) {
-                        this.$config.notice("已到查询时限上限,请重新申请查询！");
+                        this.$config.notice(this.$t('query_sql.time_limit') as string);
                         this.$router.push({name: 'query'});
                         return
                     }
@@ -293,7 +293,7 @@ export default class query_sql extends Mixins(fetch_mixin, FetchMixins) {
                 this.formItem.idc = res.data.payload.idc
                 let tWord = this.$config.highlight.split('|');
                 for (let i of tWord) {
-                    this.wordList.push({'vl': i, 'meta': '关键字'})
+                    this.wordList.push({'vl': i, 'meta': this.$t('query_sql.keyword') as string})
                 }
                 modules_order.changed_wordList(this.wordList.concat(res.data.payload.highlight))
                 this.latch.explore = Boolean(res.data.payload.status)

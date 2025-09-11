@@ -1,5 +1,6 @@
 import {CreateElement} from "vue";
 import module_general from "@/store/modules/general";
+import i18n from "@/language";
 
 export const loginRender = (t: CreateElement | undefined) => {
     let h = t as CreateElement
@@ -10,7 +11,7 @@ export const loginRender = (t: CreateElement | undefined) => {
                 value: module_general.password,
                 type: 'password',
                 autofocus: true,
-                placeholder: '请输入密码'
+                placeholder: i18n.t('password') as string
             },
             on: {
                 input: (val: string) => {
@@ -32,6 +33,6 @@ export const loginRender = (t: CreateElement | undefined) => {
                     module_general.changed_openReLogin_status(val)
                 }
             }
-        }, 'ldap登录')
+        }, i18n.t('ldap') as any)
     ])
 }

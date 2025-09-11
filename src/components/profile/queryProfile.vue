@@ -8,7 +8,7 @@
                 <Button type="text" @click.native="$router.go(-1)">返回</Button>
             </p>
             <Table border :columns="columns" :data="table_data" class="tabletop" style="background: #5cadff"
-                   size="large"></Table>
+                   size="large" :no-data-text="$t('common.no_data')"></Table>
             <br>
             <Page :total="page_number" show-elevator @on-change="current_page" :page-size="20"
                   ref="page"></Page>

@@ -57,13 +57,13 @@
                             <TabPane label="预览编辑" name="preview">
                                 <Form>
                                     <FormItem label="步骤类型">
-                                        <Select v-model="tpl.type" transfer>
+                                        <Select v-model="tpl.type" transfer :not-found-text="$t('common.no_match')">
                                             <Option label="审核" :value="0"></Option>
                                             <Option label="执行" :value="1"></Option>
                                         </Select>
                                     </FormItem>
                                     <FormItem label="相关人员">
-                                        <Select v-model="tpl.auditor" multiple transfer filterable>
+                                        <Select v-model="tpl.auditor" multiple transfer filterable :not-found-text="$t('common.no_match')">
                                             <Option v-for="i in multi_list" :key="i.username" :value="i.username"
                                                     :label="i.username"></Option>
                                         </Select>
