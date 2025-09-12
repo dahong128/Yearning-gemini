@@ -1,39 +1,34 @@
 <template>
     <Row type="flex" justify="center" align="top">
         <Col span="6" class="cell">
-            <div class="title">环境: {{ order.idc }}</div>
+            <div class="title">{{ $t('query_workflow.env') }}: {{ order.idc }}</div>
             <br>
-            <div class="title">数据源: {{ order.source }}</div>
+            <div class="title">{{ $t('query_sql.connection') }}: {{ order.source }}</div>
             <br>
-            <div class="title">数据库: {{ order.data_base }}</div>
+            <div class="title">{{ $t('query_sql.database') }}: {{ order.data_base }}</div>
             <br>
-            <div class="title">数据表: {{ order.table }}</div>
+            <div class="title">{{ $t('order_submit.form.table') }}: {{ order.table }}</div>
             <br>
-            <div class="title">是否备份: {{ order.backup===0?"否":"是" }}</div>
+            <div class="title">{{ $t('order_submit.form.backup') }}: {{ order.backup===0 ? $t('common.no') : $t('common.yes') }}</div>
         </Col>
         <Col span="6" class="cell">
-            <div class="title">提交人: {{ order.username }}</div>
+            <div class="title">{{ $t('orders.columns.username') }}: {{ order.username }}</div>
             <br>
-            <div class="title">提交时间: {{ order.date }}</div>
+            <div class="title">{{ $t('orders.columns.date') }}: {{ order.date }}</div>
             <br>
-            <div class="title">工单说明: {{ order.text }}</div>
+            <div class="title">{{ $t('orders.columns.text') }}: {{ order.text }}</div>
             <br>
-            <div class="title">定时执行: {{ order.delay }}</div>
+            <div class="title">{{ $t('order_submit.form.schedule') }}: {{ order.delay }}</div>
         </Col>
         <Col span="5">
             <div style="text-align: center">
-                <p>当前状态</p>
-                <h1 style="color: #2b85e4" v-if="order.status === 2">审核中</h1>
-                <h1 style="color: #c1273e" v-else-if="order.status === 0">驳回</h1>
-                <h1 style="color: #35ba71" v-else-if="order.status === 1">已执行</h1>
-                <h1 style="color: #e42b47" v-else-if="order.status === 4">执行失败</h1>
-                <h1 style="color: #2b85e4" v-else-if="order.status === 5">待执行</h1>
-                <h1 style="color: #ee881a" v-else-if="order.status === 2">执行中</h1>
+                <p>{{ $t('order_profile.current_status') }}</p>
+                <h1 :style="{color: statusColor}">{{ statusText }}</h1>
             </div>
         </Col>
         <Col span="7">
             <div style="text-align: center">
-                <p>SQL类型</p>
+                <p>{{ $t('order_profile.sql_type') }}</p>
                 <h3 v-if="order.type===0">DDL</h3>
                 <h3 v-else>DML</h3>
             </div>
@@ -48,6 +43,25 @@ import OrderProfileMixins from "@/mixins/orderProfile";
 
 @Component({components: {}, mixins: [OrderProfileMixins]})
 export default class basic extends Vue {
+    get statusText() {
+        const s = (this as any).order.status
+        if (s === 2) return this.$t('nav_search.status.reviewing') as string
+        if (s === 0) return this.$t('nav_search.status.rejected') as string
+        if (s === 1) return this.$t('nav_search.status.performed') as string
+        if (s === 4) return this.$t('nav_search.status.failed') as string
+        if (s === 5) return this.$t('orders.status.pending') as string
+        return this.$t('orders.status.running') as string
+    }
+
+    get statusColor() {
+        const s = (this as any).order.status
+        if (s === 2) return '#2b85e4' // reviewing
+        if (s === 0) return '#c1273e' // rejected
+        if (s === 1) return '#35ba71' // performed
+        if (s === 4) return '#e42b47' // failed
+        if (s === 5) return '#2b85e4' // pending
+        return '#ee881a' // running
+    }
 }
 </script>
 

@@ -13,6 +13,21 @@ import {loginRender} from "@/views/login/render";
 import i18n from "@/language";
 import {Res} from "@/interface";
 
+// Map backend plain texts to i18n keys for localization
+const serverTextKeyMap: Record<string, string> = {
+    '工单已创建!': 'orders.msg.created',
+    '工单已创建！': 'orders.msg.created',
+    '工单已同意': 'orders.msg.approved',
+    '工单已同意!': 'orders.msg.approved',
+    '工单已同意！': 'orders.msg.approved',
+    '审核完成': 'audit_order.msg.completed',
+    '审核完成!': 'audit_order.msg.completed',
+    '审核完成！': 'audit_order.msg.completed',
+    '所有工单已终止': 'audit_query.msg.killed_all',
+    '所有工单已终止!': 'audit_query.msg.killed_all',
+    '所有工单已终止！': 'audit_query.msg.killed_all'
+}
+
 const ACCESS_TOKEN = sessionStorage.getItem("jwt")
 
 const request: AxiosInstance = axios.create({})
@@ -62,20 +77,24 @@ const errorHandler = (error: { response: { data: { message: string }; status: nu
 }
 
 const responseInject = (res: Res) => {
-    if (res.text !== '' && res.code === 1200) {
+    const rawText = res.text || ''
+    const localizedText = serverTextKeyMap[rawText]
+        ? (i18n.t(serverTextKeyMap[rawText]) as string)
+        : rawText
+
+    if (rawText !== '' && res.code === 1200) {
         Notice.info({
             title: `${i18n.t('common.statusCode')}:1200`,
-            desc: res.text
+            desc: localizedText
         })
     }
 
     if (res.code > 1200) {
         Notice.error({
             title: `${i18n.t('common.statusCode')}:${res.code}`,
-            desc: res.text
+            desc: localizedText
         })
     }
-
 }
 
 request.interceptors.request.use(config => {

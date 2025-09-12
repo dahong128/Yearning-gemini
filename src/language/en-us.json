@@ -186,11 +186,150 @@
     "notice": "Notice",
     "home": "Home",
     "back": "Back",
+    "search": "Search",
+    "reset": "Reset",
+    "execute": "Execute",
+    "testing": "Testing...",
+    "cancel": "Cancel",
+    "ok": "OK",
     "yes": "Yes",
     "no": "No",
     "no_match": "No matching data",
     "no_data": "No data",
-    "select": "Select"
+    "select": "Select",
+    "detail": "Details",
+    "open": "On",
+    "close": "Off",
+    "save": "Save",
+    "delete": "Delete",
+    "select_all": "Select All",
+    "verified": "Verified!"
+  },
+  "unlock": {
+    "title": "Unlock",
+    "placeholder": "Password (same as login)",
+    "ldap_login": "LDAP Login",
+    "locked": "Locked",
+    "password_incorrect": "Incorrect password!"
+  },
+  "manage_flow": {
+    "title": "Flow Templates",
+    "search_placeholder": "Search by name",
+    "search": "Search",
+    "edit": "Edit",
+    "modal_title": "Edit Flow Template",
+    "reviewer": "Reviewer",
+    "executor": "Executor",
+    "related": "Related: {auditor}",
+    "confirm_delete_step": "Delete this step?",
+    "delete": "Delete",
+    "add_stage": "Add Stage",
+    "preview_edit": "Preview/Edit",
+    "form": {
+      "step_type": "Step Type",
+      "step_types": {"audit": "Review", "execute": "Execute"},
+      "related_people": "Participants",
+      "stage_name": "Stage Name"
+    },
+    "btn": {
+      "move_prev": "Move Up",
+      "save": "Save",
+      "move_next": "Move Down",
+      "add_stage": "Add Stage"
+    },
+    "alert": {
+      "title": "Tips",
+      "desc1": "1. Up to 5 reviewers in the middle",
+      "desc2": "2. Only one execute stage allowed. Put review parameters before it.",
+      "desc3": "3. Caution: changing an active flow may break pending orders. Ensure all are finished."
+    },
+    "tpl_step": {"submit": "Submit Stage", "submitter": "Submitter"},
+    "warn": {
+      "move_prev_limit": "Cannot move further up!",
+      "move_next_limit": "Cannot move further down!",
+      "execute_once": "Only one execute stage is allowed!",
+      "middle_max": "Up to 5 middle review stages"
+    },
+    "error": {
+      "last_step_must_execute": "The last step must be Execute! Save failed!",
+      "save_edited_first": "Please save the edited step first!"
+    },
+    "tpl_desc": "{name} Data Source Review Flow"
+  },
+  "manage_settings": {
+    "title": "Basic Settings",
+    "advanced": "Advanced Settings",
+    "msg": {
+      "title": "Message Push",
+      "webhook": "Webhook URL:",
+      "webhook_placeholder": "Supports DingTalk/WeCom webhook bot",
+      "webhook_secret": "Webhook Secret Key:",
+      "webhook_secret_placeholder": "DingTalk hook secret key",
+      "smtp_host": "SMTP Host:",
+      "smtp_host_placeholder": "SMTP service host",
+      "enable_ssl": "Enable SSL port",
+      "smtp_port": "SMTP Port:",
+      "smtp_user": "SMTP Username:",
+      "smtp_user_placeholder": "Sender username",
+      "smtp_password": "SMTP Password:",
+      "smtp_password_placeholder": "Sender password",
+      "test_to": "Test recipient:",
+      "test_to_placeholder": "Enter a test recipient address",
+      "mail_switch": "Email push:",
+      "webhook_switch": "Webhook push:",
+      "test_webhook": "Test webhook",
+      "test_mail": "Test mail",
+      "notice_title": "Notes:",
+      "notice1": "1. LDAP login username must be globally unique. Refer to Grafana for LDAP config.",
+      "notice2": "2. Mail providers differ in spam filtering; mail may not arrive. Test stability first. For SSL connections, enable SSL port.",
+      "notice3": "3. Message push works only when the corresponding switch is enabled."
+    },
+    "ldap": {
+      "title": "LDAP Settings",
+      "url": "Service URL",
+      "url_placeholder": "[host or domain]:[port]",
+      "enable_ldaps": "Enable LDAPS",
+      "admin_dn": "LDAP Admin DN:",
+      "admin_dn_placeholder": "Enter admin DN",
+      "admin_password": "LDAP Admin Password:",
+      "admin_password_placeholder": "Enter admin password",
+      "search_filter": "LDAP Search filter:",
+      "search_filter_placeholder": "e.g. (&(objectClass=organizationalPerson)(sAMAccountName=%s)), %s is required placeholder",
+      "search_base": "LDAP Search Base:",
+      "search_base_placeholder": "LDAP Search Base",
+      "test": "Test LDAP"
+    },
+    "other": {
+      "title": "Others",
+      "limit": "Max query LIMIT:",
+      "limit_placeholder": "Maximum LIMIT value",
+      "custom_env": "Custom Environments:",
+      "env_placeholder": "Environment name",
+      "add_env": "Add environment",
+      "exclude_db": "Exclude Databases:",
+      "exclude_db_placeholder": "Database to exclude",
+      "add_exclude_db": "Add excluded database",
+      "mask_fields": "Mask Fields:",
+      "mask_fields_placeholder": "Field to mask",
+      "add_mask_field": "Add mask field",
+      "query_review": "Query Review:",
+      "allow_register": "Allow Register:",
+      "query_export": "Query Export:",
+      "query_time_limit": "Query Time Limit:",
+      "minutes": "min"
+    },
+    "super": {
+      "title": "Super Admin Privileges",
+      "delete_order_before": "Delete orders before date",
+      "confirm_delete_orders": "Delete order records?",
+      "delete_query_before": "Delete query records before date",
+      "confirm_delete_queries": "Delete query records?"
+    },
+    "errors": {
+      "duplicate_idc": "Do not add the same environment!",
+      "duplicate_mask": "Do not add duplicate mask field!",
+      "duplicate_db": "Do not add the same database!"
+    }
   },
   "validate": {
     "env_required": "Environment is required",
@@ -206,10 +345,17 @@
   "snippet": {
     "duplicate": "Snippet name must be unique!",
     "max": "Up to 15 snippets!",
-    "saved": "Snippet saved!"
+    "saved": "Snippet saved!",
+    "copy": "Copy",
+    "delete": "Delete",
+    "delete_confirm": "Delete this Snippet?"
   },
   "orders": {
     "view_info": "Order Info",
+    "msg": {
+      "created": "Order created!",
+      "approved": "Order approved"
+    },
     "columns": {
       "work_id": "Order ID:",
       "text": "Description",
@@ -238,7 +384,10 @@
     "confirm_kill": "Abort this order?",
     "delay_kill": "Cancel Scheduled Order",
     "osc_progress": "OSC Progress",
-    "none": "None"
+    "none": "None",
+    "msg": {
+      "completed": "Review completed"
+    }
   },
   "permissions": {
     "title": "User Permissions",
@@ -269,6 +418,25 @@
     }
   },
   "query_sql": {
+    "current_db": "Current database",
+    "elapsed": "Elapsed",
+    "export_data": "Export query data",
+    "result": "Query results",
+    "time_limit_title": "Query time limit expired",
+    "time_limit_desc1": "Query time limit has expired, please re-apply.",
+    "time_limit_desc2": "Click OK to return to the request page.",
+    "select_db_table": "Please select database/table",
+    "columns": {
+      "field": "Field",
+      "type": "Type",
+      "nullable": "Nullable",
+      "default": "Default",
+      "key": "Index Type",
+      "comment": "Comment"
+    },
+    "msg": {
+      "fetched": "Fetched table structure!"
+    },
     "select_db": "Select Database",
     "tree_loading": "Loading...",
     "quick_submit": "Quick Submit",
@@ -307,11 +475,33 @@
     "duplicate_source": "This data source is already opened!"
   }
   ,
+  "manage_auto": {
+    "title": "Auto Tasks",
+    "new": "New Task",
+    "placeholder": {"name": "AutoTask Name"},
+    "edit": "Edit",
+    "confirm_delete": "Delete this task?",
+    "modal_title": "AutoTask Info",
+    "form": {
+      "name": "Task Name",
+      "type": "Type",
+      "max_rows": "Max rows affected"
+    },
+    "types": {"insert": "Insert", "update": "Update", "delete": "Delete"},
+    "columns": {"name": "Name", "type": "Type", "source": "Source"},
+    "errors": {"fill_required": "Please fill required fields!"}
+  },
+  ,
   "query_refer": {
     "submitted": "Your request has been submitted. Please wait for approval.",
     "revoke": "Revoke"
   },
   "order_submit": {
+    "msg": {
+      "submitted_title": "Order submitted",
+      "submitted_contact": "If you have questions, contact your reviewer/administrator",
+      "submitted_revoke": "If something is wrong, go to My Orders to revoke it"
+    },
     "steps": {
       "step1": {"title": "Fill Basic Info", "content": "Fill order info, select type and reviewer"},
       "step2": {"title": "Fill SQL", "content": "Enter SQL statements and pass validation"},
@@ -375,6 +565,8 @@
     "order_id": "Order ID:",
     "view_rollback": "View Rollback SQL",
     "resubmit": "Resubmit",
+    "current_status": "Current Status",
+    "sql_type": "SQL Type",
     "undo_confirm": "Are you sure to revoke this order?",
     "undo": "Revoke Order",
     "flow_steps": "Flow Steps",
@@ -383,9 +575,43 @@
     "sql_audit": "SQL Audit",
     "back_top": "Back to Top",
     "select_next": "Select next reviewer",
+    "columns": {
+      "related": "Related",
+      "time": "Time",
+      "rejected_msg": "Rejection Message"
+    },
+    "actions": {
+      "submitted": "Submitted",
+      "rejected": "Rejected",
+      "approved_executed": "Approved and Executed"
+    },
+    "results": {
+      "columns": {
+        "sql": "SQL",
+        "state": "State",
+        "error": "Error",
+        "affect_row": "Rows Affected",
+        "time_s": "Time (s)"
+      }
+    },
     "testing": {
       "no_data": "Click Validate to get results"
     }
+    ,
+    "collapse": {
+      "submitted_sql": "Submitted SQL",
+      "show_top10": "Show up to 10 SQLs",
+      "show_all": "Show all SQL",
+      "results": "Execution Results"
+    }
+    ,
+    "post_form": {
+      "basic": "Basic Info",
+      "resubmit_sql": "Resubmitted SQL",
+      "submit_info": "Submission Info",
+      "desc_placeholder": "Up to 20 characters"
+    },
+    "rollback_empty": "No rollback SQL generated. Please ensure backup was selected or DB settings are correct. More: https://guide.yearning.io/attention.html"
   }
   ,
   "audit_query": {
@@ -405,6 +631,9 @@
       "real_name": "Real Name",
       "status": "Status",
       "action": "Action"
+    },
+    "msg": {
+      "killed_all": "All requests have been terminated"
     }
   }
   ,
@@ -439,6 +668,150 @@
       "export": "Export",
       "date": "Submit Time:",
       "action": "Action"
+    }
+  }
+  ,
+  "query_profile": {
+    "detail_title": "Order {workid} Details",
+    "columns": {
+      "id": "ID:",
+      "sql": "SQL:",
+      "time": "Time:",
+      "elapsed_ms": "Elapsed (ms):",
+      "source": "Source:",
+      "database": "Database:"
+    }
+  }
+  ,
+  "manage_user": {
+    "add_user": "Add User",
+    "table_title": "System Users",
+    "placeholder": {"username": "Enter username", "department": "Enter department"},
+    "roles": {"operator": "Operator", "submitter": "Submitter", "super_admin": "Super Admin"},
+    "change_password": "Change Password",
+    "permissions": "Permissions",
+    "dependency": {"title": "Dependencies", "flow": "Custom Flows", "group": "Permission Groups"},
+    "edit_title": "User Info"
+  }
+  ,
+  "manage_db": {
+    "add_db": "Add Database",
+    "test_connection": "Test Connection",
+    "table_title": "Database Details",
+    "placeholder": {"source": "Enter connection name", "idc": "Enter environment"},
+    "query_type": {"readwrite": "Read/Write", "read": "Read", "write": "Write"},
+    "confirm_delete": "Deleting this data source will delete all related orders. Continue?",
+    "modal_title": "Database Connection Info",
+    "labels": {
+      "source_name": "Data Source Name",
+      "source_addr": "Data Source Address",
+      "port": "Port",
+      "type": "Data Source Type"
+    },
+    "columns": {"source": "Connection Name", "is_query": "Query Source", "ip": "DB Address"},
+    "validate": {
+      "idc": "Please select environment",
+      "source": "Please enter connection name",
+      "ip": "Please enter connection address",
+      "port": "Please enter port"
+    },
+    "errors": {
+      "invalid_chars": "Only '|' and '-' are allowed as special characters",
+      "invalid_password_chars": "Password must not contain ? @ ^ $"
+    }
+  },
+  "manage_group": {
+    "title": "Permission Groups",
+    "create": "Create Group",
+    "search_placeholder": "Enter group name",
+    "view_edit": "View & Edit",
+    "confirm_delete": "Delete this group?",
+    "form": {
+      "name": "Group Name:",
+      "ddl_sources": "DDL Sources:",
+      "dml_sources": "DML Sources:",
+      "query_sources": "Query Sources:",
+      "query_auditors": "Query Auditors:"
+    },
+    "errors": {
+      "name_required": "Group name is required!"
+    }
+  },
+  "manage_role": {
+    "search_placeholder": "Search by description",
+    "columns": {"type": "Rule Type", "desc": "Description", "switch": "Toggle"},
+    "args": {
+      "DDLCheckTableComment": "Require table comment",
+      "DDlCheckColumnComment": "Require column comments",
+      "DDLCheckColumnNullable": "Non-timestamp columns must be NOT NULL",
+      "DDLCheckColumnDefault": "Non text/blob/json/timestamp columns must have default",
+      "DDLCheckFloatDouble": "Force float/double to decimal",
+      "DDLEnableAutoincrementInit": "Auto-increment initial value must be 1",
+      "DDLPrimaryKeyMust": "Primary key name must be ID",
+      "DDLEnableAutoIncrement": "Primary key must be auto-increment",
+      "DDLEnableAutoincrementUnsigned": "Primary key must be unsigned",
+      "DDLIndexNameSpec": "Index name must start with idx_",
+      "CheckIdentifier": "Enable MySQL keyword check",
+      "DDLEnableAcrossDBRename": "Allow cross-database table rename/migration",
+      "DDLEnableDropTable": "Allow DROP TABLE",
+      "DDLEnableDropDatabase": "Allow DROP DATABASE",
+      "DDLAllowPRINotInt": "Allow PK type not int/bigint",
+      "DDLEnableNullIndexName": "Allow empty index name",
+      "DDLMultiToSubmit": "Allow multiple DDLs in one order",
+      "DDLAllowColumnType": "Allow column type conversion or length shrink",
+      "DDLAllowChangeColumnPosition": "Allow AFTER/FIRST",
+      "AllowCreateView": "Allow CREATE VIEW",
+      "AllowCreatePartition": "Allow partitioned table",
+      "AllowSpecialType": "Allow bit/enum/set",
+      "SupportCollation": "Allowed Collations (comma separated)",
+      "SupportCharset": "Allowed Charsets (comma separated)",
+      "MustHaveColumns": "Required columns for CREATE TABLE (comma separated)",
+      "DDLMaxKeyParts": "Max columns per index",
+      "DDLMaxKey": "Max indexes per table",
+      "MaxDDLAffectRows": "Max DDL rows affected",
+      "DDLMaxCharLength": "Max char length",
+      "MaxTableNameLen": "Max table name length",
+      "DMLMaxInsertRows": "Max INSERT rows per statement",
+      "DMLAllowLimitSTMT": "Allow LIMIT in update/insert",
+      "DDLImplicitTypeConversion": "Disallow implicit conversion",
+      "DMLInsertColumns": "Check INSERT columns exist",
+      "DMLWhere": "Require WHERE for DML",
+      "DMLOrder": "Disallow ORDER BY in DML",
+      "DMLSelect": "Disallow SELECT in DML",
+      "MaxAffectRows": "Max DML rows affected",
+      "IsOSC": "Enable pt-osc",
+      "OscBinDir": "pt-osc binary path (full)",
+      "OscSize": "pt-osc threshold size (MB)",
+      "OscChunkSize": "Chunk size (--chunk-time related)",
+      "OscDropNewTable": "--no-drop-new-table delete new table on failure",
+      "OscDropOldTable": "--no-drop-old-table delete old table on success (keep on error)",
+      "OscCheckReplicationFilters": "--no-check-replication-filters check replication filters",
+      "OscCheckAlter": "--no-check-alter check potential alter issues",
+      "OscCheckUniqueKeyChange": "--no-check-unique-key-change do not check unique index",
+      "OscPrintSql": "--print print OSC SQL",
+      "OscAlterForeignKeysMethod": "--alter-foreign-keys-method foreign key handling",
+      "OscLockWaitTimeout": "--set-vars lock_wait_timeout= seconds",
+      "OscChunkTime": "--chunk-time adjust chunk dynamically",
+      "OscSleep": "--sleep interval",
+      "OscMaxLag": "--max-lag replication lag (s)",
+      "OscCheckInterval": "--check-interval",
+      "OscMaxThreadConnected": "--max-load Threads_connected",
+      "OscMaxThreadRunning": "--max-load Threads_running",
+      "OscCriticalThreadConnected": "--critical-load Threads_connected",
+      "OscCriticalThreadRunning": "--critical-load Threads_running",
+      "OscRecursionMethod": "--recursion-method preferred recursion method"
+    }
+  },
+  "audit_order": {
+    "osc": {
+      "title": "OSC Progress",
+      "stop": "Stop OSC",
+      "current_prefix": "Executing #",
+      "current_suffix": ""
+    },
+    "reject": {
+      "title": "Reason for rejecting SQL order",
+      "placeholder": "Please enter the reason"
     }
   }
 }

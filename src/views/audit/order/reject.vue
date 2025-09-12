@@ -2,10 +2,10 @@
     <Modal v-model="is_open" @on-ok="rejectText" @on-cancel="cancel">
         <p slot="header" style="color:#f60;font-size: 16px">
             <Icon type="information-circled"></Icon>
-            <span>SQL工单驳回理由说明</span>
+            <span>{{ $t('audit_order.reject.title') }}</span>
         </p>
         <Input v-model="reject" type="textarea" :autosize="{minRows: 15,maxRows: 15}"
-               placeholder="请填写驳回说明"></Input>
+               :placeholder="$t('audit_order.reject.placeholder')"></Input>
     </Modal>
 </template>
 

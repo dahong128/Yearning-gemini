@@ -3,27 +3,27 @@
         <Card>
             <p slot="title">
                 <Icon type="md-sync"></Icon>
-                autoTask
+                {{ $t('manage_auto.title') }}
             </p>
             <Form inline ref="queryForm" :modal="find">
                 <FormItem>
                 </FormItem>
                 <FormItem>
-                    <Button type="warning" @click="createTask">新建Task</Button>
+                    <Button type="warning" @click="createTask">{{ $t('manage_auto.new') }}</Button>
                 </FormItem>
                 <FormItem>
-                    <Input placeholder="AutoTask名称" v-model="find.text"></Input>
+                    <Input :placeholder="$t('manage_auto.placeholder.name')" v-model="find.text"></Input>
                 </FormItem>
                 <FormItem>
-                    <Button type="success" @click="queryData">查询</Button>
-                    <Button type="primary" @click="queryCancel" class="margin-left-10">重置</Button>
+                    <Button type="success" @click="queryData">{{ $t('common.search') }}</Button>
+                    <Button type="primary" @click="queryCancel" class="margin-left-10">{{ $t('common.reset') }}</Button>
                 </FormItem>
             </Form>
             <Table :columns="task_columns" :data="task_data" :no-data-text="$t('common.no_data')">
                 <template slot-scope="{ row }" slot="tp">
-                    <Tag checkable color="primary" v-if="row.tp === 0">Insert</Tag>
-                    <Tag checkable color="warning" v-if="row.tp === 1">Update</Tag>
-                    <Tag checkable color="error" v-if="row.tp === 2">Delete</Tag>
+                    <Tag checkable color="primary" v-if="row.tp === 0">{{ $t('manage_auto.types.insert') }}</Tag>
+                    <Tag checkable color="warning" v-if="row.tp === 1">{{ $t('manage_auto.types.update') }}</Tag>
+                    <Tag checkable color="error" v-if="row.tp === 2">{{ $t('manage_auto.types.delete') }}</Tag>
                 </Template>
                 <template slot-scope="{ row }" slot="affect_rows">
                     <span v-if="!is_edit">{{ row.affect_rows }}</span>
@@ -31,20 +31,20 @@
                 </template>
                 <template slot-scope="{ row }" slot="status">
                     <i-switch v-model="row.status" @on-change="activityStatus(row)">
-                        <span slot="open">开</span>
-                        <span slot="close">关</span>
+                        <span slot="open">{{ $t('common.open') }}</span>
+                        <span slot="close">{{ $t('common.close') }}</span>
                     </i-switch>
                 </template>
                 <template slot-scope="{ row }" slot="action">
-                    <Button type="primary" @click="is_edit = true" size="small" v-if="!is_edit">编辑</Button>
-                    <Button type="primary" @click="editRecord(row)" size="small" v-else>保存</Button>
+                    <Button type="primary" @click="is_edit = true" size="small" v-if="!is_edit">{{ $t('manage_auto.edit') }}</Button>
+                    <Button type="primary" @click="editRecord(row)" size="small" v-else>{{ $t('common.save') }}</Button>
                     <Poptip
                         confirm
-                        title="确定要删除吗？"
+                        :title="$t('manage_auto.confirm_delete')"
                         @on-ok="delAutoTask(row)"
                         transfer
                     >
-                        <Button type="error" class="margin-left-10" size="small">删除</Button>
+                        <Button type="error" class="margin-left-10" size="small">{{ $t('common.delete') }}</Button>
                     </Poptip>
                 </template>
             </Table>
@@ -52,37 +52,39 @@
             <Page :total="page_number" show-elevator @on-change="current_page" :page-size="15"
                   :current.sync="current"></Page>
         </Card>
-        <Modal v-model="is_open" title="AutoTask信息" @on-ok="postAutoTask">
+        <Modal v-model="is_open" :title="$t('manage_auto.modal_title')" @on-ok="postAutoTask">
             <Form :model="general" ref="general" :rules="ruleValidate">
-                <FormItem label="Task名称" prop="name">
+                <FormItem :label="$t('manage_auto.form.name')" prop="name">
                     <Input v-model="general.name" ></Input>
                 </FormItem>
-                <FormItem label="类型" required>
+                <FormItem :label="$t('manage_auto.form.type')" required>
                     <Select v-model="general.tp">
-                        <Option v-for="i in fetchList.tp" :key="i.v" :value="i.v">{{ i.title }}</Option>
+                        <Option v-for="i in fetchList.tp" :key="i.v" :value="i.v">
+                            {{ $t('manage_auto.types.' + (i.v===0?'insert':(i.v===1?'update':'delete'))) }}
+                        </Option>
                     </Select>
                 </FormItem>
-                <FormItem label="环境:" prop="idc">
+                <FormItem :label="$t('query_workflow.env') + ':'" prop="idc">
                     <Select v-model="general.idc" @on-change="fetchDiffSource" :not-found-text="$t('common.no_match')">
                         <Option v-for="i in fetchData.idc" :key="i" :value="i">{{ i }}</Option>
                     </Select>
                 </FormItem>
-                <FormItem label="连接名" prop="source">
+                <FormItem :label="$t('query_sql.connection')" prop="source">
                     <Select v-model="general.source" @on-change="fetchBase" filterable :not-found-text="$t('common.no_match')">
                         <Option v-for="i in fetchData.source" :key="i" :value="i">{{ i }}</Option>
                     </Select>
                 </FormItem>
-                <FormItem label="库" prop="data_base">
+                <FormItem :label="$t('query_sql.database')" prop="data_base">
                     <Select v-model="general.data_base" @on-change="fetchTable" filterable :not-found-text="$t('common.no_match')">
                         <Option v-for="i in fetchData.base" :key="i" :value="i">{{ i }}</Option>
                     </Select>
                 </FormItem>
-                <FormItem label="表" prop="table">
+                <FormItem :label="$t('order_submit.form.table')" prop="table">
                     <Select v-model="general.table" filterable :not-found-text="$t('common.no_match')">
                         <Option v-for="i in fetchData.table" :key="i" :value="i">{{ i }}</Option>
                     </Select>
                 </FormItem>
-                <FormItem label="最大影响行数" prop="row">
+                <FormItem :label="$t('manage_auto.form.max_rows')" prop="row">
                     <InputNumber :min="1" v-model="general.row"></InputNumber>
                 </FormItem>
             </Form>
@@ -123,38 +125,38 @@ export default class autoTask extends Mixins(FetchMixins) {
     };
     task_columns = [
         {
-            title: '名称',
+            title: this.$t('manage_auto.columns.name') as string,
             key: 'name',
         },
         {
-            title: '类型',
+            title: this.$t('manage_auto.columns.type') as string,
             key: 'tp',
             slot: 'tp'
         },
         {
-            title: '数据源',
+            title: this.$t('manage_auto.columns.source') as string,
             key: 'source',
         },
         {
-            title: '数据库',
+            title: this.$t('query_sql.database') as string,
             key: 'data_base',
         },
         {
-            title: '数据表',
+            title: this.$t('order_submit.form.table') as string,
             key: 'table',
         },
         {
-            title: '最大影响行数',
+            title: this.$t('manage_auto.form.max_rows') as string,
             key: 'affect_rows',
             slot: 'affect_rows'
         },
         {
-            title: '状态',
+            title: this.$t('orders.columns.status') as string,
             key: 'status',
             slot: 'status'
         },
         {
-            title: '操作',
+            title: this.$t('orders.columns.action') as string,
             key: 'action',
             slot: 'action'
         },
@@ -178,7 +180,7 @@ export default class autoTask extends Mixins(FetchMixins) {
                         this.current_page(this.current);
                     })
             } else {
-                this.$Message.error("请填写相关性信息！")
+                this.$Message.error(this.$t('manage_auto.errors.fill_required') as string)
             }
         })
     }

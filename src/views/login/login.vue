@@ -3,22 +3,24 @@
 .footer {
     position: absolute;
     bottom: 0;
-    width: 100%;
+    width: calc(100% - 6rem);
     height: 40px; /*脚部的高度*/
     clear: both;
     margin-left: 6rem;
     z-index: 999;
+    box-sizing: border-box;
 }
 
 .header {
     position: absolute;
     top: 0;
-    width: 100%;
+    width: calc(100% - 6rem);
     height: 50px;
     clear: both;
     z-index: 999;
     margin-left: 6rem;
     margin-top: 10px;
+    box-sizing: border-box;
 }
 
 .header a {
@@ -70,17 +72,14 @@
 </style>
 
 <template>
-    <div>
+    <div class="login-root">
         <div class="header">
             <div class="header-inner">
                 <div class="header-left">
-                    <a href="https://github.com/dahong128/Yearning-gemini.git" target="_blank">
-                        <Icon type="logo-github" size="30"/>
-                    </a>
                     <a class="navbar-brand"> {{ $t('version') }}: {{ $config.version }} </a>
                 </div>
                 <div class="header-right">
-                    <LanguageSwitcher />
+                    <LanguageSwitcher theme="ghost" />
                     <Button v-if="switchCode" type="default" ghost @click="register = true" size="small">
                         {{ $t('sign') }}
                     </Button>
@@ -115,34 +114,7 @@
                 </Col>
             </Row>
         </div>
-        <div class="footer">
-            <Row type="flex" justify="start" align="bottom" style="z-index: 999">
-                <Col span="2">
-                    <Tooltip content="yearning.io" placement="top-start">
-                        <a href="https://yearning.io" style="color: #FFFFFF">
-                            {{ $t('about') }}
-                        </a>
-                    </Tooltip>
-                </Col>
-                <Col span="2">
-                    <Tooltip :content="$t('community_addr')" placement="top-start">
-                                    <span style="color: #FFFFFF">
-                                        {{ $t('community') }}
-                                    </span>
-                    </Tooltip>
-                </Col>
-                <Col span="2">
-                    <a
-                        href="https://www.gnu.org/licenses/agpl-3.0.en.html" style="color: #FFFFFF"
-                    >
-                        {{ $t('license') }}
-                    </a>
-                </Col>
-                <Col span="18">
-                    <div style="color: #FFFFFF">{{ $t('tips') }}</div>
-                </Col>
-            </Row>
-        </div>
+        
         <div class="homepage-hero-module">
             <div class="video-container">
                 <div :style="fixStyle" class="filter">
@@ -316,7 +288,7 @@ export default class login extends Mixins(Basic) {
     };
 
     onSuccess() {
-        this.$Message.success('验证成功!')
+        this.$Message.success(this.$t('common.verified') as string)
         this.signIn()
         this.is_verify = false
         let ref = this.$refs.slideblock as any
@@ -396,6 +368,9 @@ export default class login extends Mixins(Basic) {
     }
 
     mounted() {
+        // lock page scroll while on login
+        document.documentElement.style.overflow = 'hidden'
+        document.body.style.overflow = 'hidden'
         window.onresize = () => {
             this.mask()
         }
@@ -404,6 +379,12 @@ export default class login extends Mixins(Basic) {
             .then((res: AxiosResponse<Res>) => {
                 this.switchCode = res.data.payload.reg;
             })
+    }
+
+    beforeDestroy() {
+        // restore page scroll when leaving login
+        document.documentElement.style.overflow = ''
+        document.body.style.overflow = ''
     }
 }
 </script>

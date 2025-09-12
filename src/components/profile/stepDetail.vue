@@ -2,10 +2,7 @@
     <div>
         <Table :columns="col" :data="table_data" max-height="200" border :no-data-text="$t('common.no_data')">
             <template slot-scope="{row}" slot="action">
-                <Tag color="blue" v-if="row.action === '已提交'">{{row.action}}</Tag>
-                <Tag color="error" v-else-if="row.action === '驳回'">{{row.action}}</Tag>
-                <Tag color="success" v-else-if="row.action === '审核通过并执行'">{{row.action}}</Tag>
-                <Tag color="primary" v-else>{{row.action}}</Tag>
+                <Tag :color="actionColor(row.action)">{{ actionText(row.action) }}</Tag>
             </template>
         </Table>
     </div>
@@ -22,23 +19,37 @@
     export default class StepDetail extends Mixins(OrderProfileMixins) {
         col = [
             {
-                title: '相关人',
+                title: this.$t('order_profile.columns.related') as string,
                 key: 'username'
             },
             {
-                title: '操作',
+                title: this.$t('orders.columns.action') as string,
                 key: 'action',
                 slot: 'action'
             },
             {
-                title: '操作时间',
+                title: this.$t('order_profile.columns.time') as string,
                 key: 'time'
             },
             {
-                title: '驳回信息',
+                title: this.$t('order_profile.columns.rejected_msg') as string,
                 key: 'rejected'
             }
         ]
+
+        actionColor(action: string) {
+            if (action === '已提交') return 'blue'
+            if (action === '驳回') return 'error'
+            if (action === '审核通过并执行') return 'success'
+            return 'primary'
+        }
+
+        actionText(action: string) {
+            if (action === '已提交') return this.$t('order_profile.actions.submitted') as string
+            if (action === '驳回') return this.$t('order_profile.actions.rejected') as string
+            if (action === '审核通过并执行') return this.$t('order_profile.actions.approved_executed') as string
+            return action
+        }
 
         mounted() {
             FetchCommonGetApis('steps',{work_id:this.order.work_id as string})

@@ -4,18 +4,18 @@
             <Card>
                 <p slot="title">
                     <Icon type="md-settings"></Icon>
-                    添加用户
+                    {{ $t('manage_user.add_user') }}
                 </p>
                 <CustomForm :item="userinfo" :rule="userInfoValidate" :label-value="userLabelValue" ref="reg">
                     <template slot="rule">
                         <Select v-model="userinfo.rule" :placeholder="$t('common.select')" :not-found-text="$t('common.no_match')">
-                            <Option value="admin">操作人</Option>
-                            <Option value="guest">提交人</Option>
+                            <Option value="admin">{{ $t('manage_user.roles.operator') }}</Option>
+                            <Option value="guest">{{ $t('manage_user.roles.submitter') }}</Option>
                         </Select>
                     </template>
                 </CustomForm>
                 <Button type="primary" @click.native="registered" style="margin-left: 35%" :loading="loading">
-                    注册
+                    {{ $t('sign') }}
                 </Button>
             </Card>
         </Col>
@@ -23,33 +23,33 @@
             <Card>
                 <p slot="title">
                     <Icon type="md-people"></Icon>
-                    系统用户表
+                    {{ $t('manage_user.table_title') }}
                 </p>
                 <Form>
-                    <Input v-model="find.username" placeholder="请填写用户名" style="width: 20%" clearable></Input>
-                    <Input v-model="find.dept" placeholder="请填写部门" style="width: 20%" clearable
+                    <Input v-model="find.username" :placeholder="$t('manage_user.placeholder.username')" style="width: 20%" clearable></Input>
+                    <Input v-model="find.dept" :placeholder="$t('manage_user.placeholder.department')" style="width: 20%" clearable
                            class="margin-left-10"></Input>
-                    <Button @click="queryData" type="primary" class="margin-left-10">查询</Button>
-                    <Button @click="queryCancel" type="warning" class="margin-left-10">重置</Button>
+                    <Button @click="queryData" type="primary" class="margin-left-10">{{ $t('common.search') }}</Button>
+                    <Button @click="queryCancel" type="warning" class="margin-left-10">{{ $t('common.reset') }}</Button>
                 </Form>
                 <div class="edit-table-con-1">
                     <Table border :columns="columns" :data="table_data" stripe :no-data-text="$t('common.no_data')">
                         <template slot-scope="{ row }" slot="rule">
-                            <span v-if="row.rule === 'admin'">操作人</span>
-                            <span v-else-if="row.rule === 'guest'">提交人</span>
-                            <span v-else-if="row.rule === 'super'">超级管理员</span>
+                            <span v-if="row.rule === 'admin'">{{ $t('manage_user.roles.operator') }}</span>
+                            <span v-else-if="row.rule === 'guest'">{{ $t('manage_user.roles.submitter') }}</span>
+                            <span v-else-if="row.rule === 'super'">{{ $t('manage_user.roles.super_admin') }}</span>
                         </template>
                         <template slot-scope="{ row }" slot="action">
-                            <Button type="primary" size="small" @click="edit_code(row)">更改密码
+                            <Button type="primary" size="small" @click="edit_code(row)">{{ $t('manage_user.change_password') }}
                             </Button>
                             <Button type="success" size="small" @click="edit_rule(row)" class="margin-left-10">
-                                权限
+                                {{ $t('manage_user.permissions') }}
                             </Button>
-                            <Button type="info" size="small" @click="edit_user(row)" class="margin-left-10">详细信息
+                            <Button type="info" size="small" @click="edit_user(row)" class="margin-left-10">{{ $t('common.detail') }}
                             </Button>
                             <template v-if="row.username !== 'admin'">
                                 <Button type="warning" size="small" v-if="row.id !== 1" class="margin-left-10"
-                                        @click="show_depend(row)">删除
+                                        @click="show_depend(row)">{{ $t('common.delete') }}
                                 </Button>
                             </template>
                         </template>
@@ -61,13 +61,13 @@
             </Card>
         </Col>
 
-        <Modal v-model="is_depend" title="依赖清单">
-            <Divider orientation="left">自定义流程</Divider>
+        <Modal v-model="is_depend" :title="$t('manage_user.dependency.title')">
+            <Divider orientation="left">{{ $t('manage_user.dependency.flow') }}</Divider>
             <Tag type="border" v-for="i in depend_list.source" :key="`source-${i.source}`">{{ i.source }}</Tag>
-            <Divider orientation="left">权限组</Divider>
+            <Divider orientation="left">{{ $t('manage_user.dependency.group') }}</Divider>
             <Tag type="border" v-for="i in depend_list.grained" :key="`grained-${i.name}`">{{ i.name }}</Tag>
             <div slot="footer">
-                <Button type="error" @click="del_user" :disabled="del_disabled">删除</Button>
+                <Button type="error" @click="del_user" :disabled="del_disabled">{{ $t('common.delete') }}</Button>
             </div>
         </Modal>
 
@@ -97,7 +97,7 @@ export default class user_info extends Mixins(Basic) {
     regExp_password = (rule: any, value: string, callback: any) => {
         let pPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).*$/;
         if (!pPattern.test(value)) {
-            callback(new Error('至少1个大写字母,1个小写字母,1个数字'))
+            callback(new Error(i18n.t('sign_up_validate.regexp') as string))
         } else {
             callback()
         }
@@ -105,7 +105,7 @@ export default class user_info extends Mixins(Basic) {
 
     valid_Password = (rule: any, value: string, callback: any) => {
         if (value !== this.userinfo.password) {
-            callback(new Error('两次输入密码不一致'))
+            callback(new Error(i18n.t('sign_up_validate.twice') as string))
         } else {
             callback()
         }
@@ -115,23 +115,23 @@ export default class user_info extends Mixins(Basic) {
     is_edit = false
     columns = [
         {
-            title: '用户名',
+            title: this.$t('general.name') as string,
             key: 'username',
             sortable: true
         },
         {
-            title: '角色',
+            title: this.$t('general.role') as string,
             key: 'rule',
             sortable: true,
             slot: 'rule'
         },
         {
-            title: '姓名',
+            title: this.$t('general.real') as string,
             key: 'real_name',
             sortable: true
         },
         {
-            title: '部门',
+            title: this.$t('general.department') as string,
             key: 'department',
             sortable: true
         },
@@ -141,7 +141,7 @@ export default class user_info extends Mixins(Basic) {
             sortable: true
         },
         {
-            title: '操作',
+            title: this.$t('orders.columns.action') as string,
             key: 'action',
             width: 300,
             align: 'center',
@@ -158,36 +158,38 @@ export default class user_info extends Mixins(Basic) {
         email: '',
         real_name: ''
     };
-    userLabelValue: Label = {
-        username: {name: '用户名'},
-        password: {name: '密码', type: 'password'},
-        confirm_password: {name: '确认密码', type: 'password'},
-        rule: {name: '角色'},
-        department: {name: '部门'},
-        email: {name: '电子邮件'},
-        real_name: {name: '姓名'},
-    };
+    get userLabelValue(): Label {
+        return {
+            username: {name: this.$t('sign_userInfo.username') as string},
+            password: {name: this.$t('sign_userInfo.password') as string, type: 'password'},
+            confirm_password: {name: this.$t('sign_userInfo.confirm') as string, type: 'password'},
+            rule: {name: this.$t('general.role') as string},
+            department: {name: this.$t('general.department') as string},
+            email: {name: this.$t('sign_userInfo.mail') as string},
+            real_name: {name: this.$t('sign_userInfo.real') as string},
+        } as Label
+    }
 
     userInfoValidate = {
         username: [{
             required: true,
-            message: '请输入用户名',
+            message: i18n.t('sign_up_validate.username'),
             trigger: 'blur'
         }],
         password: [
             {
                 required: true,
-                message: '请输入密码',
+                message: i18n.t('sign_up_validate.password'),
                 trigger: 'blur'
             },
             {
                 min: 6,
-                message: '请至少输入6个字符',
+                message: i18n.t('sign_up_validate.min'),
                 trigger: 'blur'
             },
             {
                 max: 32,
-                message: '最多输入32个字符',
+                message: i18n.t('sign_up_validate.max'),
                 trigger: 'blur'
             },
             {
@@ -198,7 +200,7 @@ export default class user_info extends Mixins(Basic) {
         confirm_password: [
             {
                 required: true,
-                message: '请再次输入新密码',
+                message: i18n.t('sign_up_validate.confirm'),
                 trigger: 'blur'
             },
             {
@@ -209,47 +211,47 @@ export default class user_info extends Mixins(Basic) {
         rule: [
             {
                 required: true,
-                message: '请输入角色',
+                message: this.$t('validate.type_required') as string,
                 trigger: 'change'
             }
         ],
         department: [
             {
                 required: true,
-                message: '请输入部门名称',
+                message: i18n.t('sign_up_validate.department'),
                 trigger: 'blur'
             },
             {
                 min: 2,
-                message: '请至少输入2个字符',
+                message: i18n.t('sign_up_validate.min'),
                 trigger: 'blur'
             },
             {
                 max: 32,
-                message: '最多输入32个字符',
+                message: i18n.t('sign_up_validate.max'),
                 trigger: 'blur'
             }
         ],
         real_name: [
             {
                 required: true,
-                message: '请输入姓名',
+                message: i18n.t('sign_up_validate.real'),
                 trigger: 'blur'
             },
             {
                 min: 2,
-                message: '请至少输入2个字符',
+                message: i18n.t('sign_up_validate.min'),
                 trigger: 'blur'
             },
             {
                 max: 32,
-                message: '最多输入32个字符',
+                message: i18n.t('sign_up_validate.max'),
                 trigger: 'blur'
             }],
         email: [
             {
                 required: true,
-                message: '请输入工作邮箱',
+                message: i18n.t('sign_up_validate.mail'),
                 trigger: 'blur'
             },
             {type: 'email', message: i18n.t('sign_up_validate.mail_format'), trigger: 'blur'}

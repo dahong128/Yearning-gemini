@@ -3,9 +3,9 @@
         <Card>
             <p slot="title" style="height: 45px">
                 <Icon type="android-send"></Icon>
-                工单{{ this.$route.query.workid }}详细信息
+                {{ $t('query_profile.detail_title', { workid: $route.query.workid }) }}
                 <br>
-                <Button type="text" @click.native="$router.go(-1)">返回</Button>
+                <Button type="text" @click.native="$router.go(-1)">{{ $t('common.back') }}</Button>
             </p>
             <Table border :columns="columns" :data="table_data" class="tabletop" style="background: #5cadff"
                    size="large" :no-data-text="$t('common.no_data')"></Table>
@@ -28,32 +28,32 @@
     export default class query_profile extends Mixins(Basic) {
         columns = [
             {
-                title: '序号:',
+                title: this.$t('query_profile.columns.id') as string,
                 key: 'id',
                 sortable: true
             },
             {
-                title: '查询语句:',
+                title: this.$t('query_profile.columns.sql') as string,
                 key: 'sql',
                 sortable: true
             },
             {
-                title: '查询时间:',
+                title: this.$t('query_profile.columns.time') as string,
                 key: 'time',
                 sortable: true
             },
             {
-                title: '查询耗时(ms):',
+                title: this.$t('query_profile.columns.elapsed_ms') as string,
                 key: 'ex_time',
                 sortable: true
             },
             {
-                title: '数据源:',
+                title: this.$t('query_profile.columns.source') as string,
                 key: 'source',
                 sortable: true
             },
             {
-                title: '数据库:',
+                title: this.$t('query_profile.columns.database') as string,
                 key: 'base_name',
                 sortable: true
             }

@@ -29,7 +29,7 @@ export default class ChangePassword extends Mixins(Basic) {
     regExp_password = (rule: any, value: string, callback: any) => {
         let pPattern = /^.*(?=.{6,})(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).*$/;
         if (!pPattern.test(value)) {
-            callback(new Error('至少1个大写字母,1个小写字母,1个数字'))
+            callback(new Error(i18n.t('sign_up_validate.regexp') as string))
         } else {
             callback()
         }
@@ -37,7 +37,7 @@ export default class ChangePassword extends Mixins(Basic) {
 
     validate_password = (rule: any, value: string, callback: any) => {
         if (value !== this.form.password) {
-            callback(new Error('两次输入密码不一致'))
+            callback(new Error(i18n.t('sign_up_validate.twice') as string))
         } else {
             callback()
         }
@@ -129,7 +129,7 @@ export default class ChangePassword extends Mixins(Basic) {
                         this.resetFields('editPasswordForm')
                     })
             } else {
-                this.$config.notice("密码提交格式错误！")
+                this.$config.notice(i18n.t('sign_up_validate.sign_fail') as string)
             }
         });
     }

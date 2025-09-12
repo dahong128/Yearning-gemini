@@ -71,6 +71,6 @@ libs.formVerify = (vm: any) => {
 
 
 libs.patch = "Community"
-libs.version = "v 2.4.0"
+libs.version = "v 2.4.1"
 
 export default libs

@@ -9,9 +9,9 @@
         </template>
         <p slot="title">
             <Icon type="md-person"></Icon>
-            我的工单
+            {{ $t('nav.my_order') }}
         </p>
-        <search text="工单说明" @refresh="current_page" is_order></search>
+        <search :text="$t('nav_search.placeholder.order') as string" @refresh="current_page" is_order></search>
         <Row>
             <Col span="24">
                 <Table border :columns="columns" :data="table_data" stripe size="small" :no-data-text="$t('common.no_data')">
@@ -19,7 +19,7 @@
                         <Button type="success" @click="openOrder(row)" size="small"
                                 ghost
                                 class="margin-left-10">
-                            工单信息
+                            {{ $t('orders.view_info') }}
                         </Button>
                     </template>
                 </Table>
@@ -42,43 +42,43 @@ export default class my_order extends Mixins(Basic) {
 
     columns = [
         {
-            title: '工单编号:',
+            title: this.$t('orders.columns.work_id') as string,
             key: 'work_id',
             sortable: true
         },
         {
-            title: '工单说明',
+            title: this.$t('orders.columns.text') as string,
             key: 'text',
             tooltip: true
         },
         {
-            title: '工单类型',
+            title: this.$t('orders.columns.type') as string,
             key: 'type',
             render: render.type
         },
         {
-            title: '是否备份',
+            title: this.$t('orders.columns.backup') as string,
             key: 'backup',
             render: render.backup
         },
         {
-            title: '提交时间:',
+            title: this.$t('orders.columns.date') as string,
             key: 'date',
             sortable: true
         },
         {
-            title: '当前操作人',
+            title: this.$t('orders.columns.assigned') as string,
             key: 'assigned',
             sortable: true
         },
         {
-            title: '状态',
+            title: this.$t('orders.columns.status') as string,
             key: 'status',
             render: render.tag,
             sortable: true
         },
         {
-            title: '操作',
+            title: this.$t('orders.columns.action') as string,
             key: 'action',
             align: 'center',
             slot: 'action',

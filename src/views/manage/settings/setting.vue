@@ -5,92 +5,92 @@
                 <Card>
                     <p slot="title">
                         <Icon type="md-settings"></Icon>
-                        基础设置
+                        {{ $t('manage_settings.title') }}
                     </p>
                     <Row>
                         <Col span="12">
                             <Card>
-                                <p slot="title">消息推送</p>
+                                <p slot="title">{{ $t('manage_settings.msg.title') }}</p>
                                 <Form :label-width="120">
-                                    <FormItem label="webhook地址:">
-                                        <Input placeholder="支持钉钉/企业微信 webhook机器人"
+                                    <FormItem :label="$t('manage_settings.msg.webhook')">
+                                        <Input :placeholder="$t('manage_settings.msg.webhook_placeholder')"
                                                v-model="message.web_hook"></Input>
                                     </FormItem>
-                                    <FormItem label="webhook Secret Key:">
-                                        <Input placeholder="钉钉hook secret key"
+                                    <FormItem :label="$t('manage_settings.msg.webhook_secret')">
+                                        <Input :placeholder="$t('manage_settings.msg.webhook_secret_placeholder')"
                                                v-model="message.key"  type="password" password> </Input>
                                     </FormItem>
-                                    <FormItem label="邮件SMTP服务地址:">
-                                        <Input placeholder="STMP服务 地址" v-model="message.host"></Input>
+                                    <FormItem :label="$t('manage_settings.msg.smtp_host')">
+                                        <Input :placeholder="$t('manage_settings.msg.smtp_host_placeholder')" v-model="message.host"></Input>
                                     </FormItem>
                                     <FormItem>
-                                        <Checkbox v-model="message.ssl">启用ssl端口</Checkbox>
+                                        <Checkbox v-model="message.ssl">{{ $t('manage_settings.msg.enable_ssl') }}</Checkbox>
                                     </FormItem>
-                                    <FormItem label="SMTP服务端口:">
+                                    <FormItem :label="$t('manage_settings.msg.smtp_port')">
                                         <InputNumber v-model="message.port"></InputNumber>
                                     </FormItem>
-                                    <FormItem label="邮件推送人用户名:">
-                                        <Input placeholder="推送人 用户名" v-model="message.user"></Input>
+                                    <FormItem :label="$t('manage_settings.msg.smtp_user')">
+                                        <Input :placeholder="$t('manage_settings.msg.smtp_user_placeholder')" v-model="message.user"></Input>
                                     </FormItem>
-                                    <FormItem label="邮件推送人密码:">
-                                        <Input placeholder="推送人 密码" type="password" v-model="message.password"></Input>
+                                    <FormItem :label="$t('manage_settings.msg.smtp_password')">
+                                        <Input :placeholder="$t('manage_settings.msg.smtp_password_placeholder')" type="password" v-model="message.password"></Input>
                                     </FormItem>
-                                    <FormItem label="邮件测试收件地址::">
-                                        <Input placeholder="测试收件人地址填写" v-model="message.to_user"></Input>
+                                    <FormItem :label="$t('manage_settings.msg.test_to')">
+                                        <Input :placeholder="$t('manage_settings.msg.test_to_placeholder')" v-model="message.to_user"></Input>
                                     </FormItem>
-                                    <Form-item label="email推送开关:">
+                                    <Form-item :label="$t('manage_settings.msg.mail_switch')">
                                         <i-switch v-model="message.mail" size="large">
-                                            <span slot="open">开</span>
-                                            <span slot="close">关</span>
+                                            <span slot="open">{{ $t('common.open') }}</span>
+                                            <span slot="close">{{ $t('common.close') }}</span>
                                         </i-switch>
                                     </Form-item>
-                                    <Form-item label="webhook推送开关:">
+                                    <Form-item :label="$t('manage_settings.msg.webhook_switch')">
                                         <i-switch v-model="message.ding" size="large">
-                                            <span slot="open">开</span>
-                                            <span slot="close">关</span>
+                                            <span slot="open">{{ $t('common.open') }}</span>
+                                            <span slot="close">{{ $t('common.close') }}</span>
                                         </i-switch>
                                     </Form-item>
-                                    <Button type="primary" @click="message_test('ding')">hook测试</Button>
-                                    <Button type="warning" @click="message_test('mail')" style="margin-left: 5%">邮件测试
+                                    <Button type="primary" @click="message_test('ding')">{{ $t('manage_settings.msg.test_webhook') }}</Button>
+                                    <Button type="warning" @click="message_test('mail')" style="margin-left: 5%">{{ $t('manage_settings.msg.test_mail') }}
                                     </Button>
                                 </Form>
                             </Card>
                         </Col>
                         <Col span="12">
                             <Card style="margin-left: 5%">
-                                <p slot="title">LDAP设置</p>
+                                <p slot="title">{{ $t('manage_settings.ldap.title') }}</p>
                                 <Form :label-width="120">
-                                    <FormItem label="服务地址url">
-                                        <Input placeholder="[ip地址或者域名]:[端口号]" v-model="ldap.url"></Input>
+                                    <FormItem :label="$t('manage_settings.ldap.url')">
+                                        <Input :placeholder="$t('manage_settings.ldap.url_placeholder')" v-model="ldap.url"></Input>
                                     </FormItem>
                                     <FormItem>
-                                        <Checkbox v-model="ldap.ldaps">启用ldaps</Checkbox>
+                                        <Checkbox v-model="ldap.ldaps">{{ $t('manage_settings.ldap.enable_ldaps') }}</Checkbox>
                                     </FormItem>
-                                    <FormItem label="LDAP管理员DN:">
-                                        <Input placeholder="请填写管理员DN" v-model="ldap.user"></Input>
+                                    <FormItem :label="$t('manage_settings.ldap.admin_dn')">
+                                        <Input :placeholder="$t('manage_settings.ldap.admin_dn_placeholder')" v-model="ldap.user"></Input>
                                     </FormItem>
-                                    <FormItem label="LDAP管理员密码:">
-                                        <Input placeholder="请填写管理员密码" v-model="ldap.password" type="password"></Input>
+                                    <FormItem :label="$t('manage_settings.ldap.admin_password')">
+                                        <Input :placeholder="$t('manage_settings.ldap.admin_password_placeholder')" v-model="ldap.password" type="password"></Input>
                                     </FormItem>
-                                    <FormItem label="LDAP_Search filter:">
+                                    <FormItem :label="$t('manage_settings.ldap.search_filter')">
                                         <Input v-model="ldap.type"
-                                               placeholder="例如:(&(objectClass=organizationalPerson)(sAMAccountName=%s))，%s为占位符必须存在"></Input>
+                                               :placeholder="$t('manage_settings.ldap.search_filter_placeholder')"></Input>
                                     </FormItem>
-                                    <FormItem label="LDAP_SCBASE:">
-                                        <Input placeholder="LDAP Search Base" v-model="ldap.sc"></Input>
+                                    <FormItem :label="$t('manage_settings.ldap.search_base')">
+                                        <Input :placeholder="$t('manage_settings.ldap.search_base_placeholder')" v-model="ldap.sc"></Input>
                                     </FormItem>
-                                    <Button type="primary" @click="ldap_test()">ldap测试</Button>
+                                    <Button type="primary" @click="ldap_test()">{{ $t('manage_settings.ldap.test') }}</Button>
                                 </Form>
                             </Card>
                             <br>
                             <Alert style="margin-left: 5%" type="info" show-icon>
-                                注意事项：
+                                {{ $t('manage_settings.msg.notice_title') }}
                                 <template slot="desc">
-                                    1.LDAP登录用户名，必须全局唯一。ldap配置请参考Grafana。
+                                    {{ $t('manage_settings.msg.notice1') }}
                                     <br>
-                                    2.由于各个邮件服务提供商对于垃圾邮件过滤的机制各不相同，可能会造成邮件无法接收的情况。所以使用前请测试是否稳定。对于使用了ssl安全协议的stmp连接需勾选启动ssl端口复选框
+                                    {{ $t('manage_settings.msg.notice2') }}
                                     <br>
-                                    3.只有开启相应的消息推送开关后，消息推送才会开启。
+                                    {{ $t('manage_settings.msg.notice3') }}
                                     <br>
                                 </template>
                             </Alert>
@@ -105,85 +105,85 @@
                 <Card>
                     <p slot="title">
                         <Icon type="android-settings"></Icon>
-                        进阶设置
+                        {{ $t('manage_settings.advanced') }}
                     </p>
                     <Row>
                         <Col span="12">
                             <Card style="margin-left: 5%">
-                                <p slot="title">其他</p>
+                                <p slot="title">{{ $t('manage_settings.other.title') }}</p>
                                 <Form :label-width="120">
-                                    <FormItem label="查询最大Limit限制:">
-                                        <Input placeholder="查询最大的Limit数。" v-model="other.limit"></Input>
+                                    <FormItem :label="$t('manage_settings.other.limit')">
+                                        <Input :placeholder="$t('manage_settings.other.limit_placeholder')" v-model="other.limit"></Input>
                                     </FormItem>
-                                    <FormItem label="自定义环境:">
+                                    <FormItem :label="$t('manage_settings.other.custom_env')">
                                         <Tag v-for="item in other.idc" :key="item" :name="item" type="border" closable
                                              color="blue"
                                              @on-close="handleClose2">{{ item }}
                                         </Tag>
                                         <br>
-                                        <Input placeholder="环境名称" v-model="other.foce" style="width: 30%"></Input>
+                                        <Input :placeholder="$t('manage_settings.other.env_placeholder')" v-model="other.foce" style="width: 30%"></Input>
                                         <Button icon="ios-plus-empty" type="dashed" size="small" @click="handleAdd"
                                                 class="margin-left-10">
-                                            添加环境
+                                            {{ $t('manage_settings.other.add_env') }}
                                         </Button>
                                     </FormItem>
-                                    <FormItem label="排除数据库:">
+                                    <FormItem :label="$t('manage_settings.other.exclude_db')">
                                         <Tag v-for="v in other.exclude_db_list" :key="v" :name="v" type="border"
                                              closable color="blue"
                                              @on-close="handleClose_exclued_db">{{ v }}
                                         </Tag>
                                         <br>
-                                        <Input placeholder="排除数据库" v-model="other.exclued_db"
+                                        <Input :placeholder="$t('manage_settings.other.exclude_db_placeholder')" v-model="other.exclued_db"
                                                style="width: 30%"></Input>
                                         <Button icon="ios-plus-empty" type="dashed" size="small"
                                                 @click="handleAdd_exclued_db"
-                                                class="margin-left-10">添加排除数据库
+                                                class="margin-left-10">{{ $t('manage_settings.other.add_exclude_db') }}
                                         </Button>
                                     </FormItem>
-                                    <FormItem label="脱敏字段:">
+                                    <FormItem :label="$t('manage_settings.other.mask_fields')">
                                         <Tag v-for="v in other.insulate_word_list" :key="v" :name="v" type="border"
                                              closable color="blue"
                                              @on-close="handleClose3">{{ v }}
                                         </Tag>
                                         <br>
-                                        <Input placeholder="脱敏字段设置" v-model="other.sensitive"
+                                        <Input :placeholder="$t('manage_settings.other.mask_fields_placeholder')" v-model="other.sensitive"
                                                style="width: 30%"></Input>
                                         <Button icon="ios-plus-empty" type="dashed" size="small" @click="handleAdd1"
                                                 class="margin-left-10">
-                                            添加脱敏字段
+                                            {{ $t('manage_settings.other.add_mask_field') }}
                                         </Button>
                                     </FormItem>
                                     <Row>
                                         <Col span="12">
-                                            <Form-item label="查询审核:">
+                                            <Form-item :label="$t('manage_settings.other.query_review')">
                                                 <i-switch size="large" v-model="other.query">
-                                                    <span slot="open">开</span>
-                                                    <span slot="close">关</span>
+                                                    <span slot="open">{{ $t('common.open') }}</span>
+                                                    <span slot="close">{{ $t('common.close') }}</span>
                                                 </i-switch>
                                             </Form-item>
                                         </Col>
                                         <Col span="12">
-                                            <Form-item label="允许注册:">
+                                            <Form-item :label="$t('manage_settings.other.allow_register')">
                                                 <i-switch size="large" v-model="other.register">
-                                                    <span slot="open">开</span>
-                                                    <span slot="close">关</span>
+                                                    <span slot="open">{{ $t('common.open') }}</span>
+                                                    <span slot="close">{{ $t('common.close') }}</span>
                                                 </i-switch>
                                             </Form-item>
                                         </Col>
                                     </Row>
                                     <Row>
                                         <Col span="12">
-                                            <Form-item label="查询导出:">
+                                            <Form-item :label="$t('manage_settings.other.query_export')">
                                                 <i-switch size="large" v-model="other.export">
-                                                    <span slot="open">开</span>
-                                                    <span slot="close">关</span>
+                                                    <span slot="open">{{ $t('common.open') }}</span>
+                                                    <span slot="close">{{ $t('common.close') }}</span>
                                                 </i-switch>
                                             </Form-item>
                                         </Col>
                                         <Col span="12">
-                                            <Form-item label="查询时限:">
+                                            <Form-item :label="$t('manage_settings.other.query_time_limit')">
                                                 <InputNumber :max="600" :min="0" v-model="other.ex_query_time"
-                                                             :formatter="value => `${value}分钟`"></InputNumber>
+                                                             :formatter="value => `${value}${$t('manage_settings.other.minutes')}`"></InputNumber>
                                             </Form-item>
                                         </Col>
                                     </Row>
@@ -193,29 +193,29 @@
                         <Col span="12">
                             <Row>
                                 <Card style="margin-left: 5%">
-                                    <p slot="title">超级管理员特权</p>
+                                    <p slot="title">{{ $t('manage_settings.super.title') }}</p>
                                     <Form :label-width="160">
-                                        <FormItem label="删除指定日期前的工单记录">
-                                            <DatePicker format="yyyy-MM-dd HH:mm" type="datetime" placeholder="选择时间点"
+                                        <FormItem :label="$t('manage_settings.super.delete_order_before')">
+                                            <DatePicker format="yyyy-MM-dd HH:mm" type="datetime" :placeholder="$t('query_sql.pick_time')"
                                                         v-model="other.overdue" @on-change="other.overdue=$event"
                                                         :editable="false"></DatePicker>
                                             <Poptip
                                                 confirm
-                                                title="确定要删除工单记录吗?"
+                                                :title="$t('manage_settings.super.confirm_delete_orders')"
                                                 @on-ok="del_order">
-                                                <Button style="margin-left: 10%" type="primary">删除</Button>
+                                                <Button style="margin-left: 10%" type="primary">{{ $t('common.delete') }}</Button>
                                             </Poptip>
                                         </FormItem>
-                                        <FormItem label="删除指定日期前的查询记录">
-                                            <DatePicker format="yyyy-MM-dd HH:mm" type="datetime" placeholder="选择时间点"
+                                        <FormItem :label="$t('manage_settings.super.delete_query_before')">
+                                            <DatePicker format="yyyy-MM-dd HH:mm" type="datetime" :placeholder="$t('query_sql.pick_time')"
                                                         v-model="other.query_expire"
                                                         @on-change="other.query_expire=$event"
                                                         :editable="false"></DatePicker>
                                             <Poptip
                                                 confirm
-                                                title="确定要删除查询记录吗?"
+                                                :title="$t('manage_settings.super.confirm_delete_queries')"
                                                 @on-ok="del_query">
-                                                <Button style="margin-left: 10%" type="primary">删除</Button>
+                                                <Button style="margin-left: 10%" type="primary">{{ $t('common.delete') }}</Button>
                                             </Poptip>
                                         </FormItem>
                                     </Form>
@@ -223,16 +223,16 @@
                             </Row>
                             <br>
                             <Alert style="margin-left: 5%" type="warning" show-icon>
-                                注意事项：
+                                {{ $t('manage_settings.notice.title') }}
                                 <template slot="desc">
-                                    1.设置最大Limit数后，所有的查询语句的查询结果都不会超过这个数值。
+                                    {{ $t('manage_settings.notice.desc1') }}
                                     <br>
-                                    2.查询审核开关开启后，所有的查询都必须通过管理员同意才能进行。关闭则可自主查询
+                                    {{ $t('manage_settings.notice.desc2') }}
                                     <br>
-                                    3.设置脱敏字段后，查询时如匹配到对应字段则该字段将只会以******显示
+                                    {{ $t('manage_settings.notice.desc3') }}
                                 </template>
                             </Alert>
-                            <Button style="margin-left: 5%;width: 95%" type="primary" @click="save_upload">保存</Button>
+                            <Button style="margin-left: 5%;width: 95%" type="primary" @click="save_upload">{{ $t('common.save') }}</Button>
                         </Col>
                     </Row>
                 </Card>
@@ -278,7 +278,7 @@ export default class setting extends Mixins(Basic) {
     handleAdd() {
         for (let i of this.other.idc) {
             if (i === this.other.foce) {
-                this.$Message.error("请勿添加相同环境！");
+                this.$Message.error(this.$t('manage_settings.errors.duplicate_idc') as string);
                 return
             }
         }
@@ -289,7 +289,7 @@ export default class setting extends Mixins(Basic) {
     handleAdd1() {
         for (let i of this.other.insulate_word_list) {
             if (i === this.other.sensitive) {
-                this.$Message.error("请勿添加相同脱敏字段！");
+                this.$Message.error(this.$t('manage_settings.errors.duplicate_mask') as string);
                 return
             }
         }
@@ -301,7 +301,7 @@ export default class setting extends Mixins(Basic) {
     handleAdd_exclued_db() {
         for (let i of this.other.exclude_db_list) {
             if (i === this.other.exclued_db) {
-                this.$Message.error("请勿添加相同数据库！");
+                this.$Message.error(this.$t('manage_settings.errors.duplicate_db') as string);
                 return
             }
         }

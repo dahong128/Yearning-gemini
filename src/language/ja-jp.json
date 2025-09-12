@@ -185,11 +185,150 @@
     "notice": "通知",
     "home": "ホーム",
     "back": "戻る",
+    "search": "検索",
+    "reset": "リセット",
+    "execute": "実行",
+    "testing": "検証中...",
+    "cancel": "キャンセル",
+    "ok": "OK",
     "yes": "はい",
     "no": "いいえ",
     "no_match": "一致するデータがありません",
     "no_data": "データがありません",
-    "select": "選択してください"
+    "select": "選択してください",
+    "detail": "詳細情報",
+    "open": "オン",
+    "close": "オフ",
+    "save": "保存",
+    "delete": "削除",
+    "select_all": "すべて選択",
+    "verified": "検証成功！"
+  },
+  "unlock": {
+    "title": "解除",
+    "placeholder": "パスワード（ログインと同じ）",
+    "ldap_login": "LDAP ログイン",
+    "locked": "ロック中",
+    "password_incorrect": "パスワードが正しくありません！"
+  },
+  "manage_flow": {
+    "title": "フローテンプレート",
+    "search_placeholder": "名前で検索",
+    "search": "検索",
+    "edit": "編集",
+    "modal_title": "フローテンプレートの編集",
+    "reviewer": "審査者",
+    "executor": "実行者",
+    "related": "関係者:{auditor}",
+    "confirm_delete_step": "このステップを削除しますか？",
+    "delete": "削除",
+    "add_stage": "ステージを追加",
+    "preview_edit": "プレビュー/編集",
+    "form": {
+      "step_type": "ステップ種別",
+      "step_types": {"audit": "審査", "execute": "実行"},
+      "related_people": "関係者",
+      "stage_name": "ステージ名"
+    },
+    "btn": {
+      "move_prev": "前へ移動",
+      "save": "保存",
+      "move_next": "後へ移動",
+      "add_stage": "ステージを追加"
+    },
+    "alert": {
+      "title": "ヒント",
+      "desc1": "1. 中間の審査は最大5段階",
+      "desc2": "2. 実行ステージは1つのみ。審査パラメータは実行前に設定してください。",
+      "desc3": "3. 注意: 進行中のフローを変更すると未実行の工単が乱れる可能性があります。変更前に全て完了していることを確認してください。"
+    },
+    "tpl_step": {"submit": "提出ステージ", "submitter": "提出者"},
+    "warn": {
+      "move_prev_limit": "これ以上前へ移動できません！",
+      "move_next_limit": "これ以上後へ移動できません！",
+      "execute_once": "実行ステージは1回のみ！",
+      "middle_max": "中間の審査は最大5段階"
+    },
+    "error": {
+      "last_step_must_execute": "最後のステップは実行である必要があります。保存に失敗しました！",
+      "save_edited_first": "編集中のステップを先に保存してください！"
+    },
+    "tpl_desc": "{name} のデータソース審査フロー"
+  },
+  "manage_settings": {
+    "title": "基本設定",
+    "advanced": "拡張設定",
+    "msg": {
+      "title": "メッセージ通知",
+      "webhook": "Webhook アドレス:",
+      "webhook_placeholder": "DingTalk / WeCom の Webhook ボット対応",
+      "webhook_secret": "Webhook シークレットキー:",
+      "webhook_secret_placeholder": "DingTalk hook secret key",
+      "smtp_host": "SMTP ホスト:",
+      "smtp_host_placeholder": "SMTP サービスホスト",
+      "enable_ssl": "SSL ポートを有効化",
+      "smtp_port": "SMTP ポート:",
+      "smtp_user": "送信ユーザー名:",
+      "smtp_user_placeholder": "送信者ユーザー名",
+      "smtp_password": "送信パスワード:",
+      "smtp_password_placeholder": "送信者パスワード",
+      "test_to": "テスト受信者:",
+      "test_to_placeholder": "テスト受信者アドレスを入力",
+      "mail_switch": "メール通知:",
+      "webhook_switch": "Webhook 通知:",
+      "test_webhook": "Webhook テスト",
+      "test_mail": "メールテスト",
+      "notice_title": "注意事項:",
+      "notice1": "1. LDAP ログインのユーザー名は一意である必要があります。設定は Grafana を参考にしてください。",
+      "notice2": "2. メールの迷惑判定はプロバイダにより異なります。まず安定性を確認してください。SSL を使う場合は SSL ポートを有効にしてください。",
+      "notice3": "3. 対応する通知スイッチをオンにした場合にのみ通知が有効になります。"
+    },
+    "ldap": {
+      "title": "LDAP 設定",
+      "url": "サービス URL",
+      "url_placeholder": "[ホストまたはドメイン]:[ポート]",
+      "enable_ldaps": "LDAPS を有効化",
+      "admin_dn": "LDAP 管理者 DN:",
+      "admin_dn_placeholder": "管理者 DN を入力",
+      "admin_password": "LDAP 管理者パスワード:",
+      "admin_password_placeholder": "管理者パスワードを入力",
+      "search_filter": "LDAP 検索フィルタ:",
+      "search_filter_placeholder": "例: (&(objectClass=organizationalPerson)(sAMAccountName=%s))、%s は必須のプレースホルダ",
+      "search_base": "LDAP 検索ベース:",
+      "search_base_placeholder": "LDAP Search Base",
+      "test": "LDAP テスト"
+    },
+    "other": {
+      "title": "その他",
+      "limit": "クエリ LIMIT 上限:",
+      "limit_placeholder": "最大 LIMIT 値",
+      "custom_env": "カスタム環境:",
+      "env_placeholder": "環境名",
+      "add_env": "環境を追加",
+      "exclude_db": "除外データベース:",
+      "exclude_db_placeholder": "除外するデータベース",
+      "add_exclude_db": "除外 DB を追加",
+      "mask_fields": "マスク対象フィールド:",
+      "mask_fields_placeholder": "マスク対象フィールドを入力",
+      "add_mask_field": "マスクフィールドを追加",
+      "query_review": "クエリ審査:",
+      "allow_register": "登録を許可:",
+      "query_export": "クエリのエクスポート:",
+      "query_time_limit": "クエリ時間制限:",
+      "minutes": "分"
+    },
+    "super": {
+      "title": "スーパー管理者権限",
+      "delete_order_before": "指定日以前の工単記録を削除",
+      "confirm_delete_orders": "工単記録を削除しますか？",
+      "delete_query_before": "指定日以前のクエリ記録を削除",
+      "confirm_delete_queries": "クエリ記録を削除しますか？"
+    },
+    "errors": {
+      "duplicate_idc": "同じ環境を追加しないでください！",
+      "duplicate_mask": "同じマスクフィールドを追加しないでください！",
+      "duplicate_db": "同じデータベースを追加しないでください！"
+    }
   },
   "validate": {
     "env_required": "環境は必須です",
@@ -205,10 +344,17 @@
   "snippet": {
     "duplicate": "スニペット名は一意である必要があります！",
     "max": "スニペットは最大15個までです！",
-    "saved": "スニペットを保存しました！"
+    "saved": "スニペットを保存しました！",
+    "copy": "コピー",
+    "delete": "削除",
+    "delete_confirm": "このスニペットを削除しますか？"
   },
   "orders": {
     "view_info": "工単情報",
+    "msg": {
+      "created": "チケットが作成されました！",
+      "approved": "チケットが承認されました"
+    },
     "columns": {
       "work_id": "工単番号:",
       "text": "説明",
@@ -237,7 +383,10 @@
     "confirm_kill": "この工単を中止しますか？",
     "delay_kill": "遅延工単を中止",
     "osc_progress": "OSC 進捗",
-    "none": "なし"
+    "none": "なし",
+    "msg": {
+      "completed": "審査完了"
+    }
   },
   "permissions": {
     "title": "ユーザー権限",
@@ -268,6 +417,25 @@
     }
   },
   "query_sql": {
+    "current_db": "選択中のデータベース",
+    "elapsed": "経過時間",
+    "export_data": "クエリ結果をエクスポート",
+    "result": "検索結果",
+    "time_limit_title": "クエリ時間制限の期限切れ",
+    "time_limit_desc1": "クエリ時間の上限に達しました。再申請してください。",
+    "time_limit_desc2": "OK をクリックすると申請ページへ戻ります。",
+    "select_db_table": "対象のデータベース/テーブルを選択してください",
+    "columns": {
+      "field": "フィールド名",
+      "type": "型",
+      "nullable": "NULL 可否",
+      "default": "デフォルト",
+      "key": "インデックスタイプ",
+      "comment": "備考"
+    },
+    "msg": {
+      "fetched": "テーブル構造を取得しました！"
+    },
     "select_db": "データベースを選択",
     "tree_loading": "読み込み中...",
     "quick_submit": "クイック送信",
@@ -310,6 +478,11 @@
     "revoke": "取り消し"
   },
   "order_submit": {
+    "msg": {
+      "submitted_title": "工単を提出しました",
+      "submitted_contact": "不明点があれば承認者／管理者に連絡してください",
+      "submitted_revoke": "誤りがある場合は『私の工単』で取り消してください"
+    },
     "steps": {
       "step1": {"title": "工単基本情報の入力", "content": "工単情報を入力し、種類と承認者を選択"},
       "step2": {"title": "SQL の入力", "content": "提出する SQL を入力し、検証に合格"},
@@ -373,6 +546,8 @@
     "order_id": "工単番号:",
     "view_rollback": "ロールバック SQL を表示",
     "resubmit": "再提出",
+    "current_status": "現在の状態",
+    "sql_type": "SQL 種別",
     "undo_confirm": "工単を取り消しますか？",
     "undo": "工単取り消し",
     "flow_steps": "フローステップ",
@@ -381,10 +556,61 @@
     "sql_audit": "SQL 審査",
     "back_top": "トップへ戻る",
     "select_next": "次の承認者を選択",
+    "columns": {
+      "related": "関係者",
+      "time": "時間",
+      "rejected_msg": "却下理由"
+    },
+    "actions": {
+      "submitted": "提出済み",
+      "rejected": "却下",
+      "approved_executed": "承認・実行"
+    },
+    "results": {
+      "columns": {
+        "sql": "SQL",
+        "state": "状態",
+        "error": "エラー",
+        "affect_row": "影響行数",
+        "time_s": "実行時間(秒)"
+      }
+    },
     "testing": {
       "no_data": "検証をクリックして結果を取得"
     }
+    ,
+    "collapse": {
+      "submitted_sql": "提出したSQL",
+      "show_top10": "最大10件のSQLを表示",
+      "show_all": "すべてのSQLを表示",
+      "results": "実行結果"
+    }
+    ,
+    "post_form": {
+      "basic": "基本情報",
+      "resubmit_sql": "再提出するSQL",
+      "submit_info": "提出情報",
+      "desc_placeholder": "最大20文字"
+    },
+    "rollback_empty": "ロールバックSQLは生成されませんでした。バックアップ選択やDB設定をご確認ください。詳細: https://guide.yearning.io/attention.html"
   }
+  ,
+  "manage_auto": {
+    "title": "自動タスク",
+    "new": "新規タスク",
+    "placeholder": {"name": "AutoTask 名称"},
+    "edit": "編集",
+    "confirm_delete": "このタスクを削除しますか？",
+    "modal_title": "AutoTask 情報",
+    "form": {
+      "name": "タスク名",
+      "type": "種類",
+      "max_rows": "最大影響行数"
+    },
+    "types": {"insert": "Insert", "update": "Update", "delete": "Delete"},
+    "columns": {"name": "名称", "type": "種類", "source": "データソース"},
+    "errors": {"fill_required": "必須項目を入力してください！"}
+  },
   ,
   "audit_query": {
     "title": "クエリ審査",
@@ -403,6 +629,9 @@
       "real_name": "氏名",
       "status": "状態",
       "action": "操作"
+    },
+    "msg": {
+      "killed_all": "すべての申請を中止しました"
     }
   }
   ,
@@ -437,6 +666,150 @@
       "export": "エクスポート",
       "date": "提出時間:",
       "action": "操作"
+    }
+  }
+  ,
+  "query_profile": {
+    "detail_title": "工単{workid}詳細情報",
+    "columns": {
+      "id": "番号:",
+      "sql": "SQL:",
+      "time": "時間:",
+      "elapsed_ms": "経過時間(ms):",
+      "source": "データソース:",
+      "database": "データベース:"
+    }
+  }
+  ,
+  "manage_user": {
+    "add_user": "ユーザー追加",
+    "table_title": "システムユーザー",
+    "placeholder": {"username": "ユーザー名を入力", "department": "部門を入力"},
+    "roles": {"operator": "オペレーター", "submitter": "提出者", "super_admin": "スーパー管理者"},
+    "change_password": "パスワード変更",
+    "permissions": "権限",
+    "dependency": {"title": "依存一覧", "flow": "カスタムフロー", "group": "権限グループ"},
+    "edit_title": "ユーザー情報"
+  }
+  ,
+  "manage_db": {
+    "add_db": "データベース追加",
+    "test_connection": "接続テスト",
+    "table_title": "データベース詳細",
+    "placeholder": {"source": "接続名を入力", "idc": "環境を入力"},
+    "query_type": {"readwrite": "読取/書込", "read": "読取", "write": "書込"},
+    "confirm_delete": "このデータソースを削除すると関連する工単が削除されます。続行しますか？",
+    "modal_title": "DB 接続情報",
+    "labels": {
+      "source_name": "データソース名",
+      "source_addr": "データソースアドレス",
+      "port": "ポート",
+      "type": "データソース種別"
+    },
+    "columns": {"source": "接続名", "is_query": "クエリソース", "ip": "DB アドレス"},
+    "validate": {
+      "idc": "環境を選択してください",
+      "source": "接続名を入力してください",
+      "ip": "接続アドレスを入力してください",
+      "port": "ポートを入力してください"
+    },
+    "errors": {
+      "invalid_chars": "特殊文字は '|' と '-' のみ許可します",
+      "invalid_password_chars": "パスワードに ? @ ^ $ を含めないでください"
+    }
+  },
+  "manage_group": {
+    "title": "権限グループ",
+    "create": "グループ作成",
+    "search_placeholder": "グループ名を入力",
+    "view_edit": "表示・編集",
+    "confirm_delete": "このグループを削除しますか？",
+    "form": {
+      "name": "グループ名:",
+      "ddl_sources": "DDL データソース:",
+      "dml_sources": "DML データソース:",
+      "query_sources": "クエリ データソース:",
+      "query_auditors": "クエリ承認者:"
+    },
+    "errors": {
+      "name_required": "グループ名は必須です！"
+    }
+  },
+  "manage_role": {
+    "search_placeholder": "説明で検索",
+    "columns": {"type": "ルール種別", "desc": "説明", "switch": "切替"},
+    "args": {
+      "DDLCheckTableComment": "テーブルにコメント必須",
+      "DDlCheckColumnComment": "列コメント必須",
+      "DDLCheckColumnNullable": "timestamp 以外は NOT NULL 必須",
+      "DDLCheckColumnDefault": "text/blob/json/timestamp 以外はデフォルト必須",
+      "DDLCheckFloatDouble": "float/double を decimal に強制",
+      "DDLEnableAutoincrementInit": "AUTO_INCREMENT 初期値は 1",
+      "DDLPrimaryKeyMust": "主キー名は ID",
+      "DDLEnableAutoIncrement": "主キーは AUTO_INCREMENT",
+      "DDLEnableAutoincrementUnsigned": "主キーは UNSIGNED",
+      "DDLIndexNameSpec": "インデックス名は idx_ で始まる",
+      "CheckIdentifier": "MySQL キーワード検査",
+      "DDLEnableAcrossDBRename": "DB 跨ぎのリネームを許可",
+      "DDLEnableDropTable": "DROP TABLE を許可",
+      "DDLEnableDropDatabase": "DROP DATABASE を許可",
+      "DDLAllowPRINotInt": "主キー型が int/bigint 以外を許可",
+      "DDLEnableNullIndexName": "インデックス名なしを許可",
+      "DDLMultiToSubmit": "1 工単で複数 DDL を許可",
+      "DDLAllowColumnType": "列型変換/長さ縮小を許可",
+      "DDLAllowChangeColumnPosition": "AFTER/FIRST を許可",
+      "AllowCreateView": "ビュー作成を許可",
+      "AllowCreatePartition": "パーティション作成を許可",
+      "AllowSpecialType": "bit/enum/set を許可",
+      "SupportCollation": "許可する Collation（カンマ区切り）",
+      "SupportCharset": "許可する Charset（カンマ区切り）",
+      "MustHaveColumns": "必須カラム（カンマ区切り）",
+      "DDLMaxKeyParts": "インデックスのカラム上限",
+      "DDLMaxKey": "テーブルの最大インデックス数",
+      "MaxDDLAffectRows": "DDL の最大影響行数",
+      "DDLMaxCharLength": "char の最大長",
+      "MaxTableNameLen": "テーブル名の最大長",
+      "DMLMaxInsertRows": "INSERT の最大行数",
+      "DMLAllowLimitSTMT": "UPDATE/INSERT で LIMIT を許可",
+      "DDLImplicitTypeConversion": "暗黙の型変換を禁止",
+      "DMLInsertColumns": "INSERT のカラム存在チェック",
+      "DMLWhere": "DML に WHERE 必須",
+      "DMLOrder": "DML の ORDER BY 禁止",
+      "DMLSelect": "DML の SELECT 禁止",
+      "MaxAffectRows": "DML の最大影響行数",
+      "IsOSC": "pt-osc を有効化",
+      "OscBinDir": "pt-osc バイナリパス（フル）",
+      "OscSize": "pt-osc 閾値（MB）",
+      "OscChunkSize": "チャンクサイズ（--chunk-time 関連）",
+      "OscDropNewTable": "--no-drop-new-table 失敗時に新テーブル削除",
+      "OscDropOldTable": "--no-drop-old-table 成功時に旧テーブル削除（失敗時は保持）",
+      "OscCheckReplicationFilters": "--no-check-replication-filters レプリケーションフィルタ確認",
+      "OscCheckAlter": "--no-check-alter 変更の潜在問題を確認",
+      "OscCheckUniqueKeyChange": "--no-check-unique-key-change 一意索引の確認なし",
+      "OscPrintSql": "--print OSC SQL を出力",
+      "OscAlterForeignKeysMethod": "--alter-foreign-keys-method 外部キー処理",
+      "OscLockWaitTimeout": "--set-vars lock_wait_timeout= 秒",
+      "OscChunkTime": "--chunk-time 動的にチャンク調整",
+      "OscSleep": "--sleep インターバル",
+      "OscMaxLag": "--max-lag レプリケーション遅延（秒）",
+      "OscCheckInterval": "--check-interval 間隔",
+      "OscMaxThreadConnected": "--max-load Threads_connected",
+      "OscMaxThreadRunning": "--max-load Threads_running",
+      "OscCriticalThreadConnected": "--critical-load Threads_connected",
+      "OscCriticalThreadRunning": "--critical-load Threads_running",
+      "OscRecursionMethod": "--recursion-method 再帰方法"
+    }
+  },
+  "audit_order": {
+    "osc": {
+      "title": "OSC 進捗",
+      "stop": "OSC 中止",
+      "current_prefix": "現在実行中 #",
+      "current_suffix": ""
+    },
+    "reject": {
+      "title": "SQL 工単の却下理由",
+      "placeholder": "却下理由を入力してください"
     }
   }
 }

@@ -7,7 +7,7 @@
             <Card>
                 <p slot="title">
                     <Icon type="md-refresh"/>
-                    添加数据库
+                    {{ $t('manage_db.add_db') }}
                 </p>
                 <CustomForm :item="general" :rule="ruleInline" :label-value="dbLabelValue" ref="db" :label-width="100">
                     <template slot="idc">
@@ -19,48 +19,48 @@
                         <InputNumber :min="0" v-model="general.port"></InputNumber>
                     </template>
                     <template slot="is_query">
-                        <RadioGroup v-model="general.is_query">
-                            <Radio :label="2">读写</Radio>
-                            <Radio :label="1">读</Radio>
-                            <Radio :label="0">写</Radio>
-                        </RadioGroup>
+                    <RadioGroup v-model="general.is_query">
+                        <Radio :label="2">{{ $t('manage_db.query_type.readwrite') }}</Radio>
+                        <Radio :label="1">{{ $t('manage_db.query_type.read') }}</Radio>
+                        <Radio :label="0">{{ $t('manage_db.query_type.write') }}</Radio>
+                    </RadioGroup>
                     </template>
                 </CustomForm>
-                <Button type="info" @click="test_db()">测试连接</Button>
-                <Button type="success" @click="add_db()" style="margin-left: 5%">确定</Button>
-                <Button type="warning" @click="restCustomFields('db')" style="margin-left: 5%">重置</Button>
+                <Button type="info" @click="test_db()">{{ $t('manage_db.test_connection') }}</Button>
+                <Button type="success" @click="add_db()" style="margin-left: 5%">{{ $t('common.ok') }}</Button>
+                <Button type="warning" @click="restCustomFields('db')" style="margin-left: 5%">{{ $t('common.reset') }}</Button>
             </Card>
         </Col>
         <Col span="19" class="padding-left-10">
             <Card>
                 <p slot="title">
                     <Icon type="md-apps"/>
-                    数据库详情表
+                    {{ $t('manage_db.table_title') }}
                 </p>
-                <Input v-model="find.source" placeholder="请填写连接名" style="width: 15%" clearable></Input>
-                <Select v-model="find.idc" placeholder="请填写环境" style="width: 15%" class="margin-left-10" :not-found-text="$t('common.no_match')">
+                <Input v-model="find.source" :placeholder="$t('manage_db.placeholder.source')" style="width: 15%" clearable></Input>
+                <Select v-model="find.idc" :placeholder="$t('manage_db.placeholder.idc')" style="width: 15%" class="margin-left-10" :not-found-text="$t('common.no_match')">
                     <Option v-for="list in idcList" :value="list" :key="list">{{ list }}</Option>
                 </Select>
-                <Button @click="queryData" type="primary" class="margin-left-10">查询</Button>
-                <Button @click="queryCancel" type="warning" class="margin-left-10">重置</Button>
+                <Button @click="queryData" type="primary" class="margin-left-10">{{ $t('common.search') }}</Button>
+                <Button @click="queryCancel" type="warning" class="margin-left-10">{{ $t('common.reset') }}</Button>
                 <div class="edit-table-con-1">
                     <Table :columns="columns" :data="table_data" :no-data-text="$t('common.no_data')">
                         <template slot-scope="{ row }" slot="is_query">
-                            <Tag checkable color="primary" v-if="row.is_query === 0">写</Tag>
-                            <Tag checkable color="success" v-else-if="row.is_query === 1">读</Tag>
-                            <Tag checkable color="warning" v-else>读写</Tag>
+                            <Tag checkable color="primary" v-if="row.is_query === 0">{{ $t('manage_db.query_type.write') }}</Tag>
+                            <Tag checkable color="success" v-else-if="row.is_query === 1">{{ $t('manage_db.query_type.read') }}</Tag>
+                            <Tag checkable color="warning" v-else>{{ $t('manage_db.query_type.readwrite') }}</Tag>
                         </template>
                         <template slot-scope="{ row }" slot="action">
                             <Button type="info" size="small" @click="viewConnectionModal(row)"
-                                    style="margin-right: 5px">详细信息
+                                    style="margin-right: 5px">{{ $t('common.detail') }}
                             </Button>
                             <Poptip
                                 confirm
-                                title="删除数据源将会删除对应的所有工单信息,确定要删除吗？"
+                                :title="$t('manage_db.confirm_delete')"
                                 @on-ok="delete_db(row)"
                                 transfer
                             >
-                                <Button type="warning" size="small">删除</Button>
+                                <Button type="warning" size="small">{{ $t('common.delete') }}</Button>
                             </Poptip>
                         </template>
                     </Table>
@@ -70,8 +70,8 @@
                       :current.sync="current"></Page>
             </Card>
         </Col>
-        <Modal v-model="is_open" :width="500" okText="保存" @on-ok="modifyBase">
-            <h3 slot="header" style="color:#2D8CF0">数据库连接信息</h3>
+        <Modal v-model="is_open" :width="500" :okText="$t('common.save')" @on-ok="modifyBase">
+            <h3 slot="header" style="color:#2D8CF0">{{ $t('manage_db.modal_title') }}</h3>
             <CustomForm :label-value="dbLabelValue" :item="dbInfoEdit" :label-width="100">
                 <template slot="port">
                     <InputNumber :min="0" v-model="dbInfoEdit.port"></InputNumber>
@@ -86,9 +86,9 @@
                 </template>
                 <template slot="is_query">
                     <RadioGroup v-model="dbInfoEdit.is_query">
-                        <Radio :label="2">读写</Radio>
-                        <Radio :label="1">读</Radio>
-                        <Radio :label="0">写</Radio>
+                        <Radio :label="2">{{ $t('manage_db.query_type.readwrite') }}</Radio>
+                        <Radio :label="1">{{ $t('manage_db.query_type.read') }}</Radio>
+                        <Radio :label="0">{{ $t('manage_db.query_type.write') }}</Radio>
                     </RadioGroup>
                 </template>
             </CustomForm>
@@ -100,13 +100,14 @@ import {Mixins, Component} from "vue-property-decorator";
 import Basic from "../../../mixins/basic";
 import {DB, DBCreateOrEditApi, DBDeleteApi, DBFetchApi} from "@/apis/dbApis";
 import {AxiosResponse} from "axios";
+import i18n from "@/language";
 import {Res} from "@/interface";
 import CustomForm, {Label} from "@/components/customForm/customForm.vue";
 
 const regExp_Name = (rule: any, value: any, callback: any) => {
     let pPattern = new RegExp("[`~!@#$^&*()={}':;',\\[\\]<>/?~！@#￥……&*（）——{}【】‘；：”“'。，、？]");
     if (pPattern.test(value)) {
-        callback(new Error('特殊字符仅可使用|与-'))
+        callback(new Error(i18n.t('manage_db.errors.invalid_chars') as string))
     } else {
         callback()
     }
@@ -115,7 +116,7 @@ const regExp_Name = (rule: any, value: any, callback: any) => {
 const regExp_password = (rule: any, value: any, callback: any) => {
     let pPattern = new RegExp("[`?？^$]");
     if (pPattern.test(value)) {
-        callback(new Error('密码中不得含有? @ ^ $'))
+        callback(new Error(i18n.t('manage_db.errors.invalid_password_chars') as string))
     } else {
         callback()
     }
@@ -125,24 +126,24 @@ const regExp_password = (rule: any, value: any, callback: any) => {
 export default class database_manager extends Mixins(Basic) {
     columns = [
         {
-            title: '连接名称',
+            title: this.$t('manage_db.columns.source') as string,
             key: 'source'
         },
         {
-            title: '查询数据源',
+            title: this.$t('manage_db.columns.is_query') as string,
             key: 'is_query',
             slot: 'is_query'
         },
         {
-            title: '数据库地址',
+            title: this.$t('manage_db.columns.ip') as string,
             key: 'ip'
         },
         {
-            title: '环境',
+            title: this.$t('query_workflow.env') as string,
             key: 'idc'
         },
         {
-            title: '操作',
+            title: this.$t('orders.columns.action') as string,
             key: 'action',
             width: 300,
             slot: 'action'
@@ -153,14 +154,14 @@ export default class database_manager extends Mixins(Basic) {
         idc: [
             {
                 required: true,
-                message: '请选择对应环境',
+                message: this.$t('manage_db.validate.idc') as string,
                 trigger: 'change'
             }
         ],
         source: [
             {
                 required: true,
-                message: '请填写连接名称',
+                message: this.$t('manage_db.validate.source') as string,
                 trigger: 'blur',
 
             },
@@ -172,21 +173,21 @@ export default class database_manager extends Mixins(Basic) {
         ip: [
             {
                 required: true,
-                message: '请填写连接地址',
+                message: this.$t('manage_db.validate.ip') as string,
                 trigger: 'blur'
             }
         ],
         username: [
             {
                 required: true,
-                message: '请填写用户名',
+                message: this.$t('sign_up_validate.username') as string,
                 trigger: 'blur'
             }
         ],
         port: [
             {
                 required: true,
-                message: '请填写端口',
+                message: this.$t('manage_db.validate.port') as string,
                 trigger: 'blur',
                 type: 'number'
             }
@@ -194,7 +195,7 @@ export default class database_manager extends Mixins(Basic) {
         password: [
             {
                 required: true,
-                message: '请填写密码',
+                message: this.$t('sign_up_validate.password') as string,
                 trigger: 'blur'
             },
             {
@@ -205,15 +206,16 @@ export default class database_manager extends Mixins(Basic) {
     };
     idcList = [];
     dbInfoEdit = {};
-    private dbLabelValue: Label = {
-        idc: {name: '环境'},
-        source: {name: '数据源名称'},
-        ip: {name: '数据源地址'},
-        port: {name: '端口'},
-        username: {name: '用户名'},
-        password: {name: '密码', type: 'password'},
-        is_query: {name: '数据源类型'}
-
+    get dbLabelValue(): Label {
+        return {
+            idc: {name: this.$t('query_workflow.env') as string},
+            source: {name: this.$t('manage_db.labels.source_name') as string},
+            ip: {name: this.$t('manage_db.labels.source_addr') as string},
+            port: {name: this.$t('manage_db.labels.port') as string},
+            username: {name: this.$t('sign_userInfo.username') as string},
+            password: {name: this.$t('sign_userInfo.password') as string, type: 'password'},
+            is_query: {name: this.$t('manage_db.labels.type') as string}
+        } as Label
     }
 
     test_db() {

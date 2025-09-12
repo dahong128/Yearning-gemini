@@ -2,34 +2,35 @@
     <div>
         <editor v-model="sql" @init="editorInit" @setCompletions="setCompletions"></editor>
         <br>
-        <span>当前选择的库: {{ dataBase }}</span> <span class="margin-left-10">查询耗时: {{ results.time }} ms</span>
+        <span>{{ $t('query_sql.current_db') }}: {{ dataBase }}</span>
+        <span class="margin-left-10">{{ $t('query_sql.elapsed') }}: {{ results.time }} ms</span>
         <Form inline>
             <FormItem>
-                <Button type="error" icon="md-trash" @click.native="clearObj()">清除</Button>
+                <Button type="error" icon="md-trash" @click.native="clearObj()">{{ $t('query_sql.clear') }}</Button>
             </FormItem>
             <FormItem>
-                <Button type="info" icon="ios-analytics" @click.native="fetchTableField()">获取表结构</Button>
+                <Button type="info" icon="ios-analytics" @click.native="fetchTableField()">{{ $t('query_sql.fetch_struct') }}</Button>
             </FormItem>
             <FormItem>
-                <Button type="success" icon="ios-redo" @click.native="querySQL()">查询</Button>
+                <Button type="success" icon="ios-redo" @click.native="querySQL()">{{ $t('query_sql.query') }}</Button>
             </FormItem>
             <FormItem  v-if="export_data">
                 <Button
                     type="primary"
                     icon="ios-cloud-download"
                     @click.native="exportdata()"
-                >导出查询数据
+                >{{ $t('query_sql.export_data') }}
                 </Button>
             </FormItem>
             <FormItem>
-                <Button type="warning" @click="beauty">美化</Button>
+                <Button type="warning" @click="beauty">{{ $t('query_sql.beautify') }}</Button>
             </FormItem>
             <FormItem>
-                <Button type="primary" icon="md-copy" @click="is_open = !is_open">snippet
+                <Button type="primary" icon="md-copy" @click="is_open = !is_open">{{ $t('query_multi.snippet') }}
                 </Button>
             </FormItem>
         </Form>
-        <p>查询结果:</p>
+        <p>{{ $t('query_sql.result') }}:</p>
         <br>
         <Table :columns="results.title" :data="queryRes" highlight-row ref="table" border :no-data-text="$t('common.no_data')"></Table>
         <br>
@@ -38,14 +39,14 @@
 
         <Modal
             v-model="loading"
-            title="查询时限过期提醒"
+            :title="$t('query_sql.time_limit_title')"
             @on-ok="togo">
-            <span>查询时限已过期,请重新申请查询时限。</span>
+            <span>{{ $t('query_sql.time_limit_desc1') }}</span>
             <br>
-            <span>点击确定,返回查询申请页面。</span>
+            <span>{{ $t('query_sql.time_limit_desc2') }}</span>
         </Modal>
 
-        <Drawer title="snippet" v-model="is_open" transfer>
+        <Drawer :title="$t('query_multi.snippet')" v-model="is_open" transfer>
             <Card style="height:150px" v-for="i in snippetList" :key="i.title" dis-hover>
                 <p slot="title">
                     <Icon type="md-copy"></Icon>
@@ -53,16 +54,16 @@
                 </p>
                 <a href="#" slot="extra" @click.prevent="copySnippet(i)">
                     <Icon type="ios-loop-strong"></Icon>
-                    复制
+                    {{ $t('snippet.copy') }}
                 </a>
                 <template slot="extra">
                     <Poptip
                         confirm
-                        title="确定要删除这条Snippet?"
+                        :title="$t('snippet.delete_confirm')"
                         @on-ok="delSnippet(i)">
                         <a href="#">
                             <Icon type="ios-loop-strong"></Icon>
-                            删除
+                            {{ $t('snippet.delete') }}
                         </a>
                     </Poptip>
                 </template>
@@ -163,37 +164,39 @@ export default class tabQuery extends Mixins(Basic) {
     private sql = ''
     private page_size = 10
     private queryRes = []
-    private fieldColumns = [
-        {
-            title: '字段名',
-            key: 'field'
-        },
-        {
-            title: '字段类型',
-            key: 'type',
-            editable: true
-        },
-        {
-            title: '字段是否为空',
-            key: 'null',
-            editable: true,
-            option: true
-        },
-        {
-            title: '默认值',
-            key: 'default',
-            editable: true
-        },
-        {
-            title: '索引类型',
-            key: 'key',
-            editable: true
-        },
-        {
-            title: '备注',
-            key: 'comment'
-        }
-    ]
+    get fieldColumns() {
+        return [
+            {
+                title: this.$t('query_sql.columns.field') as string,
+                key: 'field'
+            },
+            {
+                title: this.$t('query_sql.columns.type') as string,
+                key: 'type',
+                editable: true
+            },
+            {
+                title: this.$t('query_sql.columns.nullable') as string,
+                key: 'null',
+                editable: true,
+                option: true
+            },
+            {
+                title: this.$t('query_sql.columns.default') as string,
+                key: 'default',
+                editable: true
+            },
+            {
+                title: this.$t('query_sql.columns.key') as string,
+                key: 'key',
+                editable: true
+            },
+            {
+                title: this.$t('query_sql.columns.comment') as string,
+                key: 'comment'
+            }
+        ]
+    }
     private results: Results = {
         time: '',
         title: [],
@@ -215,7 +218,7 @@ export default class tabQuery extends Mixins(Basic) {
 
     fetchTableField() {
         if (this.dataBase === '' || this.table === '') {
-            this.$Message.error("请选中对应库/表");
+            this.$Message.error(this.$t('query_sql.select_db_table') as string);
             return
         }
         CommonGetApis('table_info', {data_base: this.dataBase, table: this.table, source: this.source})
@@ -223,7 +226,7 @@ export default class tabQuery extends Mixins(Basic) {
                 this.results.title = this.fieldColumns;
 
                 this.queryRes = res.data.payload
-                this.$Message.success({content: "已获取表结构!"})
+                this.$Message.success({content: this.$t('query_sql.msg.fetched') as string})
             })
 
     }

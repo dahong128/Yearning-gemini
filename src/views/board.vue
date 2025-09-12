@@ -3,7 +3,7 @@
         <Card>
             <p slot="title">
                 <Icon type="md-clipboard"></Icon>
-                公告
+                {{ $t('nav.board') }}
             </p>
             <template v-if="user === 'admin'">
                 <mavon-editor v-model="md_data" :ishljs="true" @save="post_board" :boxShadow="false"/>

@@ -14,19 +14,19 @@
                     </Col>
                     <Col span="15">
                         <Row>
-                            <h3>工单已提交</h3>
+                            <h3>{{ $t('order_submit.msg.submitted_title') }}</h3>
                         </Row>
                         <Divider></Divider>
                         <Row>
-                            <p>如有疑问请联系相关审核人/管理员</p>
+                            <p>{{ $t('order_submit.msg.submitted_contact') }}</p>
                             <br>
-                            <p>如填写错误请前往我的工单处撤销工单</p>
+                            <p>{{ $t('order_submit.msg.submitted_revoke') }}</p>
                         </Row>
                     </Col>
                 </Row>
                 <br>
                 <Row type="flex" justify="center" align="bottom">
-                    <Button type="primary" long @click="toOriginal">返回</Button>
+                    <Button type="primary" long @click="toOriginal">{{ $t('common.back') }}</Button>
                 </Row>
             </Col>
         </Row>

@@ -1,14 +1,14 @@
 <template>
     <Collapse v-model="collapse" simple>
         <Panel name="sql">
-            提交的SQL语句
+            {{ $t('order_profile.collapse.submitted_sql') }}
             <div slot="content">
                 <RadioGroup v-model="switch_args.is_more" @on-change="fetch_post_sql">
                     <Radio label="10">
-                        仅显示10条以内的SQL
+                        {{ $t('order_profile.collapse.show_top10') }}
                     </Radio>
                     <Radio label="0">
-                        显示全部SQL
+                        {{ $t('order_profile.collapse.show_all') }}
                     </Radio>
                 </RadioGroup>
                 <br>
@@ -17,7 +17,7 @@
             </div>
         </Panel>
         <Panel name="results" v-if="order.status ===1 || order.status ===4">
-            执行结果
+            {{ $t('order_profile.collapse.results') }}
             <div slot="content">
                 <Row>
                     <Col span="24">

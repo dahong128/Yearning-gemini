@@ -6,7 +6,7 @@
 
 ![LICENSE](https://img.shields.io/badge/license-AGPL%20-blue.svg)
 ![build](https://img.shields.io/badge/build-release-brightgreen.svg)
-![version](https://img.shields.io/badge/version-v2.4.0-brightgreen.svg)
+![version](https://img.shields.io/badge/version-v2.4.1-brightgreen.svg)
 ![webpack](https://img.shields.io/badge/webpack-v4-brightgreen.svg)
 
 Yearning SQL 审核平台的前端代码。
@@ -19,6 +19,7 @@ Yearning SQL 审核平台的前端代码。
   - 语言选择持久化到 `localStorage.lang`，下次进入自动使用。
 - 大范围移除中文硬编码，覆盖模块：
   - 登录、首页仪表盘、查询流程/SQL、工单提交/确认、权限弹窗、审核（工单/查询）、执行与记录（工单/查询）、管理（用户/数据库/流程模板/规则/自动任务）等。
+- 2.4.1：继续完善管理与审核页的多语言覆盖（设置、用户、数据库、权限组、审核规则、自动任务、审核弹窗等），并将常见后端中文提示映射为 i18n，保证 Notice/Message 本地化显示。
 - 统一下拉无数据与表格无数据文案：
   - Select：`No matching data` → i18n（无匹配数据/No matching data/一致するデータがありません）。
   - Table：`No data` → i18n（暂无数据/No data/データがありません）。

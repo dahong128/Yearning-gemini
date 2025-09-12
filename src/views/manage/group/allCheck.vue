@@ -3,7 +3,7 @@
         <Checkbox
             :indeterminate="indeterminate"
             :value="checkAll"
-            @click.prevent.native="check_all_args()">全选
+            @click.prevent.native="check_all_args()">{{ $t('common.select_all') }}
         </Checkbox>
         <CheckboxGroup @on-change="checkSource" v-model="currentSource">
             <Checkbox v-for="i in sourceList" :label="i" :key="i">

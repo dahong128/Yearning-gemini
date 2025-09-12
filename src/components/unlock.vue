@@ -9,14 +9,14 @@
         <img class="unlock-avator-img" src="../assets/logo_s.png">
         <div class="unlock-avator-cover">
           <span><Icon type="md-unlock" :size="30"></Icon></span>
-          <p>解锁</p>
+          <p>{{ $t('unlock.title') }}</p>
         </div>
       </div>
       <div class="unlock-avator-under-back" :style="{marginLeft: avatorLeft}"></div>
       <div class="unlock-input-con">
         <div class="unlock-input-overflow-con">
           <div class="unlock-overflow-body" :style="{right: inputLeft}">
-            <input ref="inputEle" v-model="password" class="unlock-input" type="password" placeholder="密码同登录密码"/>
+            <input ref="inputEle" v-model="password" class="unlock-input" type="password" :placeholder="$t('unlock.placeholder')"/>
             <button ref="unlockBtn" @mousedown="unlockMousedown" @mouseup="unlockMouseup" @click="handleUnlock"
                     class="unlock-btn">
               <Icon color="white" type="md-key" :size="14"></Icon>
@@ -24,7 +24,7 @@
           </div>
         </div>
       </div>
-      <div class="unlock-locking-tip-con"><Checkbox v-model="single">LDAP登录</Checkbox>    已锁定</div>
+      <div class="unlock-locking-tip-con"><Checkbox v-model="single">{{ $t('unlock.ldap_login') }}</Checkbox>    {{ $t('unlock.locked') }}</div>
     </div>
   </transition>
 </template>
@@ -58,7 +58,7 @@
                 LoginApi(this.single,{username:sessionStorage.getItem('user'),password:this.password})
                     .then( res => {
                         if (res.data.code === 1301) {
-                            this.$Message.error("密码错误!")
+                            this.$Message.error(this.$t('unlock.password_incorrect') as string)
                             return
                         }
                         this.avatorLeft = '0px'

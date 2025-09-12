@@ -1,10 +1,10 @@
 <template>
     <Modal
             v-model="is_open"
-            title="OSC进度展示" :closable="false"
+            :title="$t('audit_order.osc.title')" :closable="false"
             @on-cancel="oscClose"
             @on-ok="oscKill"
-            ok-text="osc终止"
+            :ok-text="$t('audit_order.osc.stop')"
     >
         <Col offset="6">
             <i-circle
@@ -17,9 +17,9 @@
                 <div class="demo-Circle-custom">
                     <h1>{{osc.percent}}%</h1>
                     <span>
-                当前正在执行第
+                {{ $t('audit_order.osc.current_prefix') }}
                 <i>{{osc.current}}</i>
-              条
+                {{ $t('audit_order.osc.current_suffix') }}
             </span>
                 </div>
             </i-circle>

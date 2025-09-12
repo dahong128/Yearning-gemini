@@ -1,48 +1,48 @@
 <template>
     <div>
-        <Modal v-model="is_open" :ok-text="'提交工单'" width="800" @on-ok="referOrder" @on-cancel="cancel" >
-            <Divider plain orientation="left">基本信息</Divider>
+        <Modal v-model="is_open" :ok-text="$t('order_submit.sqls.submit')" width="800" @on-ok="referOrder" @on-cancel="cancel" >
+            <Divider plain orientation="left">{{ $t('order_profile.post_form.basic') }}</Divider>
             <Row type="flex" justify="end" align="bottom">
                 <Col span="12" class="cell">
-                    <div class="title">用户名: {{ order.username }}</div>
+                    <div class="title">{{ $t('orders.columns.username') }} {{ order.username }}</div>
                     <br>
-                    <div class="title">环境: {{ order.idc }}</div>
+                    <div class="title">{{ $t('query_workflow.env') }}: {{ order.idc }}</div>
                     <br>
-                    <div class="title">定时执行: {{ order.delay }}</div>
+                    <div class="title">{{ $t('order_submit.form.schedule') }}: {{ order.delay }}</div>
                     <br>
                 </Col>
                 <Col span="12" class="cell">
-                    <div class="title">连接名: {{ order.source }}</div>
+                    <div class="title">{{ $t('query_sql.connection') }}: {{ order.source }}</div>
                     <br>
-                    <div class="title">数据库库名: {{ order.data_base }}</div>
+                    <div class="title">{{ $t('query_sql.database') }}: {{ order.data_base }}</div>
                     <br>
                 </Col>
             </Row>
             <template  v-if="this.order.status === 0">
-                <Divider plain orientation="left">重新提交的语句</Divider>
+                <Divider plain orientation="left">{{ $t('order_profile.post_form.resubmit_sql') }}</Divider>
                 <Input v-model="sqls"
 
                        type="textarea" :rows="5"></Input>
             </template>
 
             <template v-if="this.order.status ===1 || this.order.status === 4">
-                <Divider plain orientation="left">回滚语句</Divider>
+                <Divider plain orientation="left">{{ $t('order_profile.view_rollback') }}</Divider>
                 <Table :columns="roll_column" :data="roll_data"
                        height="200" :show-header="false" size="small"
-                       no-data-text="该工单没有生成回滚语句! 请检查提交工单时是否已选择备份/数据库设置是否正确。<br/>详细情况请访问:https://guide.yearning.io/attention.html"></Table>
+                       :no-data-text="$t('order_profile.rollback_empty')"></Table>
                 <br>
                 <Page :total="page_number" show-elevator @on-change="rollback" :page-size="5"
                       :current.sync="current"></Page>
             </template>
-            <Divider plain orientation="left">提交信息</Divider>
+            <Divider plain orientation="left">{{ $t('order_profile.post_form.submit_info') }}</Divider>
             <Form>
-                <FormItem label="工单提交说明:">
-                    <Input v-model="order.text" placeholder="最多不超过20个字" style="width: 600px" type="textarea" :rows="3"></Input>
+                <FormItem :label="$t('order_submit.form.desc') + ':'">
+                    <Input v-model="order.text" :placeholder="$t('order_profile.post_form.desc_placeholder')" style="width: 600px" type="textarea" :rows="3"></Input>
                 </FormItem>
-                <FormItem label="是否备份">
+                <FormItem :label="$t('order_submit.form.backup')">
                     <RadioGroup v-model="order.backup">
-                        <Radio :label=1>是</Radio>
-                        <Radio :label=0>否</Radio>
+                        <Radio :label=1>{{ $t('common.yes') }}</Radio>
+                        <Radio :label=0>{{ $t('common.no') }}</Radio>
                     </RadioGroup>
                 </FormItem>
             </Form>
@@ -83,7 +83,7 @@ export default class postForm extends Mixins(OrderProfileMixins) {
         //     render: render.expand
         // },
         {
-            title: '当前检查的sql',
+            title: this.$t('order_submit.sqls.testColumns.sql_current') as string,
             key: 'sql',
             // render: render.sub_sql
             tooltip: true

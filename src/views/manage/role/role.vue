@@ -1,24 +1,24 @@
 <template>
     <Card>
         <BackTop :height="100" :bottom="100">
-            <div class="top">返回顶端</div>
+            <div class="top">{{ $t('order_profile.back_top') }}</div>
         </BackTop>
         <p slot="title">
             <Icon type="md-aperture"/>
-            审核规则
+            {{ $t('nav.audit_rules') }}
         </p>
         <Row>
             <Col :span="15">
-                <Input placeholder="根据描述信息搜索" v-model="find.text"
+                <Input :placeholder="$t('manage_role.search_placeholder')" v-model="find.text"
                        clearable @on-clear="clear_data" @on-enter="search_data"/>
 
             </Col>
             <Col :span="1">
-                <Button @click="search_data" class="margin-left-10" type="primary">搜索</Button>
+                <Button @click="search_data" class="margin-left-10" type="primary">{{ $t('common.search') }}</Button>
             </Col>
             <Col :span="1" offset="2">
                 <Affix :offset-top="100">
-                    <Button type="info" @click="referRoles" class="margin-left-10">保存</Button>
+                    <Button type="info" @click="referRoles" class="margin-left-10">{{ $t('common.save') }}</Button>
                 </Affix>
             </Col>
         </Row>
@@ -26,8 +26,8 @@
         <Table :columns="col" :data="tb_data" border :no-data-text="$t('common.no_data')">
             <template slot-scope="{row}" slot="switch">
                 <i-switch size="large" v-model="juno[row.name]" v-if="row.tp === 0">
-                    <span slot="open">开</span>
-                    <span slot="close">关</span>
+                    <span slot="open">{{ $t('common.open') }}</span>
+                    <span slot="close">{{ $t('common.close') }}</span>
                 </i-switch>
                 <InputNumber v-model="juno[row.name]" v-else-if="row.tp === 1"></InputNumber>
                 <Input v-model="juno[row.name]" v-else></Input>
@@ -52,15 +52,15 @@
 
         col = [
             {
-                title: '规则类型',
+                title: this.$t('manage_role.columns.type') as string,
                 key: 'type'
             },
             {
-                title: '规则描述',
+                title: this.$t('manage_role.columns.desc') as string,
                 key: 'desc'
             },
             {
-                title: '开关',
+                title: this.$t('manage_role.columns.switch') as string,
                 key: 'switch',
                 slot: 'switch'
             },

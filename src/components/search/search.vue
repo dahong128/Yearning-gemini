@@ -9,10 +9,10 @@
                         :editable="false"></DatePicker>
         </FormItem>
         <FormItem>
-            <Button type="success" @click="queryData">查询</Button>
+            <Button type="success" @click="queryData">{{ $t('common.search') }}</Button>
         </FormItem>
         <FormItem>
-            <Button type="primary" @click="queryCancel">重置</Button>
+            <Button type="primary" @click="queryCancel">{{ $t('common.reset') }}</Button>
         </FormItem>
     </Form>
 </template>

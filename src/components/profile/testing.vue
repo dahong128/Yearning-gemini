@@ -8,14 +8,14 @@
             </FormItem>
             <FormItem>
                 <Button type="primary" @click.native="testTo()" :loading="loading">
-                    <span v-if="!loading">检测</span>
-                    <span v-else>检测中</span>
+                    <span v-if="!loading">{{ $t('query_sql.test') }}</span>
+                    <span v-else>{{ $t('common.testing') }}</span>
                 </Button>
-                <Button type="error" @click="reject()" class="margin-left-10">驳回</Button>
+                <Button type="error" @click="reject()" class="margin-left-10">{{ $t('audit_query.reject') }}</Button>
                 <Button type="success" @click="agreed()" :disabled="summit" v-if="c_flag ===0" class="margin-left-10">
-                    同意
+                    {{ $t('audit_query.approve') }}
                 </Button>
-                <Button type="success" @click="perform()" :disabled="summit" class="margin-left-10" v-else>执行</Button>
+                <Button type="success" @click="perform()" :disabled="summit" class="margin-left-10" v-else>{{ $t('common.execute') }}</Button>
             </FormItem>
             <FormItem>
                 <Table :columns="sql_columns" :data="testing_sql" :max-height="300"  :no-data-text="$t('order_profile.testing.no_data')"></Table>
@@ -44,40 +44,41 @@ export default class Testing extends Mixins(detail_mixin) {
     }) mobile !: boolean
     auth = sessionStorage.getItem('auth');
     summit = true;
-    wap_col = [
-        {
-            title: '当前检查的sql',
-            key: 'sql',
-            tooltip: true,
-            width: 120,
-            fixed: 'left',
-
-        },
-        {
-            title: '阶段',
-            key: 'status',
-            tooltip: true,
-            width: 100,
-        },
-        {
-            title: '错误等级',
-            key: 'level',
-            tooltip: true,
-            width: 100,
-        },
-        {
-            title: '错误信息',
-            key: 'error',
-            tooltip: true,
-            width: 100,
-        },
-        {
-            title: '影响行数',
-            key: 'affect_rows',
-            tooltip: true,
-            width: 100,
-        }
-    ]
+    get wap_col() {
+        return [
+            {
+                title: this.$t('order_submit.sqls.testColumns.sql_current') as string,
+                key: 'sql',
+                tooltip: true,
+                width: 120,
+                fixed: 'left',
+            },
+            {
+                title: this.$t('order_submit.sqls.testColumns.status') as string,
+                key: 'status',
+                tooltip: true,
+                width: 100,
+            },
+            {
+                title: this.$t('order_submit.sqls.testColumns.level') as string,
+                key: 'level',
+                tooltip: true,
+                width: 100,
+            },
+            {
+                title: this.$t('order_submit.sqls.testColumns.error') as string,
+                key: 'error',
+                tooltip: true,
+                width: 100,
+            },
+            {
+                title: this.$t('order_submit.sqls.testColumns.rows_affected') as string,
+                key: 'affect_rows',
+                tooltip: true,
+                width: 100,
+            }
+        ] as any
+    }
     sql_columns = [
         {
             type: 'expand',
@@ -85,28 +86,28 @@ export default class Testing extends Mixins(detail_mixin) {
             render: render.expand
         },
         {
-            title: '当前检查的sql',
+            title: this.$t('order_submit.sqls.testColumns.sql_current') as string,
             key: 'sql',
             render: render.sub_sql
 
         },
         {
-            title: '阶段',
+            title: this.$t('order_submit.sqls.testColumns.status') as string,
             key: 'status',
             width: '150'
         },
         {
-            title: '错误等级',
+            title: this.$t('order_submit.sqls.testColumns.level') as string,
             key: 'level',
             width: '100'
         },
         {
-            title: '错误信息',
+            title: this.$t('order_submit.sqls.testColumns.error') as string,
             key: 'error',
             tooltip: true
         },
         {
-            title: '影响行数',
+            title: this.$t('order_submit.sqls.testColumns.rows_affected') as string,
             key: 'affect_rows',
             width: '120'
         }
@@ -142,7 +143,7 @@ export default class Testing extends Mixins(detail_mixin) {
 
     agreed() {
         if (this.personal === '') {
-            this.$Message.error({content: '请选择下一级审核人!'})
+            this.$Message.error({content: this.$t('order_profile.select_next') as string})
             return
         }
         AuditStateSQL({

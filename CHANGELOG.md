@@ -3,6 +3,30 @@ Changelog
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.1] - 2025-09-12
+
+### Added
+- Extensive i18n coverage across management and audit modules:
+  - Manage: Settings (`manage_settings.*`), Users (`manage_user.*`), Databases (`manage_db.*`), Groups (`manage_group.*`), Roles page (`manage_role.*`) and Role args (`manage_role.args.*`).
+  - Auto Tasks (`manage_auto.*`) including type labels (Insert/Update/Delete).
+  - Audit modals: OSC progress and Reject dialog (`audit_order.osc.*`, `audit_order.reject.*`).
+  - Order profile results table headers (`order_profile.results.columns.*`).
+- Server message → i18n mapping expanded in `src/libs/requests.ts`:
+  - “工单已同意”, “审核完成”, “所有工单已终止” now localized.
+
+### Changed
+- Login page: language switcher styling and header/footer layout refined (no overflow scrollbars), footer info removed, GitHub icon hidden.
+- Unify common labels: `common.open|close|save|delete|detail|select_all|verified`.
+- Normalize form labels/placeholders, buttons, and table headers to use `$t()` for live locale switching.
+
+### Fixed
+- Various hard-coded Chinese strings replaced with i18n keys across Settings, Users, DB, Groups, AutoTask, Role pages.
+- JSON structure issues in language files corrected; added missing keys for new UI texts.
+
+### Notes
+- Remaining Chinese in comments and language picker labels are intentional (not user-facing or are language names).
+- Further enhancements: switch StepDetail action matching to server enums when backend supports; refine some pt-osc arg descriptions.
+
 ## [2.4.0] - 2025-09-11
 
 ### Added
@@ -69,4 +93,3 @@ All notable changes to this project will be documented in this file.
 
 ## [2.3.x] - Previous
 - Historical baseline prior to i18n overhaul.
-

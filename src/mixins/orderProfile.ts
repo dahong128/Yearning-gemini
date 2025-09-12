@@ -7,31 +7,32 @@ import {Res} from "@/interface";
 
 @Component({components: {}})
 export default class OrderProfileMixins extends Mixins(Basic) {
-    columns = [
-        {
-            title: 'sql语句',
-            key: 'sql',
-
-        },
-        {
-            title: '状态',
-            key: 'state',
-        },
-        {
-            title: '错误信息',
-            key: 'error',
-            tooltip: true
-        },
-        {
-            title: '影响行数',
-            key: 'affect_row',
-            width: 100
-        },
-        {
-            title: '执行时间/秒',
-            key: 'time',
-        }
-    ];
+    get columns() {
+        return [
+            {
+                title: this.$t('order_profile.results.columns.sql') as string,
+                key: 'sql',
+            },
+            {
+                title: this.$t('order_profile.results.columns.state') as string,
+                key: 'state',
+            },
+            {
+                title: this.$t('order_profile.results.columns.error') as string,
+                key: 'error',
+                tooltip: true
+            },
+            {
+                title: this.$t('order_profile.results.columns.affect_row') as string,
+                key: 'affect_row',
+                width: 100
+            },
+            {
+                title: this.$t('order_profile.results.columns.time_s') as string,
+                key: 'time',
+            }
+        ]
+    }
 
     results = [];
 
@@ -84,4 +85,3 @@ export default class OrderProfileMixins extends Mixins(Basic) {
             })
     }
 }
-
