@@ -11,8 +11,8 @@
             <FormItem :label="$t('general.role')">
                 <template v-if="edit.username !== 'admin'">
                 <Select v-model="edit.rule" :not-found-text="$t('common.no_match')">
-                        <Option value="guest" :label="$t('manage_user.roles.submitter') as string"></Option>
-                        <Option value="admin" :label="$t('manage_user.roles.operator') as string"></Option>
+                        <Option value="guest" :label="$t('manage_user.roles.submitter')"></Option>
+                        <Option value="admin" :label="$t('manage_user.roles.operator')"></Option>
                     </Select>
                 </template>
                 <template v-else>
@@ -26,7 +26,7 @@
                 <Input v-model="edit.department" :placeholder="$t('manage_user.placeholder.department')"></Input>
             </FormItem>
             <FormItem label="E-mail" prop="email">
-                <Input v-model="edit.email" :placeholder="$t('sign_up_validate.mail') as string"></Input>
+                <Input v-model="edit.email" :placeholder="$t('sign_up_validate.mail')"></Input>
             </FormItem>
         </Form>
     </Modal>

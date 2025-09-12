@@ -58,7 +58,7 @@
                 LoginApi(this.single,{username:sessionStorage.getItem('user'),password:this.password})
                     .then( res => {
                         if (res.data.code === 1301) {
-                            this.$Message.error(this.$t('unlock.password_incorrect') as string)
+                            this.$Message.error(this.$t('unlock.password_incorrect'))
                             return
                         }
                         this.avatorLeft = '0px'

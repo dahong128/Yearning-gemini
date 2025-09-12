@@ -12,7 +12,7 @@
                             <Button type="primary" @click="batchOpen">{{ $t('manage_group.create') }}</Button>
                         </FormItem>
                         <FormItem>
-                            <search :text="$t('manage_group.search_placeholder') as string" @refresh="current_page" is_group></search>
+                            <search :text="$t('manage_group.search_placeholder')" @refresh="current_page" is_group></search>
                         </FormItem>
                     </Form>
                     <Table border :columns="columns" :data="table_data" stripe height="550">
