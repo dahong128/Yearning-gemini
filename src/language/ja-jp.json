@@ -610,7 +610,6 @@
     "columns": {"name": "名称", "type": "種類", "source": "データソース"},
     "errors": {"fill_required": "必須項目を入力してください！"}
   },
-  ,
   "audit_query": {
     "title": "クエリ審査",
     "kill_all_tip": "すべての申請を終了状態に変更",

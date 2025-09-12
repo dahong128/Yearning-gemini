@@ -489,7 +489,6 @@
     "columns": {"name": "Name", "type": "Type", "source": "Source"},
     "errors": {"fill_required": "Please fill required fields!"}
   },
-  ,
   "query_refer": {
     "submitted": "Your request has been submitted. Please wait for approval.",
     "revoke": "Revoke"
