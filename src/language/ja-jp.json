@@ -593,8 +593,7 @@
       "desc_placeholder": "最大20文字"
     },
     "rollback_empty": "ロールバックSQLは生成されませんでした。バックアップ選択やDB設定をご確認ください。詳細: https://guide.yearning.io/attention.html"
-  }
-  ,
+  },
   "manage_auto": {
     "title": "自動タスク",
     "new": "新規タスク",
@@ -633,8 +632,7 @@
     "msg": {
       "killed_all": "すべての申請を中止しました"
     }
-  }
-  ,
+  },
   "records_order": {
     "title": "工単実行履歴",
     "search_placeholder": "工単番号を入力して Enter",

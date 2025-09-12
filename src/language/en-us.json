@@ -87,8 +87,7 @@
       "text_8":"Of course, if you like it, just reward me ^_^ Login interface sponsorship button",
       "text_9":"This statement will not be pushed to non-super administrator users. After accepting the above terms and clicking agree, this notification will not appear again on the super administrator page."
     }
-  }
-  ,
+  },
   "header": {
     "help_menu": "Help"
   },
@@ -473,8 +472,7 @@
     "snippet_tag": "Snippet Tag",
     "snippet": "Snippet",
     "duplicate_source": "This data source is already opened!"
-  }
-  ,
+  },
   "manage_auto": {
     "title": "Auto Tasks",
     "new": "New Task",
@@ -612,8 +610,7 @@
       "desc_placeholder": "Up to 20 characters"
     },
     "rollback_empty": "No rollback SQL generated. Please ensure backup was selected or DB settings are correct. More: https://guide.yearning.io/attention.html"
-  }
-  ,
+  },
   "audit_query": {
     "title": "Query Audit",
     "kill_all_tip": "Set all requests to Finished",
